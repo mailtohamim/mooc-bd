@@ -79,19 +79,24 @@ const Icon = {
    Calendar mini
 ───────────────────────────────────────────── */
 function MiniCalendar() {
+  const [mounted, setMounted] = useState(false)
   const now = new Date()
   const today = now.getDate()
-  const [month] = useState(now.getMonth())
-  const [year]  = useState(now.getFullYear())
+  const month = now.getMonth()
+  const year  = now.getFullYear()
   const daysInMonth = new Date(year, month + 1, 0).getDate()
   const firstDay    = new Date(year, month, 1).getDay() 
   const offset      = firstDay === 0 ? 6 : firstDay - 1
 
+  useEffect(() => setMounted(true), [])
+
+  if (!mounted) return <div style={{ height: 160 }} />
+
   return (
     <div style={{ marginTop: 24 }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7,1fr)', gap: 6 }}>
-        {['S','M','T','W','T','F','S'].map(d => (
-          <div key={d} style={{ fontSize: 10, color: '#aeaeb2', textAlign: 'center', fontWeight: 700 }}>{d}</div>
+        {['S','M','T','W','T','F','S'].map((d, i) => (
+          <div key={`${d}-${i}`} style={{ fontSize: 10, color: '#aeaeb2', textAlign: 'center', fontWeight: 700 }}>{d}</div>
         ))}
         {Array.from({ length: offset }).map((_, i) => <div key={`o-${i}`} />)}
         {Array.from({ length: daysInMonth }).map((_, i) => (
@@ -287,8 +292,8 @@ function WeeklyLineChart() {
 ───────────────────────────────────────────── */
 function OverviewPage({ displayName }: { displayName: string }) {
   const { user } = useAuth()
-  const enrolledCount = user?.enrolledCourses.length || 0
-  const completedCount = user?.completedTopics.length || 0
+  const enrolledCount = user?.enrolledCourses?.length || 0
+  const completedCount = user?.completedTopics?.length || 0
   const progressPercent = Math.min(Math.round((completedCount / 10) * 100), 100)
   
   const pendingAssignment = assignments.find(a => !a.done) || assignments[0]
@@ -314,7 +319,7 @@ function OverviewPage({ displayName }: { displayName: string }) {
               transition: 'transform 200ms ease',
             }}
             onClick={() => {
-              window.location.href = user?.enrolledCourses[0] ? `/course/${user.enrolledCourses[0]}` : '/course/physics-12'
+              window.location.href = user?.enrolledCourses?.[0] ? `/course/${user.enrolledCourses[0]}` : '/course/physics-12'
             }}
             onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
             onMouseLeave={e => (e.currentTarget.style.transform = 'none')}

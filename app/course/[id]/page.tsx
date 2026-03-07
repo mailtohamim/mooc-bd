@@ -66,7 +66,7 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
   
   const course = courseData[id] || courseData['physics-12']
   const [activeTopic, setActiveTopic] = useState(course.chapters[0].topics[0])
-  const isEnrolled = user?.enrolledCourses.includes(id)
+  const isEnrolled = user?.enrolledCourses?.includes(id)
 
   if (!user) {
     return (
@@ -165,7 +165,7 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
                 <div style={{ fontSize: 14, fontWeight: 700, color: '#1d1d1f', marginBottom: 10 }}>{ch.title}</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {ch.topics.map((topic, tIdx) => {
-                    const isCompleted = user.completedTopics.includes(topic.id)
+                    const isCompleted = user?.completedTopics?.includes(topic.id)
                     const isActive = activeTopic.id === topic.id
                     
                     return (
