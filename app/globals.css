@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100;200;300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-family-bengali: "Anek Bangla", sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Anek Bangla', sans-serif;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Glass ─── */
+.glass {
+  background: rgba(255, 255, 255, 0.20);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.30);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+}
+.glass-dark {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.20);
+}
+
+/* ─── Hover lift ─── */
+.hover-lift {
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.10);
+}
+.hover-lift-sm {
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+.hover-lift-sm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── gradient text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, #1d1d1f 0%, #4a90d9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Blue button ─── */
+.btn-primary {
+  background: linear-gradient(135deg, #3a7bd5, #5a6cf8);
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Anek Bangla', sans-serif;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(58, 123, 213, 0.38);
+}
+
+/* ─── Pill tag ─── */
+.pill-tag {
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: 13px;
+  font-family: 'Anek Bangla', sans-serif;
+  color: #3c3c43;
+  background: rgba(255,255,255,0.70);
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+.pill-tag:hover {
+  background: #fff;
+  border-color: rgba(0,0,0,0.20);
+  transform: translateY(-1px);
+}
+
+/* ─── Section spacing ─── */
+.section {
+  padding: 88px 0;
+}
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+@media (max-width: 768px) {
+  .section { padding: 56px 0; }
+  .container { padding: 0 20px; }
+}
+
+/* ─── Typography scale ─── */
+.h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 800; line-height: 1.10; letter-spacing: -0.03em; }
+.h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+.h3 { font-size: clamp(18px, 2.5vw, 24px); font-weight: 700; line-height: 1.25; }
+.body-lg { font-size: 17px; line-height: 1.65; }
+.body-sm { font-size: 14px; line-height: 1.60; }
+.label   { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ─── Horz scroll hide bar ─── */
+.scroll-x { overflow-x: auto; scrollbar-width: none; }
+.scroll-x::-webkit-scrollbar { display: none; }
