@@ -116,7 +116,7 @@ export default function VideoPlayer() {
 
   return (
     <section className="section" style={{ background: '#f8f8fa' }}>
-      <div className="container">
+      <div className="container" style={{ maxWidth: '1400px' }}>
 
         {/* Class selector */}
         <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 32 }}>
@@ -180,65 +180,20 @@ export default function VideoPlayer() {
             </div>
 
             {/* Right – video content area */}
-            <div style={{ padding: '24px 32px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 280px', gap: 24 }}>
-                {/* Video Column */}
-                <div>
-                  <VideoPlaceholder subject={activeTopic} color={color} />
-                  <h2 className="h3" style={{
-                    color: '#1d1d1f',
-                    fontFamily: "'Anek Bangla', sans-serif",
-                    marginTop: 18, marginBottom: 6,
-                  }}>
-                    {subject} · {activeTopic}
-                  </h2>
-                  <p className="body-sm" style={{ color: '#8e8e93', fontFamily: "'Anek Bangla', sans-serif" }}>
-                    {activeChapter.title} · পার্ট {activeTopicIdx + 1}
-                  </p>
-                </div>
-
-                {/* Topics/Chapters Column */}
-                <div style={{
-                  background: 'rgba(255,255,255,0.4)', borderRadius: 16,
-                  border: '1px solid rgba(0,0,0,0.04)', padding: 16,
-                  maxHeight: 440, overflowY: 'auto'
+            <div style={{ padding: '32px 40px' }}>
+              <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+                <VideoPlaceholder subject={activeTopic} color={color} />
+                <h2 className="h3" style={{
+                  color: '#1d1d1f',
+                  fontFamily: "'Anek Bangla', sans-serif",
+                  marginTop: 24, marginBottom: 8,
+                  fontSize: 26,
                 }}>
-                  <div style={{ fontWeight: 700, fontSize: 13, color: '#8e8e93', marginBottom: 12, paddingLeft: 4 }}>সিলেবাস / কারিকুলাম</div>
-                  {chapters.map((ch, cIdx) => (
-                    <div key={cIdx} style={{ marginBottom: 14 }}>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: '#1d1d1f', marginBottom: 6, paddingLeft: 4 }}>{ch.title}</div>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                        {ch.topics.map((top, tIdx) => {
-                          const isAct = activeChapterIdx === cIdx && activeTopicIdx === tIdx
-                          return (
-                            <button
-                              key={tIdx}
-                              onClick={() => { setActiveChapterIdx(cIdx); setActiveTopicIdx(tIdx) }}
-                              style={{
-                                background: isAct ? `${color}10` : 'transparent',
-                                border: 'none', borderRadius: 8, padding: '8px 10px',
-                                textAlign: 'left', cursor: 'pointer',
-                                color: isAct ? color : '#3c3c43',
-                                fontSize: 13, fontWeight: isAct ? 600 : 400,
-                                fontFamily: "'Anek Bangla', sans-serif",
-                                transition: 'all 200ms',
-                                display: 'flex', alignItems: 'center', gap: 8
-                              }}
-                            >
-                              <div style={{
-                                width: 18, height: 18, borderRadius: '50%',
-                                border: `1.5px solid ${isAct ? color : '#d1d1d6'}`,
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                fontSize: 10, fontWeight: 700
-                              }}>{isAct ? '▶' : tIdx + 1}</div>
-                              {top}
-                            </button>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                  {subject} · {activeTopic}
+                </h2>
+                <p className="body-sm" style={{ color: '#8e8e93', fontFamily: "'Anek Bangla', sans-serif", fontSize: 16 }}>
+                  {activeChapter.title} · পার্ট {activeTopicIdx + 1}
+                </p>
               </div>
             </div>
           </div>
@@ -248,9 +203,6 @@ export default function VideoPlayer() {
       <style>{`
         @media (max-width: 1000px) {
           .video-grid { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 900px) {
-           .video-grid + div > div { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>
