@@ -43,6 +43,15 @@ export const PORTRAIT_VIDEO_IMAGES = {
 };
 
 // ─── Video Player Section ────────────────────────────────────────
-export const VIDEO_PLAYER_IMAGES = {
-  thumbnail: `${BASE_URL}/170`,
+export const VIDEO_PLAYER_IMAGES: Record<string, string> = {
+  পদার্থবিজ্ঞান: `${BASE_URL}/170`,
+  রসায়নবিজ্ঞান: `${BASE_URL}/175`,
+  গণিত: `${BASE_URL}/180`,
+  জীববিজ্ঞান: `${BASE_URL}/185`,
+  "বেসিক পাইথন প্রোগ্রামিং": `${BASE_URL}/190`,
+  ইংরেজি: `${BASE_URL}/195`,
+  "বাংলা ১ম পত্র": `${BASE_URL}/200`,
+  "সাধারণ বিজ্ঞান": `${BASE_URL}/205`,
+  ইতিহাস: `${BASE_URL}/210`,
+  _default: `${BASE_URL}/170`,
 };
