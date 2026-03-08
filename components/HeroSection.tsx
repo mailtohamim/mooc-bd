@@ -5,7 +5,6 @@ import { HERO_IMAGES } from "@/constants/images";
 const slides = [
   {
     id: 0,
-    bg: "linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)",
     accent: "#4a90d9",
     heading: "সবার জন্য উন্মুক্ত শিক্ষা",
     sub: "বাংলাদেশ সরকারের বিনামূল্যে অনলাইন শিক্ষা প্ল্যাটফর্ম",
@@ -13,7 +12,6 @@ const slides = [
   },
   {
     id: 1,
-    bg: "linear-gradient(135deg, #0d1b0f 0%, #1a3820 50%, #0d2b1a 100%)",
     accent: "#5ab87a",
     heading: "বিশেষজ্ঞ শিক্ষকদের সাথে শিখুন",
     sub: "দেশের সেরা শিক্ষকদের ভিডিও লেকচার এখন আপনার হাতের মুঠোয়",
@@ -21,7 +19,6 @@ const slides = [
   },
   {
     id: 2,
-    bg: "linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 50%, #1a0f3a 100%)",
     accent: "#a78bfa",
     heading: "পরীক্ষার প্রস্তুতি নিন ঘরে বসে",
     sub: "প্রাথমিক থেকে উচ্চ মাধ্যমিক – সব শ্রেণির জন্য সম্পূর্ণ গাইড",
@@ -59,50 +56,102 @@ export default function HeroSection() {
         width: "100%",
         height: "100vh",
         minHeight: 600,
-        background: slide.bg,
-        transition: "background 600ms ease",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
         position: "relative",
         overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
-      {/* Background glow */}
+      {/* ── Sliding background images ── */}
+      {slides.map((s, i) => (
+        <img
+          key={s.id}
+          src={s.img}
+          alt={s.heading}
+          style={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            zIndex: 0,
+            opacity: i === active ? 1 : 0,
+            transition: "opacity 800ms ease",
+          }}
+        />
+      ))}
+
+      {/* ── Dark overlay for text readability ── */}
       <div
         style={{
           position: "absolute",
           inset: 0,
+          zIndex: 1,
+          background:
+            "linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.30) 100%)",
+        }}
+      />
+
+      {/* ── Accent glow ── */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 2,
           pointerEvents: "none",
-          background: `radial-gradient(ellipse 60% 50% at 70% 40%, ${slide.accent}18 0%, transparent 70%)`,
+          background: `radial-gradient(ellipse 50% 60% at 25% 50%, ${slide.accent}20 0%, transparent 70%)`,
           transition: "background 600ms ease",
         }}
       />
 
+      {/* ── Content ── */}
       <div
         className="container"
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 48,
-          alignItems: "center",
+          position: "relative",
+          zIndex: 3,
           width: "100%",
           maxWidth: 1160,
           padding: "0 32px",
-          opacity: animating ? 0 : 1,
-          transform: animating ? "translateY(12px)" : "translateY(0)",
-          transition: "opacity 350ms ease, transform 350ms ease",
         }}
       >
-        {/* Left – Text */}
-        <div>
+        <div
+          style={{
+            maxWidth: 600,
+            opacity: animating ? 0 : 1,
+            transform: animating ? "translateY(16px)" : "translateY(0)",
+            transition: "opacity 350ms ease, transform 350ms ease",
+          }}
+        >
+          {/* Badge */}
+          <div
+            style={{
+              display: "inline-block",
+              background: "rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.18)",
+              borderRadius: 999,
+              padding: "5px 16px",
+              fontSize: 13,
+              fontWeight: 600,
+              color: "rgba(255,255,255,0.85)",
+              fontFamily: "'Anek Bangla', sans-serif",
+              marginBottom: 20,
+              backdropFilter: "blur(8px)",
+            }}
+          >
+            🎓 বিনামূল্যে শিক্ষা প্ল্যাটফর্ম
+          </div>
+
           <h1
             className="h1"
             style={{
               color: "#ffffff",
               fontFamily: "'Anek Bangla', sans-serif",
               marginBottom: 20,
+              fontSize: "clamp(32px, 5vw, 52px)",
+              lineHeight: 1.2,
+              textShadow: "0 2px 20px rgba(0,0,0,0.3)",
             }}
           >
             {slide.heading}
@@ -110,14 +159,18 @@ export default function HeroSection() {
           <p
             className="body-lg"
             style={{
-              color: "rgba(255,255,255,0.65)",
+              color: "rgba(255,255,255,0.75)",
               fontFamily: "'Anek Bangla', sans-serif",
               marginBottom: 36,
-              maxWidth: 420,
+              maxWidth: 480,
+              fontSize: "clamp(16px, 2vw, 20px)",
+              lineHeight: 1.6,
             }}
           >
             {slide.sub}
           </p>
+
+          {/* CTA buttons */}
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
             <button
               className="btn-primary"
@@ -126,6 +179,7 @@ export default function HeroSection() {
                 boxShadow: `0 8px 28px ${slide.accent}40`,
                 fontSize: 16,
                 padding: "13px 32px",
+                transition: "all 300ms ease, box-shadow 300ms ease",
               }}
             >
               শুরু করুন
@@ -174,26 +228,6 @@ export default function HeroSection() {
               />
             ))}
           </div>
-        </div>
-
-        {/* Right – Visual */}
-        <div
-          style={{
-            width: "100%",
-            aspectRatio: "560/360",
-            borderRadius: 20,
-            overflow: "hidden",
-            border: "1px solid rgba(255,255,255,0.10)",
-            background: "rgba(255,255,255,0.04)",
-            backdropFilter: "blur(8px)",
-            flexShrink: 0,
-          }}
-        >
-          <img
-            src={slide.img}
-            alt={slide.heading}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
         </div>
       </div>
 
@@ -267,6 +301,7 @@ export default function HeroSection() {
           alignItems: "center",
           gap: 6,
           opacity: 0.5,
+          zIndex: 10,
         }}
       >
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -279,13 +314,6 @@ export default function HeroSection() {
           />
         </svg>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; }
-          .hero-visual { display: none; }
-        }
-      `}</style>
     </section>
   );
 }

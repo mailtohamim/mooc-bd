@@ -4,8 +4,7 @@
  * Change URLs here to update images across the entire site.
  */
 
-const BASE_URL = "https://static.photos/education/1024x576";
-
+const BASE_URL = "https://static.photos/education/1200x630";
 // ─── Hero Section (Slider) ───────────────────────────────────────
 export const HERO_IMAGES = {
   slide1: `${BASE_URL}/10`,
