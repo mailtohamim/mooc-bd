@@ -2,11 +2,12 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
+import ForumPage from '@/components/ForumPage'
 
 /* ─────────────────────────────────────────────
    Types & shared data
 ───────────────────────────────────────────── */
-type Page = 'overview' | 'assignment' | 'reports' | 'files' | 'inbox' | 'settings'
+type Page = 'overview' | 'assignment' | 'reports' | 'files' | 'inbox' | 'forum' | 'settings'
 
 const courseCards = [
   { id: 'physics-12', title: 'পদার্থবিজ্ঞান', class: 'শ্রেণি ১২', lessons: 24, files: 8, students: 99, color: '#4a90d9', bg: 'rgba(74,144,217,0.08)' },
@@ -73,6 +74,7 @@ const Icon = {
   edit:        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M10.5 2.5l2 2L5 12H3v-2l7.5-7.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg>,
   up:          <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 2l4 6H1z" fill="#5ab87a"/></svg>,
   down:        <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 8L1 2h8z" fill="#ff6b6b"/></svg>,
+  forum:       <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 4a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H9l-3 3v-3H5a2 2 0 01-2-2V4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M6 6h6M6 9h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>,
 }
 
 /* ─────────────────────────────────────────────
@@ -675,6 +677,7 @@ const navItems: { id: Page; label: string; badge?: number }[] = [
   { id: 'reports',     label: 'রিপোর্ট', badge: 12 },
   { id: 'files',       label: 'ফাইল স্টোরেজ' },
   { id: 'inbox',       label: 'ইনবক্স', badge: 2 },
+  { id: 'forum',       label: 'ফোরাম' },
   { id: 'settings',    label: 'সেটিংস' },
 ]
 
@@ -833,6 +836,7 @@ export default function DashboardPage() {
         {page === 'reports'    && <ReportsPage />}
         {page === 'files'      && <FilesPage />}
         {page === 'inbox'      && <InboxPage />}
+        {page === 'forum'      && <ForumPage />}
         {page === 'settings'   && <SettingsPage user={user} />}
       </main>
 
