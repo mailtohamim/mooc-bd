@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
+import AIChatBot from "@/components/AIChatBot";
 
 export const metadata: Metadata = {
   title: "শিখবেই বাংলাদেশ – বিনামূল্যে অনলাইন শিক্ষা",
@@ -28,7 +29,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          {children}
+          <AIChatBot />
+        </AuthProvider>
       </body>
     </html>
   );

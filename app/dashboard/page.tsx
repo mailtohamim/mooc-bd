@@ -573,33 +573,223 @@ function FilesPage() {
 }
 
 function InboxPage() {
+  const { user } = useAuth()
+  const myName = user?.displayName || 'User'
+  const [openChats, setOpenChats] = useState<string[]>([])
+  const [chatMessages, setChatMessages] = useState<Record<string, { text: string; from: 'me' | 'them'; time: string }[]>>({})
+  const [chatInputs, setChatInputs] = useState<Record<string, string>>({})
+  const [showStickers, setShowStickers] = useState<string | null>(null)
+  const [searchInbox, setSearchInbox] = useState('')
+  const [selectedContact, setSelectedContact] = useState<string | null>(null)
+
+  const contacts = [
+    { name: 'প্রফেসর আহমেদ', status: 'online' as const, lastMsg: 'আজকের ক্লাসে পদার্থবিজ্ঞানের অধ্যায় ৫ পড়ে আসবে।', time: '৯:৩০ AM', unread: 2 },
+    { name: 'মিস রাহেলা', status: 'online' as const, lastMsg: 'তোমার অ্যাসাইনমেন্ট জমা দেওয়ার তারিখ কাল পর্যন্ত।', time: 'গতকাল', unread: 1 },
+    { name: 'শিখবেই বাংলাদেশ', status: 'offline' as const, lastMsg: 'নতুন কোর্স: ডিজিটাল মার্কেটিং এখন উপলব্ধ!', time: '১ মার্চ', unread: 0 },
+    { name: 'মডারেটর', status: 'offline' as const, lastMsg: 'তোমার কমিউনিটি পোস্টে ৩টি উত্তর এসেছে।', time: '২৮ ফেব', unread: 0 },
+    { name: 'করিম উদ্দিন', status: 'online' as const, lastMsg: 'ভাই, গণিতের নোটগুলো শেয়ার করবে?', time: '১০:১৫ AM', unread: 3 },
+    { name: 'সুমাইয়া খান', status: 'away' as const, lastMsg: 'TED Talks-এর লিংক পাঠাও তো!', time: 'গতকাল', unread: 0 },
+  ]
+
+  const stickers = ['😀','😂','🥰','😎','🤔','👍','👏','🎉','❤️','🔥','💪','📚','✍️','🌟','🚀','💡']
+
+  const initials = (name: string) => name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
+  const statusColor = (s: string) => s === 'online' ? '#5ab87a' : s === 'away' ? '#ffcc00' : '#c7c7cc'
+
+  const openChat = (name: string) => {
+    if (!openChats.includes(name)) {
+      setOpenChats(prev => [...prev.slice(-2), name]) // max 3 windows
+    }
+    setSelectedContact(name)
+    // Seed initial messages if empty
+    if (!chatMessages[name]) {
+      const contact = contacts.find(c => c.name === name)
+      setChatMessages(prev => ({
+        ...prev,
+        [name]: [{ text: contact?.lastMsg || 'হ্যালো!', from: 'them' as const, time: contact?.time || 'এখন' }]
+      }))
+    }
+  }
+
+  const closeChat = (name: string) => {
+    setOpenChats(prev => prev.filter(n => n !== name))
+    if (selectedContact === name) setSelectedContact(null)
+  }
+
+  const sendMsg = (name: string) => {
+    const text = chatInputs[name]?.trim()
+    if (!text) return
+    setChatMessages(prev => ({
+      ...prev,
+      [name]: [...(prev[name] || []), { text, from: 'me' as const, time: 'এখন' }]
+    }))
+    setChatInputs(prev => ({ ...prev, [name]: '' }))
+    setShowStickers(null)
+    // Simulate reply
+    setTimeout(() => {
+      const replies = ['বুঝেছি! 👍', 'ঠিক আছে, ধন্যবাদ!', 'আচ্ছা, পরে কথা হবে।', 'দারুণ! 🎉', 'হ্যাঁ, অবশ্যই!', 'ওকে, দেখি কী করা যায়।']
+      setChatMessages(prev => ({
+        ...prev,
+        [name]: [...(prev[name] || []), { text: replies[Math.floor(Math.random() * replies.length)], from: 'them' as const, time: 'এখন' }]
+      }))
+    }, 1500 + Math.random() * 1000)
+  }
+
+  const sendSticker = (name: string, sticker: string) => {
+    setChatMessages(prev => ({
+      ...prev,
+      [name]: [...(prev[name] || []), { text: sticker, from: 'me' as const, time: 'এখন' }]
+    }))
+    setShowStickers(null)
+  }
+
+  const filteredContacts = contacts.filter(c => c.name.toLowerCase().includes(searchInbox.toLowerCase()))
+
   return (
     <div>
-      <h2 style={pageTitle}>ইনবক্স</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {messages.map((m, i) => (
-          <div key={i} style={{
-            ...card, display: 'flex', alignItems: 'flex-start', gap: 12, padding: '16px 18px',
-            borderLeft: `3px solid ${m.unread ? '#3a7bd5' : 'transparent'}`,
-            background: m.unread ? 'rgba(58,123,213,0.04)' : 'rgba(255,255,255,0.75)',
-          }}>
-            <div style={{
-              width: 36, height: 36, borderRadius: '50%',
-              background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: 'white', fontSize: 13, fontWeight: 700, flexShrink: 0,
-            }}>{m.from[0]}</div>
-            <div style={{ flex: 1 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
-                <span style={{ fontWeight: m.unread ? 700 : 600, fontSize: 14, color: '#1d1d1f' }}>{m.from}</span>
-                <span style={{ fontSize: 12, color: '#aeaeb2' }}>{m.time}</span>
+      <h2 style={pageTitle}>মেসেঞ্জার</h2>
+
+      {/* Search */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#f0f2f5', borderRadius: 20, padding: '8px 14px', marginBottom: 16 }}>
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="#65676b" strokeWidth="1.5"/><path d="M11 11l3 3" stroke="#65676b" strokeWidth="1.5" strokeLinecap="round"/></svg>
+        <input value={searchInbox} onChange={e => setSearchInbox(e.target.value)} placeholder="মেসেঞ্জারে খুঁজুন..."
+          style={{ border: 'none', background: 'none', outline: 'none', flex: 1, fontSize: 13, fontFamily: "'Anek Bangla', sans-serif", color: '#050505' }} />
+      </div>
+
+      {/* Online now */}
+      <div style={{ marginBottom: 16 }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: '#65676b', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em' }}>অনলাইনে আছেন</div>
+        <div style={{ display: 'flex', gap: 14, overflowX: 'auto', paddingBottom: 4 }} className="scroll-x">
+          {contacts.filter(c => c.status === 'online').map(c => (
+            <div key={c.name} onClick={() => openChat(c.name)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, cursor: 'pointer', minWidth: 56 }}>
+              <div style={{ position: 'relative' }}>
+                <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 16 }}>{initials(c.name)}</div>
+                <div style={{ position: 'absolute', bottom: 1, right: 1, width: 12, height: 12, borderRadius: '50%', background: '#5ab87a', border: '2px solid white' }} />
               </div>
-              <div style={{ fontSize: 13, color: '#6e6e73', lineHeight: 1.5 }}>{m.text}</div>
+              <span style={{ fontSize: 11, color: '#050505', fontWeight: 600, textAlign: 'center', lineHeight: 1.2, maxWidth: 64, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.name.split(' ')[0]}</span>
             </div>
-            {m.unread && <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#3a7bd5', flexShrink: 0, marginTop: 4 }} />}
+          ))}
+        </div>
+      </div>
+
+      {/* Contact list */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+        {filteredContacts.map(c => (
+          <div key={c.name} onClick={() => openChat(c.name)} style={{
+            display: 'flex', alignItems: 'center', gap: 12, padding: '10px 12px', borderRadius: 10,
+            cursor: 'pointer', transition: 'background 150ms',
+            background: selectedContact === c.name ? 'rgba(58,123,213,0.08)' : 'transparent',
+          }}
+            onMouseEnter={e => { if (selectedContact !== c.name) e.currentTarget.style.background = '#f2f2f5' }}
+            onMouseLeave={e => { if (selectedContact !== c.name) e.currentTarget.style.background = 'transparent' }}
+          >
+            <div style={{ position: 'relative', flexShrink: 0 }}>
+              <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 16 }}>{initials(c.name)}</div>
+              <div style={{ position: 'absolute', bottom: 1, right: 1, width: 12, height: 12, borderRadius: '50%', background: statusColor(c.status), border: '2px solid white' }} />
+            </div>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontWeight: c.unread ? 800 : 600, fontSize: 14, color: '#050505' }}>{c.name}</div>
+              <div style={{ fontSize: 12, color: c.unread ? '#050505' : '#65676b', fontWeight: c.unread ? 600 : 400, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.lastMsg} · {c.time}</div>
+            </div>
+            {c.unread > 0 && (
+              <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#3a7bd5', color: 'white', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.unread}</div>
+            )}
           </div>
         ))}
       </div>
+
+      {/* ═══ Floating Messenger Windows ═══ */}
+      <div style={{ position: 'fixed', bottom: 0, right: 96, zIndex: 999, display: 'flex', gap: 8, alignItems: 'flex-end' }}>
+        {openChats.map((name, idx) => {
+          const msgs = chatMessages[name] || []
+          const inp = chatInputs[name] || ''
+          const contact = contacts.find(c => c.name === name)
+          return (
+            <div key={name} style={{
+              width: 328, height: 420, borderRadius: '10px 10px 0 0', overflow: 'hidden',
+              boxShadow: '0 -2px 16px rgba(0,0,0,0.15)', display: 'flex', flexDirection: 'column',
+              background: '#ffffff', animation: 'msg-slide-up 250ms ease-out',
+            }}>
+              {/* Chat header */}
+              <div style={{ padding: '8px 10px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #e4e6eb', background: '#ffffff', flexShrink: 0 }}>
+                <div style={{ position: 'relative' }}>
+                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 12 }}>{initials(name)}</div>
+                  <div style={{ position: 'absolute', bottom: 0, right: 0, width: 8, height: 8, borderRadius: '50%', background: statusColor(contact?.status || 'offline'), border: '1.5px solid white' }} />
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontWeight: 700, fontSize: 13, color: '#050505', lineHeight: 1.2 }}>{name}</div>
+                  <div style={{ fontSize: 10, color: '#65676b' }}>{contact?.status === 'online' ? 'সক্রিয়' : 'অফলাইন'}</div>
+                </div>
+                <button onClick={(e) => { e.stopPropagation(); closeChat(name) }} style={{ width: 28, height: 28, borderRadius: '50%', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#65676b', fontSize: 16, transition: 'background 150ms' }}
+                  onMouseEnter={e => e.currentTarget.style.background = '#f2f2f5'} onMouseLeave={e => e.currentTarget.style.background = 'none'}>✕</button>
+              </div>
+
+              {/* Messages */}
+              <div style={{ flex: 1, overflowY: 'auto', padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 4 }} ref={el => { if (el) el.scrollTop = el.scrollHeight }}>
+                {msgs.map((m, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: m.from === 'me' ? 'flex-end' : 'flex-start' }}>
+                    {m.from === 'them' && <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 9, marginRight: 4, flexShrink: 0, alignSelf: 'flex-end' }}>{initials(name)}</div>}
+                    <div style={{
+                      maxWidth: '75%', padding: m.text.length <= 3 ? '4px 8px' : '8px 12px',
+                      borderRadius: m.from === 'me' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
+                      background: m.from === 'me' ? '#3a7bd5' : '#e4e6eb',
+                      color: m.from === 'me' ? 'white' : '#050505',
+                      fontSize: m.text.length <= 3 ? 28 : 13, lineHeight: m.text.length <= 3 ? 1.2 : 1.5, wordBreak: 'break-word',
+                    }}>{m.text}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Sticker picker */}
+              {showStickers === name && (
+                <div style={{ padding: '8px', borderTop: '1px solid #e4e6eb', display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 4, background: '#fafafa', maxHeight: 100, overflowY: 'auto' }}>
+                  {stickers.map(s => (
+                    <button key={s} onClick={() => sendSticker(name, s)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 22, padding: 4, borderRadius: 6, transition: 'background 150ms' }}
+                      onMouseEnter={e => e.currentTarget.style.background = '#e4e6eb'} onMouseLeave={e => e.currentTarget.style.background = 'none'}>{s}</button>
+                  ))}
+                </div>
+              )}
+
+              {/* Input bar */}
+              <div style={{ padding: '6px 8px', display: 'flex', alignItems: 'center', gap: 4, borderTop: '1px solid #e4e6eb', flexShrink: 0, background: '#ffffff' }}>
+                {/* Attachment */}
+                <button style={{ ...chatToolBtn }} title="ফাইল সংযুক্ত করুন">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                </button>
+                {/* Photo */}
+                <button style={{ ...chatToolBtn }} title="ছবি পাঠান">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5ab87a" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </button>
+                {/* Sticker */}
+                <button onClick={() => setShowStickers(showStickers === name ? null : name)} style={{ ...chatToolBtn, color: showStickers === name ? '#3a7bd5' : '#ff9500' }} title="স্টিকার">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                </button>
+                {/* Text input */}
+                <div style={{ flex: 1, display: 'flex', background: '#f0f2f5', borderRadius: 20, overflow: 'hidden' }}>
+                  <input value={inp} onChange={e => setChatInputs(prev => ({ ...prev, [name]: e.target.value }))}
+                    onKeyDown={e => e.key === 'Enter' && sendMsg(name)} placeholder="Aa"
+                    style={{ flex: 1, padding: '8px 12px', border: 'none', background: 'none', fontSize: 13, fontFamily: "'Anek Bangla', sans-serif", outline: 'none', color: '#050505' }} />
+                </div>
+                {/* Send / Like */}
+                {inp.trim() ? (
+                  <button onClick={() => sendMsg(name)} style={{ ...chatToolBtn }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#3a7bd5"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                  </button>
+                ) : (
+                  <button onClick={() => sendSticker(name, '👍')} style={{ ...chatToolBtn, fontSize: 20 }}>👍</button>
+                )}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <style>{`
+        @keyframes msg-slide-up {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   )
 }
@@ -666,6 +856,11 @@ const inp: React.CSSProperties = {
   border: '1.5px solid rgba(0,0,0,0.10)', background: 'rgba(255,255,255,0.80)',
   fontSize: 14, fontFamily: "'Anek Bangla', sans-serif", color: '#1d1d1f',
   outline: 'none', transition: 'border-color 300ms',
+}
+const chatToolBtn: React.CSSProperties = {
+  width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'none',
+  cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+  transition: 'background 150ms', flexShrink: 0,
 }
 
 /* ─────────────────────────────────────────────
