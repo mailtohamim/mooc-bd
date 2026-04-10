@@ -12,9 +12,12 @@ import { Layout, ClipboardList, BarChart2, Folder, MessageSquare, Settings, Sear
 type Page = 'overview' | 'assignment' | 'reports' | 'files' | 'inbox' | 'forum' | 'notebook' | 'settings'
 
 const courseCards = [
-  { id: 'physics-12', title: 'পদার্থবিজ্ঞান', class: 'শ্রেণি ১২', lessons: 24, files: 8, students: 99, color: '#4a90d9', bg: 'rgba(74,144,217,0.08)' },
-  { id: 'bangla-10',  title: 'বাংলা ১ম পত্র', class: 'শ্রেণি ১০', lessons: 18, files: 5, students: 64, color: '#5ab87a', bg: 'rgba(90,184,122,0.08)' },
-  { id: 'english-skill', title: 'Spoken English',class: 'স্কিলস',    lessons: 30, files: 12, students: 210, color: '#8250d2', bg: 'rgba(130,80,210,0.08)' },
+  { id: 'physics-12', title: 'পদার্থবিজ্ঞান', class: 'শ্রেণি ১২', lessons: 24, files: 8, students: 99, color: '#4a90d9', bg: 'rgba(74,144,217,0.08)', progress: 65 },
+  { id: 'bangla-10',  title: 'বাংলা ১ম পত্র', class: 'শ্রেণি ১০', lessons: 18, files: 5, students: 64, color: '#5ab87a', bg: 'rgba(90,184,122,0.08)', progress: 80 },
+  { id: 'english-skill', title: 'Spoken English',class: 'স্কিলস',    lessons: 30, files: 12, students: 210, color: '#8250d2', bg: 'rgba(130,80,210,0.08)', progress: 45 },
+  { id: 'math-12',    title: 'উচ্চতর গণিত', class: 'শ্রেণি ১২', lessons: 40, files: 15, students: 120, color: '#ff6b6b', bg: 'rgba(255,107,107,0.08)', progress: 30 },
+  { id: 'chem-12',    title: 'রসায়ন', class: 'শ্রেণি ১২', lessons: 28, files: 9, students: 85, color: '#ff9500', bg: 'rgba(255,149,0,0.08)', progress: 50 },
+  { id: 'ict-12',     title: 'তথ্য ও যোগাযোগ প্রযুক্তি', class: 'শ্রেণি ১২', lessons: 20, files: 6, students: 150, color: '#2dca73', bg: 'rgba(45,202,115,0.08)', progress: 10 },
 ]
 
 const months = ['জানুয়ারি','ফেব্রুয়ারি','মার্চ','এপ্রিল','মে']
@@ -391,40 +394,60 @@ function OverviewPage({ displayName }: { displayName: string }) {
         </div>
       </div>
 
-      {/* Course cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14, marginBottom: 28 }} className="course-row">
-        {courseCards.map(c => (
-          <div key={c.id} 
-            onClick={() => window.location.href = `/course/${c.id}`}
-            style={{
-              background: c.bg, border: `1px solid ${c.color}25`,
-              borderRadius: 18, padding: '18px 18px 16px', cursor: 'pointer',
-              transition: 'transform 300ms ease, box-shadow 300ms ease',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 10px 28px rgba(0,0,0,0.08)' }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
-          >
-            <div style={{
-              width: 38, height: 38, borderRadius: 10,
-              background: `${c.color}20`, display: 'flex', alignItems: 'center', justifyContent: 'center',
-              marginBottom: 12, color: c.color,
-            }}>
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                <rect x="2" y="2" width="14" height="14" rx="3" stroke={c.color} strokeWidth="1.5" />
-                <path d="M5 6h8M5 9h5" stroke={c.color} strokeWidth="1.3" strokeLinecap="round" />
-              </svg>
+      {/* Course Carousel */}
+      <h3 style={{ fontSize: 16, fontWeight: 700, color: '#1d1d1f', marginBottom: 12 }}>চলমান পাঠসমূহ</h3>
+      <div style={{ position: 'relative', marginBottom: 28 }}>
+        <div style={{ display: 'flex', gap: 16, overflowX: 'auto', paddingBottom: 16, scrollSnapType: 'x mandatory' }} className="scroll-x">
+          {courseCards.map(c => (
+            <div key={c.id} 
+              onClick={() => window.location.href = `/course/${c.id}`}
+              style={{
+                scrollSnapAlign: 'start',
+                flexShrink: 0,
+                width: 250,
+                background: 'rgba(255,255,255,0.65)',
+                backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255,255,255,0.85)',
+                borderRadius: 22, padding: '20px 22px', cursor: 'pointer',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.06)',
+                transition: 'transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 300ms ease',
+                display: 'flex', flexDirection: 'column'
+              }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 16px 40px rgba(0,0,0,0.12)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 8px 30px rgba(0,0,0,0.06)' }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
+                <div style={{
+                  width: 44, height: 44, borderRadius: 14,
+                  background: `${c.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: c.color,
+                }}>
+                  <svg width="22" height="22" viewBox="0 0 18 18" fill="none">
+                    <rect x="2" y="2" width="14" height="14" rx="3" stroke={c.color} strokeWidth="1.8" />
+                    <path d="M5 6h8M5 9h5" stroke={c.color} strokeWidth="1.5" strokeLinecap="round" />
+                  </svg>
+                </div>
+                {/* Progress Ring */}
+                <div style={{ position: 'relative', width: 44, height: 44 }}>
+                  <svg width="44" height="44" viewBox="0 0 44 44">
+                    <circle cx="22" cy="22" r="18" fill="none" stroke="rgba(0,0,0,0.06)" strokeWidth="4" />
+                    <circle cx="22" cy="22" r="18" fill="none" stroke={c.color} strokeWidth="4" 
+                      strokeDasharray={`${2 * Math.PI * 18}`} 
+                      strokeDashoffset={`${2 * Math.PI * 18 * (1 - c.progress / 100)}`}
+                      strokeLinecap="round" transform="rotate(-90 22 22)" style={{ transition: 'stroke-dashoffset 1s ease' }}
+                    />
+                    <text x="22" y="26" textAnchor="middle" fill="#1d1d1f" style={{ fontSize: 10, fontWeight: 800 }}>{c.progress}%</text>
+                  </svg>
+                </div>
+              </div>
+              <div style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', marginBottom: 4 }}>{c.title}</div>
+              <div style={{ fontSize: 13, color: '#6e6e73', marginBottom: 16, fontWeight: 600 }}>{c.class}</div>
+              <div style={{ display: 'flex', gap: 14, fontSize: 12, color: '#8e8e93', fontWeight: 600, marginTop: 'auto' }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><BookOpen size={14}/> {c.lessons} পাঠ</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Users size={14}/> {c.students} জন</span>
+              </div>
             </div>
-            <div style={{ fontWeight: 700, fontSize: 14, color: '#1d1d1f', marginBottom: 2 }}>{c.title}</div>
-            <div style={{ fontSize: 12, color: '#6e6e73', marginBottom: 12 }}>{c.class}</div>
-            <div style={{ display: 'flex', gap: 10, fontSize: 11, color: '#8e8e93' }}>
-              <span>📖 {c.lessons}</span>
-              <span>|</span>
-              <span>📄 {c.files}</span>
-              <span>|</span>
-              <span>👥 {c.students}</span>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Charts row */}
@@ -929,10 +952,10 @@ const navItems: { id: Page; label: string; badge?: number }[] = [
   { id: 'overview',    label: 'ওভারভিউ' },
   { id: 'assignment',  label: 'অ্যাসাইনমেন্ট' },
   { id: 'reports',     label: 'রিপোর্ট', badge: 12 },
-  { id: 'files',       label: 'ফাইল স্টোরেজ' },
+  { id: 'files',       label: 'Saved' },
   { id: 'inbox',       label: 'ইনবক্স', badge: 2 },
   { id: 'forum',       label: 'ফোরাম' },
-  { id: 'notebook',    label: 'নোটবুক' },
+  { id: 'notebook',    label: 'Notebook AI' },
   { id: 'settings',    label: 'সেটিংস' },
 ]
 
@@ -1118,7 +1141,10 @@ export default function DashboardPage() {
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             color: 'white', fontWeight: 800, fontSize: 20, margin: '0 auto 10px',
             boxShadow: '0 0 0 4px rgba(58,123,213,0.20)',
-          }}>{initials}</div>
+            overflow: 'hidden'
+          }}>
+            {(user as any).profilePic ? <img src={(user as any).profilePic} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : initials}
+          </div>
           <div style={{ fontWeight: 700, fontSize: 15, color: '#1d1d1f', marginBottom: 2 }}>{user.displayName}</div>
           <div style={{ fontSize: 12, color: '#8e8e93' }}>শিক্ষার্থী</div>
         </div>

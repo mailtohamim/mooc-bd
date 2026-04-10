@@ -239,14 +239,29 @@ export default function ForumPage() {
   const catLabel = (cat: string) => [...academicCats, ...othersCats].find(c => c.id === cat)?.label || cat
 
   /* ─── Avatars ─── */
-  const Avatar = ({ name, size = 40 }: { name: string; size?: number }) => (
-    <div style={{
-      width: size, height: size, borderRadius: '50%', flexShrink: 0,
-      background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)',
-      display: 'flex', alignItems: 'center', justifyContent: 'center',
-      color: 'white', fontWeight: 800, fontSize: size * 0.35,
-    }}>{getInitials(name)}</div>
-  )
+  const Avatar = ({ name, size = 40 }: { name: string; size?: number }) => {
+    let pic = null
+    if (name === user?.displayName && (user as any).profilePic) {
+      pic = (user as any).profilePic
+    } else if (typeof window !== 'undefined') {
+      try {
+        const users = JSON.parse(localStorage.getItem('sb_users') || '[]')
+        const matched = users.find((u: any) => u.displayName === name)
+        if (matched?.profilePic) pic = matched.profilePic
+      } catch {}
+    }
+    return (
+      <div style={{
+        width: size, height: size, borderRadius: '50%', flexShrink: 0,
+        background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        color: 'white', fontWeight: 800, fontSize: size * 0.35,
+        overflow: 'hidden'
+      }}>
+        {pic ? <img src={pic} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : getInitials(name)}
+      </div>
+    )
+  }
 
   /* ─── Facebook-style action button ─── */
   const FbActionBtn = ({ icon, label, active, onClick }: { icon: React.ReactNode; label: string; active?: boolean; onClick: () => void }) => (

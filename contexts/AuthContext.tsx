@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 interface User {
   username: string
   displayName: string
+  profilePic?: string
   enrolledCourses: string[]
   completedTopics: string[]
 }
@@ -33,6 +34,7 @@ const DEFAULT_USERS = [
     username: 'userone', 
     password: '1234', 
     displayName: 'User One',
+    profilePic: '/profiles/profile_pic_student1.png',
     enrolledCourses: [],
     completedTopics: []
   }
@@ -69,6 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const u: User = { 
       username: match.username, 
       displayName: match.displayName,
+      profilePic: match.profilePic,
       enrolledCourses: match.enrolledCourses || [],
       completedTopics: match.completedTopics || []
     }
@@ -82,6 +85,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (users.find((u: any) => u.username === username)) return false
     const newUser = { 
       username, password, displayName, 
+      profilePic: '/profiles/profile_pic_student2.png',
       enrolledCourses: [], 
       completedTopics: [] 
     }
@@ -89,6 +93,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('sb_users', JSON.stringify(saved))
     const u: User = { 
       username, displayName, 
+      profilePic: '/profiles/profile_pic_student2.png',
       enrolledCourses: [], 
       completedTopics: [] 
     }
