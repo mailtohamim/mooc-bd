@@ -844,7 +844,7 @@ export default function DashboardPage() {
       <aside style={{
         width: 268, flexShrink: 0,
         padding: '28px 20px 28px 0',
-        display: 'flex', flexDirection: 'column', gap: 14,
+        display: page === 'forum' ? 'none' : 'flex', flexDirection: 'column', gap: 14,
         height: '100vh', position: 'sticky', top: 0,
       }} className="right-panel">
 
