@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import ForumPage from '@/components/ForumPage'
 import NotebookPage from '@/components/NotebookPage'
+import { Layout, ClipboardList, BarChart2, Folder, MessageSquare, Settings, Search, Bell, Edit2, TrendingUp, TrendingDown, Users, BookOpen } from 'lucide-react'
 
 /* ─────────────────────────────────────────────
    Types & shared data
@@ -64,19 +65,19 @@ const todos = [
    Sub-icons
 ───────────────────────────────────────────── */
 const Icon = {
-  overview:    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><rect x="10" y="2" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><rect x="2" y="10" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.5"/><rect x="10" y="10" width="6" height="6" rx="1.5" stroke="currentColor" strokeWidth="1.5"/></svg>,
-  assignment:  <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="2" width="12" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M6 6h6M6 9h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>,
-  reports:     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 15V10M7 15V7M11 15V5M15 15V2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-  files:       <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M4 3h6l4 4v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="currentColor" strokeWidth="1.5"/><path d="M10 3v4h4" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/></svg>,
-  inbox:       <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M2 7l7 4 7-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>,
-  settings:    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="2.5" stroke="currentColor" strokeWidth="1.5"/><path d="M9 2v2M9 14v2M2 9h2M14 9h2M4.22 4.22l1.42 1.42M12.36 12.36l1.42 1.42M4.22 13.78l1.42-1.42M12.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>,
-  search:      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5" stroke="#8e8e93" strokeWidth="1.5"/><path d="M11 11l3 3" stroke="#8e8e93" strokeWidth="1.5" strokeLinecap="round"/></svg>,
-  bell:        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2a5 5 0 0 1 5 5c0 4-1.5 5-1.5 7h-7C5.5 12 4 11 4 7a5 5 0 0 1 5-5z" stroke="currentColor" strokeWidth="1.5"/><path d="M7 14a2 2 0 0 0 4 0" stroke="currentColor" strokeWidth="1.4"/></svg>,
-  edit:        <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M10.5 2.5l2 2L5 12H3v-2l7.5-7.5z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/></svg>,
-  up:          <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 2l4 6H1z" fill="#5ab87a"/></svg>,
-  down:        <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 8L1 2h8z" fill="#ff6b6b"/></svg>,
-  forum:       <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 4a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H9l-3 3v-3H5a2 2 0 01-2-2V4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M6 6h6M6 9h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>,
-  notebook:    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="2" width="12" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M6 2v14" stroke="currentColor" strokeWidth="1.3"/><path d="M9 6h4M9 9h3M9 12h2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>,
+  overview:    <Layout size={18} strokeWidth={1.5} />,
+  assignment:  <ClipboardList size={18} strokeWidth={1.5} />,
+  reports:     <BarChart2 size={18} strokeWidth={1.5} />,
+  files:       <Folder size={18} strokeWidth={1.5} />,
+  inbox:       <MessageSquare size={18} strokeWidth={1.5} />,
+  settings:    <Settings size={18} strokeWidth={1.5} />,
+  search:      <Search size={16} stroke="#8e8e93" strokeWidth={1.5} />,
+  bell:        <Bell size={18} strokeWidth={1.5} />,
+  edit:        <Edit2 size={15} strokeWidth={1.5} />,
+  up:          <TrendingUp size={14} color="#5ab87a" strokeWidth={2} />,
+  down:        <TrendingDown size={14} color="#ff6b6b" strokeWidth={2} />,
+  forum:       <Users size={18} strokeWidth={1.5} />,
+  notebook:    <BookOpen size={18} strokeWidth={1.5} />,
 }
 
 /* ─────────────────────────────────────────────
@@ -92,9 +93,17 @@ function MiniCalendar() {
   const firstDay    = new Date(year, month, 1).getDay() 
   const offset      = firstDay === 0 ? 6 : firstDay - 1
 
+  const [hoverDay, setHoverDay] = useState<number | null>(null)
+
   useEffect(() => setMounted(true), [])
 
   if (!mounted) return <div style={{ height: 160 }} />
+
+  const events: Record<number, string> = {
+    [today + 2]: "রসায়ন পরীক্ষা",
+    [today + 5]: "বঙ্গবন্ধু দিবস (ছুটি)",
+    [today - 4]: "অ্যাসাইনমেন্ট সাবমিট",
+  }
 
   return (
     <div style={{ marginTop: 24 }}>
@@ -103,13 +112,37 @@ function MiniCalendar() {
           <div key={`${d}-${i}`} style={{ fontSize: 10, color: '#aeaeb2', textAlign: 'center', fontWeight: 700 }}>{d}</div>
         ))}
         {Array.from({ length: offset }).map((_, i) => <div key={`o-${i}`} />)}
-        {Array.from({ length: daysInMonth }).map((_, i) => (
-          <div key={i} style={{
-            fontSize: 11, textAlign: 'center', padding: '4px 0', borderRadius: 8,
-            fontWeight: 600, color: (i + 1) === today ? 'white' : '#1d1d1f',
-            background: (i + 1) === today ? '#3a7bd5' : 'transparent',
-          }}>{i + 1}</div>
-        ))}
+        {Array.from({ length: daysInMonth }).map((_, i) => {
+          const day = i + 1;
+          const isToday = day === today;
+          const evt = events[day];
+          return (
+            <div key={i} 
+              onMouseEnter={() => setHoverDay(day)}
+              onMouseLeave={() => setHoverDay(null)}
+              style={{
+                position: 'relative',
+                fontSize: 11, textAlign: 'center', padding: '4px 0', borderRadius: 8,
+                fontWeight: 600, color: isToday ? 'white' : '#1d1d1f',
+                background: isToday ? '#3a7bd5' : hoverDay === day ? 'rgba(0,0,0,0.05)' : 'transparent',
+                cursor: evt ? 'pointer' : 'default', transition: 'background 200ms'
+              }}>
+              {day}
+              {evt && <div style={{ position: 'absolute', bottom: 1, left: '50%', transform: 'translateX(-50%)', width: 4, height: 4, borderRadius: '50%', background: isToday ? 'white' : '#ff9500' }} />}
+              {hoverDay === day && evt && (
+                <div style={{
+                  position: 'absolute', bottom: '100%', left: '50%', transform: 'translate(-50%, -4px)',
+                  background: '#1d1d1f', color: 'white', fontSize: 10, padding: '4px 8px',
+                  borderRadius: 6, whiteSpace: 'nowrap', zIndex: 10, pointerEvents: 'none',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+                }}>
+                  {evt}
+                  <div style={{ position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)', border: '4px solid transparent', borderTopColor: '#1d1d1f' }} />
+                </div>
+              )}
+            </div>
+          )
+        })}
       </div>
     </div>
   )
@@ -288,9 +321,11 @@ function WeeklyLineChart() {
   )
 }
 
-
-
-
+const navBtn: React.CSSProperties = {
+  width: 26, height: 26, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.8)',
+  boxShadow: '0 1px 4px rgba(0,0,0,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center',
+  cursor: 'pointer', color: '#1d1d1f', fontWeight: 800, fontSize: 12, transition: 'all 200ms'
+}
 /* ─────────────────────────────────────────────
    Page content renderers
 ───────────────────────────────────────────── */
@@ -300,8 +335,12 @@ function OverviewPage({ displayName }: { displayName: string }) {
   const completedCount = user?.completedTopics?.length || 0
   const progressPercent = Math.min(Math.round((completedCount / 10) * 100), 100)
   
-  const pendingAssignment = assignments.find(a => !a.done) || assignments[0]
-  const upcomingExam = exams[0]
+  const [examIdx, setExamIdx] = useState(0)
+  const [assignIdx, setAssignIdx] = useState(0)
+  const pendingAssignments = assignments.filter(a => !a.done)
+  
+  const pendingAssignment = pendingAssignments[assignIdx] || assignments[0]
+  const upcomingExam = exams[examIdx] || exams[0]
 
   return (
     <div>
@@ -417,7 +456,11 @@ function OverviewPage({ displayName }: { displayName: string }) {
                 <polyline points="9 5 9 9 12 12"/>
               </svg>
             </div>
-            <div style={{ fontWeight: 700, fontSize: 16, color: '#1d1d1f' }}>আসন্ন পরীক্ষা</div>
+            <div style={{ fontWeight: 700, fontSize: 16, color: '#1d1d1f', flex: 1 }}>আসন্ন পরীক্ষা</div>
+            <div style={{ display: 'flex', gap: 6, zIndex: 10 }}>
+              <button onClick={() => setExamIdx(i => Math.max(0, i - 1))} disabled={examIdx === 0} style={{ ...navBtn, opacity: examIdx === 0 ? 0.4 : 1, cursor: examIdx === 0 ? 'default' : 'pointer' }}>{"<"}</button>
+              <button onClick={() => setExamIdx(i => Math.min(exams.length - 1, i + 1))} disabled={examIdx === exams.length - 1} style={{ ...navBtn, opacity: examIdx === exams.length - 1 ? 0.4 : 1, cursor: examIdx === exams.length - 1 ? 'default' : 'pointer' }}>{">"}</button>
+            </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <div style={{ fontSize: 13, color: '#8e8e93', fontWeight: 600 }}>{upcomingExam.subject} – {upcomingExam.topic}</div>
@@ -450,7 +493,11 @@ function OverviewPage({ displayName }: { displayName: string }) {
                 <line x1="7" y1="9" x2="11" y2="9" />
               </svg>
             </div>
-            <div style={{ fontWeight: 700, fontSize: 16, color: '#1d1d1f' }}>অমীমাংসিত অ্যাসাইনমেন্ট</div>
+            <div style={{ fontWeight: 700, fontSize: 16, color: '#1d1d1f', flex: 1 }}>অমীমাংসিত অ্যাসাইনমেন্ট</div>
+            <div style={{ display: 'flex', gap: 6, zIndex: 10 }}>
+              <button onClick={() => setAssignIdx(i => Math.max(0, i - 1))} disabled={assignIdx === 0} style={{ ...navBtn, opacity: assignIdx === 0 ? 0.4 : 1, cursor: assignIdx === 0 ? 'default' : 'pointer' }}>{"<"}</button>
+              <button onClick={() => setAssignIdx(i => Math.min(pendingAssignments.length - 1, i + 1))} disabled={assignIdx === pendingAssignments.length - 1} style={{ ...navBtn, opacity: assignIdx === pendingAssignments.length - 1 ? 0.4 : 1, cursor: assignIdx === pendingAssignments.length - 1 ? 'default' : 'pointer' }}>{">"}</button>
+            </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             <div style={{ fontSize: 13, color: '#8e8e93', fontWeight: 600 }}>{pendingAssignment.subject} – {pendingAssignment.title}</div>
@@ -629,7 +676,7 @@ function InboxPage() {
     setShowStickers(null)
     // Simulate reply
     setTimeout(() => {
-      const replies = ['বুঝেছি! 👍', 'ঠিক আছে, ধন্যবাদ!', 'আচ্ছা, পরে কথা হবে।', 'দারুণ! 🎉', 'হ্যাঁ, অবশ্যই!', 'ওকে, দেখি কী করা যায়।']
+      const replies = ['বুঝেছি!', 'ঠিক আছে, ধন্যবাদ!', 'আচ্ছা, পরে কথা হবে।', 'দারুণ!', 'হ্যাঁ, অবশ্যই!', 'ওকে, দেখি কী করা যায়।']
       setChatMessages(prev => ({
         ...prev,
         [name]: [...(prev[name] || []), { text: replies[Math.floor(Math.random() * replies.length)], from: 'them' as const, time: 'এখন' }]
@@ -732,23 +779,31 @@ function InboxPage() {
                   <div key={i} style={{ display: 'flex', justifyContent: m.from === 'me' ? 'flex-end' : 'flex-start' }}>
                     {m.from === 'them' && <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 9, marginRight: 4, flexShrink: 0, alignSelf: 'flex-end' }}>{initials(name)}</div>}
                     <div style={{
-                      maxWidth: '75%', padding: m.text.length <= 3 ? '4px 8px' : '8px 12px',
+                      maxWidth: '75%', padding: m.text.length <= 3 || m.text.startsWith('[STICKER:') ? '4px 8px' : '8px 12px',
                       borderRadius: m.from === 'me' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
                       background: m.from === 'me' ? '#3a7bd5' : '#e4e6eb',
                       color: m.from === 'me' ? 'white' : '#050505',
-                      fontSize: m.text.length <= 3 ? 28 : 13, lineHeight: m.text.length <= 3 ? 1.2 : 1.5, wordBreak: 'break-word',
-                    }}>{m.text}</div>
+                      fontSize: m.text.length <= 3 ? 28 : 13, lineHeight: m.text.length <= 3 || m.text.startsWith('[STICKER:') ? 1.2 : 1.5, wordBreak: 'break-word',
+                    }}>
+                      {m.text === '[STICKER:thumbsup]' ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg> :
+                       m.text === '[STICKER:heart]' ? <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" color="#ff2d55"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> :
+                       m.text === '[STICKER:smile]' ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg> :
+                       m.text === '[STICKER:flame]' ? <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" color="#ff9500"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg> :
+                       m.text === '[STICKER:star]' ? <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" strokeWidth="2" color="#ffcc00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> :
+                       m.text}
+                    </div>
                   </div>
                 ))}
               </div>
 
               {/* Sticker picker */}
               {showStickers === name && (
-                <div style={{ padding: '8px', borderTop: '1px solid #e4e6eb', display: 'grid', gridTemplateColumns: 'repeat(8, 1fr)', gap: 4, background: '#fafafa', maxHeight: 100, overflowY: 'auto' }}>
-                  {stickers.map(s => (
-                    <button key={s} onClick={() => sendSticker(name, s)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 22, padding: 4, borderRadius: 6, transition: 'background 150ms' }}
-                      onMouseEnter={e => e.currentTarget.style.background = '#e4e6eb'} onMouseLeave={e => e.currentTarget.style.background = 'none'}>{s}</button>
-                  ))}
+                <div style={{ padding: '8px', borderTop: '1px solid #e4e6eb', display: 'flex', gap: 14, background: '#fafafa', maxHeight: 100, overflowY: 'auto' }}>
+                  <button onClick={() => sendSticker(name, '[STICKER:thumbsup]')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#65676b" strokeWidth="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg></button>
+                  <button onClick={() => sendSticker(name, '[STICKER:heart]')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}><svg width="24" height="24" viewBox="0 0 24 24" fill="#ff2d55" stroke="none"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></button>
+                  <button onClick={() => sendSticker(name, '[STICKER:smile]')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#65676b" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></button>
+                  <button onClick={() => sendSticker(name, '[STICKER:flame]')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff9500" strokeWidth="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></button>
+                  <button onClick={() => sendSticker(name, '[STICKER:star]')} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}><svg width="24" height="24" viewBox="0 0 24 24" fill="#ffcc00" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
                 </div>
               )}
 
@@ -778,7 +833,9 @@ function InboxPage() {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="#3a7bd5"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                   </button>
                 ) : (
-                  <button onClick={() => sendSticker(name, '👍')} style={{ ...chatToolBtn, fontSize: 20 }}>👍</button>
+                  <button onClick={() => sendSticker(name, '[STICKER:thumbsup]')} style={{ ...chatToolBtn }}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" strokeWidth="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                  </button>
                 )}
               </div>
             </div>

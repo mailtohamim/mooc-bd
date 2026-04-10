@@ -29,14 +29,14 @@ const academicCats = [
 
 const othersCats = [
   { id: 'all', label: 'সব', color: '#8e8e93' },
-  { id: 'freelancing', label: '💻 ফ্রিল্যান্সিং', color: '#007aff' },
-  { id: 'graphics', label: '🎨 গ্রাফিক্স ডিজাইন', color: '#ff2d55' },
-  { id: 'webdev', label: '🌐 ওয়েব ডেভেলপমেন্ট', color: '#5856d6' },
-  { id: 'digital-marketing', label: '📈 ডিজিটাল মার্কেটিং', color: '#ff9500' },
-  { id: 'video-editing', label: '🎬 ভিডিও এডিটিং', color: '#e07050' },
-  { id: 'spoken-english', label: '🗣 স্পোকেন ইংলিশ', color: '#8250d2' },
-  { id: 'career', label: '🚀 ক্যারিয়ার টিপস', color: '#34c759' },
-  { id: 'motivation', label: '💡 মোটিভেশন', color: '#ffcc00' },
+  { id: 'freelancing', label: 'ফ্রিল্যান্সিং', color: '#007aff' },
+  { id: 'graphics', label: 'গ্রাফিক্স ডিজাইন', color: '#ff2d55' },
+  { id: 'webdev', label: 'ওয়েব ডেভেলপমেন্ট', color: '#5856d6' },
+  { id: 'digital-marketing', label: 'ডিজিটাল মার্কেটিং', color: '#ff9500' },
+  { id: 'video-editing', label: 'ভিডিও এডিটিং', color: '#e07050' },
+  { id: 'spoken-english', label: 'স্পোকেন ইংলিশ', color: '#8250d2' },
+  { id: 'career', label: 'ক্যারিয়ার টিপস', color: '#34c759' },
+  { id: 'motivation', label: 'মোটিভেশন', color: '#ffcc00' },
 ]
 
 const SEED_POSTS: Post[] = [
@@ -62,8 +62,9 @@ const SEED_POSTS: Post[] = [
     createdAt: Date.now() - 172800000, isQuestion: true,
   },
   {
-    id: 'seed-3', author: 'সুমাইয়া খান', title: 'Spoken English – Daily Practice Tips 🎯', mode: 'academic',
+    id: 'seed-3', author: 'সুমাইয়া খান', title: 'Spoken English – Daily Practice Tips', mode: 'academic',
     body: 'প্রতিদিন ইংরেজিতে কথা বলার অভ্যাস গড়ে তুলতে কিছু সহজ টিপস:\n\n১. প্রতিদিন ১০ মিনিট আয়নার সামনে ইংরেজিতে কথা বলুন\n২. ইংরেজি গান শুনুন ও lyrics পড়ুন\n৩. ছোট ছোট ডায়েরি লিখুন ইংরেজিতে\n৪. YouTube-এ TED Talks দেখুন\n৫. একজন study buddy খুঁজুন যার সাথে ইংরেজিতে কথা বলবেন',
+    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=800',
     category: 'english', votes: 31, upvoters: [], downvoters: [],
     comments: [
       { id: 'c4', author: 'করিম উদ্দিন', text: 'TED Talks recommendation thakle share koro please!', likes: 4, likedBy: [], replies: [
@@ -75,11 +76,12 @@ const SEED_POSTS: Post[] = [
   {
     id: 'seed-4', author: 'করিম উদ্দিন', title: 'ত্রিকোণমিতির সূত্রগুলো মনে রাখার সহজ উপায়', mode: 'academic',
     body: 'ত্রিকোণমিতি নিয়ে অনেকে ভয় পায়। কিন্তু কিছু mnemonics ব্যবহার করলে সূত্রগুলো সহজেই মনে রাখা যায়।\n\nsin = লম্ব/অতিভুজ\ncos = ভূমি/অতিভুজ\ntan = লম্ব/ভূমি\n\nমনে রাখুন: "সোনার লকেট অতি সুন্দর, কোনো ভূমিই অতি সুন্দর না, তবুও লম্বা ভূমি ভালো"',
+    video: 'https://www.w3schools.com/html/mov_bbb.mp4', videoViews: 3450,
     category: 'math', votes: 42, upvoters: [], downvoters: [], comments: [],
     createdAt: Date.now() - 345600000, isQuestion: false,
   },
   {
-    id: 'seed-5', author: 'তানভীর আহমেদ', title: 'ফ্রিল্যান্সিং শুরু করার ৫টি ধাপ 🚀', mode: 'others',
+    id: 'seed-5', author: 'তানভীর আহমেদ', title: 'ফ্রিল্যান্সিং শুরু করার ৫টি ধাপ', mode: 'others',
     body: 'ফ্রিল্যান্সিং শুরু করতে চান? এই ৫টি ধাপ অনুসরণ করুন:\n\n১. একটি স্কিল ভালো করে শিখুন (ওয়েব ডেভ, গ্রাফিক্স, কনটেন্ট রাইটিং)\n২. পোর্টফোলিও তৈরি করুন\n৩. Fiverr বা Upwork-এ প্রোফাইল খুলুন\n৪. প্রথমে কম দামে কাজ নিন রিভিউ পেতে\n৫. ধৈর্য ধরুন, ৩-৬ মাস সময় লাগবে',
     category: 'freelancing', votes: 56, upvoters: [], downvoters: [],
     comments: [
@@ -262,7 +264,8 @@ export default function ForumPage() {
   /* ═══ POST DETAIL VIEW ═══ */
   if (activePost) {
     return (
-      <div style={{ maxWidth: 680, margin: '0 auto' }}>
+      <div style={{ display: 'flex', gap: 24, maxWidth: 1000, margin: '0 auto' }}>
+        <div style={{ flex: 1, maxWidth: 680, minWidth: 0 }}>
         <button onClick={() => setActivePost(null)} style={{
           background: 'none', border: 'none', cursor: 'pointer', color: '#3a7bd5', fontSize: 14,
           fontWeight: 600, fontFamily: "'Anek Bangla', sans-serif", marginBottom: 16, display: 'flex', alignItems: 'center', gap: 6,
@@ -365,12 +368,14 @@ export default function ForumPage() {
           </div>
         </div>
       </div>
+      </div>
     )
   }
 
   /* ═══ FEED VIEW ═══ */
   return (
-    <div style={{ maxWidth: 680, margin: '0 auto' }}>
+    <div style={{ display: 'flex', gap: 24, maxWidth: 1000, margin: '0 auto' }}>
+      <div style={{ flex: 1, maxWidth: 680, minWidth: 0, display: activePost ? 'none' : 'block' }}>
       {/* Header bar */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
         <h2 style={{ fontSize: 22, fontWeight: 800, color: '#1d1d1f', marginRight: 'auto' }}>ফোরাম</h2>
@@ -554,11 +559,15 @@ export default function ForumPage() {
               {/* Toolbar */}
               <div style={{ borderTop: '1px solid #e4e6eb', paddingTop: 12, display: 'flex', alignItems: 'center', gap: 4, marginBottom: 12 }}>
                 <span style={{ fontSize: 13, fontWeight: 600, color: '#65676b', marginRight: 8 }}>যোগ করুন</span>
-                <button onClick={() => fileRef.current?.click()} style={{ ...toolBtn }}>📷</button>
-                <button style={{ ...toolBtn }}>🎥</button>
+                <button onClick={() => fileRef.current?.click()} style={{ ...toolBtn }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5ab87a" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </button>
+                <button style={{ ...toolBtn }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff2d55" strokeWidth="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                </button>
                 <label style={{ ...toolBtn, display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer' }}>
                   <input type="checkbox" checked={newIsQ} onChange={e => setNewIsQ(e.target.checked)} style={{ accentColor: '#ff9500', width: 14, height: 14 }} />
-                  <span style={{ fontSize: 12 }}>❓</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff9500" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                 </label>
                 <input ref={fileRef} type="file" accept="image/*" onChange={handleImgUpload} style={{ display: 'none' }} />
               </div>
@@ -572,6 +581,36 @@ export default function ForumPage() {
           </div>
         </div>
       )}
+      </div> {/* End of main feed or detail col */}
+
+      {/* ═══ Right Panel: Active Users ═══ */}
+      <div style={{ width: 280, flexShrink: 0, position: 'sticky', top: 20, height: 'max-content', display: 'flex', flexDirection: 'column', gap: 8 }} className="forum-right-panel">
+        <div style={{ fontWeight: 700, fontSize: 14, color: '#65676b', borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: 8, marginBottom: 8 }}>
+          সক্রিয় ব্যবহারকারী
+        </div>
+        {[
+          { name: 'প্রফেসর আহমেদ', status: 'online' },
+          { name: 'মিস রাহেলা', status: 'online' },
+          { name: 'শিখবেই বাংলাদেশ', status: 'offline' },
+          { name: 'মডারেটর', status: 'offline' },
+          { name: 'করিম উদ্দিন', status: 'online' },
+          { name: 'সুমাইয়া খান', status: 'away' },
+        ].map(u => (
+          <div key={u.name} style={{ display: 'flex', alignItems: 'center', gap: 12, cursor: 'pointer', padding: '8px', borderRadius: 8, transition: 'background 200ms' }}
+            onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.04)'}
+            onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+          >
+            <div style={{ position: 'relative' }}>
+              <Avatar name={u.name} size={36} />
+              <div style={{ position: 'absolute', bottom: 0, right: 0, width: 10, height: 10, borderRadius: '50%', background: u.status === 'online' ? '#31a24c' : u.status === 'away' ? '#f5c33b' : '#c7c7cc', border: '2px solid white' }} />
+            </div>
+            <div style={{ fontSize: 14, fontWeight: 600, color: '#050505' }}>{u.name}</div>
+          </div>
+        ))}
+      </div>
+      <style>{`
+        @media (max-width: 960px) { .forum-right-panel { display: none !important; } }
+      `}</style>
     </div>
   )
 }
