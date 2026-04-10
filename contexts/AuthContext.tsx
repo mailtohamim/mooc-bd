@@ -46,7 +46,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem('sb_user')
-      if (stored) setUser(JSON.parse(stored))
+      if (stored) {
+        const parsed = JSON.parse(stored)
+        if (!parsed.profilePic) {
+          parsed.profilePic = DEFAULT_USERS.find(d => d.username === parsed.username)?.profilePic || '/profiles/profile_pic_student2.png'
+          localStorage.setItem('sb_user', JSON.stringify(parsed))
+        }
+        setUser(parsed)
+      }
     } catch {}
   }, [])
 
@@ -56,7 +63,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const saved = raw ? JSON.parse(raw) : []
       // merge defaults (avoid duplicates)
       const names = new Set(saved.map((u: typeof DEFAULT_USERS[0]) => u.username))
-      return [...DEFAULT_USERS.filter(d => !names.has(d.username)), ...saved]
+      const enrichedSaved = saved.map((u: any) => ({
+        ...u,
+        profilePic: u.profilePic || DEFAULT_USERS.find(d => d.username === u.username)?.profilePic || '/profiles/profile_pic_student2.png'
+      }))
+      return [...DEFAULT_USERS.filter(d => !names.has(d.username)), ...enrichedSaved]
     } catch {
       return DEFAULT_USERS
     }

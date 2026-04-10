@@ -484,7 +484,7 @@ export default function ForumPage() {
             {/* Text content */}
             <div style={{ padding: '10px 16px' }}>
               <div style={{ fontWeight: 700, fontSize: 15, color: '#050505', marginBottom: 4, lineHeight: 1.4 }}>{post.title}</div>
-              <p style={{ fontSize: 14, color: '#050505', lineHeight: 1.6, margin: 0, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' as const }}>{post.body}</p>
+              <p style={{ fontSize: 14, color: '#050505', lineHeight: 1.6, margin: 0, whiteSpace: 'pre-wrap' }}>{post.body}</p>
             </div>
 
             {/* Media — tall Facebook-like aspect ratio */}
