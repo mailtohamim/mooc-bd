@@ -104,7 +104,6 @@ function MiniCalendar() {
 
   const events: Record<number, string> = {
     [today + 2]: "রসায়ন পরীক্ষা",
-    [today + 5]: "বঙ্গবন্ধু দিবস (ছুটি)",
     [today - 4]: "অ্যাসাইনমেন্ট সাবমিট",
   }
 
