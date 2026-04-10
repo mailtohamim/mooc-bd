@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import ForumPage from '@/components/ForumPage'
+import NotebookPage from '@/components/NotebookPage'
 
 /* ─────────────────────────────────────────────
    Types & shared data
 ───────────────────────────────────────────── */
-type Page = 'overview' | 'assignment' | 'reports' | 'files' | 'inbox' | 'forum' | 'settings'
+type Page = 'overview' | 'assignment' | 'reports' | 'files' | 'inbox' | 'forum' | 'notebook' | 'settings'
 
 const courseCards = [
   { id: 'physics-12', title: 'পদার্থবিজ্ঞান', class: 'শ্রেণি ১২', lessons: 24, files: 8, students: 99, color: '#4a90d9', bg: 'rgba(74,144,217,0.08)' },
@@ -75,6 +76,7 @@ const Icon = {
   up:          <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 2l4 6H1z" fill="#5ab87a"/></svg>,
   down:        <svg width="10" height="10" viewBox="0 0 10 10"><path d="M5 8L1 2h8z" fill="#ff6b6b"/></svg>,
   forum:       <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 4a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H9l-3 3v-3H5a2 2 0 01-2-2V4z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M6 6h6M6 9h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/></svg>,
+  notebook:    <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="2" width="12" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M6 2v14" stroke="currentColor" strokeWidth="1.3"/><path d="M9 6h4M9 9h3M9 12h2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>,
 }
 
 /* ─────────────────────────────────────────────
@@ -873,6 +875,7 @@ const navItems: { id: Page; label: string; badge?: number }[] = [
   { id: 'files',       label: 'ফাইল স্টোরেজ' },
   { id: 'inbox',       label: 'ইনবক্স', badge: 2 },
   { id: 'forum',       label: 'ফোরাম' },
+  { id: 'notebook',    label: 'নোটবুক' },
   { id: 'settings',    label: 'সেটিংস' },
 ]
 
@@ -1032,6 +1035,7 @@ export default function DashboardPage() {
         {page === 'files'      && <FilesPage />}
         {page === 'inbox'      && <InboxPage />}
         {page === 'forum'      && <ForumPage />}
+        {page === 'notebook'   && <NotebookPage />}
         {page === 'settings'   && <SettingsPage user={user} />}
       </main>
 
@@ -1039,7 +1043,7 @@ export default function DashboardPage() {
       <aside style={{
         width: 268, flexShrink: 0,
         padding: '28px 20px 28px 0',
-        display: page === 'forum' ? 'none' : 'flex', flexDirection: 'column', gap: 14,
+        display: (page === 'forum' || page === 'notebook') ? 'none' : 'flex', flexDirection: 'column', gap: 14,
         height: '100vh', position: 'sticky', top: 0,
       }} className="right-panel">
 
