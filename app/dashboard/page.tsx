@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import ForumPage from '@/components/ForumPage'
 import NotebookPage from '@/components/NotebookPage'
-import { Layout, ClipboardList, BarChart2, Folder, MessageSquare, Settings, Search, Bell, Edit2, TrendingUp, TrendingDown, Users, BookOpen } from 'lucide-react'
+import { Layout, ClipboardList, BarChart2, Folder, MessageSquare, Settings, Search, Bell, Edit2, TrendingUp, TrendingDown, Users, BookOpen, Menu, X } from 'lucide-react'
 
 /* ─────────────────────────────────────────────
    Types & shared data
@@ -347,7 +347,7 @@ function OverviewPage({ displayName }: { displayName: string }) {
   return (
     <div>
       {/* Welcome Banner - Compact Refined Version */}
-      <div style={{
+      <div className="welcome-banner" style={{
         padding: '12px 0 24px', marginBottom: 20,
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         borderBottom: '1px solid #f2f2f7'
@@ -575,7 +575,7 @@ function ReportsPage() {
   return (
     <div>
       <h2 style={pageTitle}>রিপোর্ট</h2>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14, marginBottom: 24 }}>
+      <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14, marginBottom: 24 }}>
         {[
           { label: 'মোট অধ্যয়ন পাঠ', value: `${completedCount}টি`, color: '#3a7bd5' },
           { label: 'এনরোল করা কোর্স',  value: `${enrolledCount}টি`,       color: '#5ab87a' },
@@ -966,6 +966,7 @@ export default function DashboardPage() {
   const router = useRouter()
   const [page, setPage] = useState<Page>('overview')
   const [search, setSearch] = useState('')
+  const [showMobMenu, setShowMobMenu] = useState(false)
   
   // To-do states
   const [todoList, setTodoList] = useState(todos)
@@ -1004,8 +1005,91 @@ export default function DashboardPage() {
       background: '#f5f5f7',
       fontFamily: "'Anek Bangla', sans-serif",
     }}>
+      {/* ══ Mobile Menu Overlay ══ */}
+      {showMobMenu && (
+        <div className="mob-menu-overlay" style={{
+          position: 'fixed', inset: 0, zIndex: 2000,
+          background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(20px)',
+          display: 'flex', flexDirection: 'column', padding: '24px',
+          animation: 'fade-in 200ms ease-out',
+        }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
+            <div style={{ fontWeight: 800, fontSize: 18, color: '#1d1d1f' }}>মেনু</div>
+            <button onClick={() => setShowMobMenu(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#1d1d1f' }}>
+              <X size={24} />
+            </button>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {navItems.map(item => {
+              const active = page === item.id
+              return (
+                <button key={item.id} onClick={() => { setPage(item.id); setShowMobMenu(false) }} style={{
+                  display: 'flex', alignItems: 'center', gap: 14, padding: '12px 16px',
+                  borderRadius: 14, border: 'none', background: active ? '#1d1d1f' : '#f5f5f7',
+                  color: active ? 'white' : '#1d1d1f', fontSize: 16, fontWeight: 600, fontFamily: "'Anek Bangla', sans-serif",
+                }}>
+                  <div style={{ color: active ? 'white' : '#8e8e93' }}>{Icon[item.id]}</div>
+                  {item.label}
+                  {item.badge && (
+                    <span style={{
+                      background: active ? 'rgba(255,255,255,0.20)' : '#3a7bd5',
+                      color: 'white', fontSize: 11, fontWeight: 700,
+                      borderRadius: 999, padding: '2px 8px', marginLeft: 'auto'
+                    }}>{item.badge}</span>
+                  )}
+                </button>
+              )
+            })}
+            <button onClick={() => { logout(); router.push('/') }} style={{
+              display: 'flex', alignItems: 'center', gap: 14, padding: '12px 16px',
+              borderRadius: 14, border: 'none', background: 'rgba(255,107,107,0.08)',
+              color: '#ff6b6b', fontSize: 16, fontWeight: 600, fontFamily: "'Anek Bangla', sans-serif", marginTop: 'auto'
+            }}>
+              <svg width="20" height="20" viewBox="0 0 18 18" fill="none">
+                <path d="M12 4h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2" stroke="#ff6b6b" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M8 13l4-4-4-4M3 9h9" stroke="#ff6b6b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              লগআউট
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ══ Mobile Bottom Nav ══ */}
+      <nav className="mob-nav" style={{
+        position: 'fixed', bottom: 0, left: 0, right: 0,
+        background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(20px)',
+        borderTop: '1px solid rgba(0,0,0,0.08)',
+        display: 'flex', justifyContent: 'space-around', alignItems: 'center',
+        padding: '6px 8px 24px 8px', // Extra padding for safe area / home bar
+        zIndex: 1000,
+      }}>
+        {[
+          { id: 'overview', icon: Icon.overview, label: 'হোম' },
+          { id: 'assignment', icon: Icon.assignment, label: 'কাজ' },
+          { id: 'forum', icon: Icon.forum, label: 'ফোরাম' },
+          { id: 'notebook', icon: Icon.notebook, label: 'AI' },
+          { id: 'menu', icon: <Menu size={20} strokeWidth={1.5} />, label: 'মেনু' },
+        ].map(item => {
+          const active = page === item.id || (item.id === 'menu' && showMobMenu);
+          return (
+            <button key={item.id} onClick={() => item.id === 'menu' ? setShowMobMenu(true) : setPage(item.id as Page)} style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
+              background: 'none', border: 'none', padding: '6px',
+              color: active ? '#1d1d1f' : '#8e8e93',
+              transition: 'color 300ms', cursor: 'pointer', flex: 1,
+            }}>
+              <div style={{ color: active ? '#3a7bd5' : '#8e8e93', transform: active ? 'scale(1.15)' : 'scale(1)', transition: 'all 300ms' }}>
+                {item.icon}
+              </div>
+              <span style={{ fontSize: 10, fontWeight: active ? 700 : 500, fontFamily: "'Anek Bangla', sans-serif" }}>{item.label}</span>
+            </button>
+          )
+        })}
+      </nav>
+
       {/* ══ Sidebar ══ */}
-      <aside style={{
+      <aside className="desk-sidebar" style={{
         width: 220, flexShrink: 0,
         background: 'rgba(255,255,255,0.92)',
         backdropFilter: 'blur(20px)',
@@ -1081,8 +1165,22 @@ export default function DashboardPage() {
 
       {/* ══ Main ══ */}
       <main style={{ flex: 1, minWidth: 0, padding: '28px 24px', overflowY: 'auto' }}>
-        {/* Top bar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+        {/* Mobile Top Bar */}
+        <div className="mob-top-bar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 14 }}>
+               {initials}
+            </div>
+            <div style={{ fontWeight: 800, fontSize: 17, color: '#1d1d1f' }}>শিখবেই বাংলাদেশ</div>
+          </div>
+          <div style={{ position: 'relative', cursor: 'pointer', background: 'rgba(255,255,255,0.80)', border: '1px solid rgba(0,0,0,0.07)', width: 36, height: 36, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3c3c43' }}>
+             {Icon.bell}
+             <div style={{ position: 'absolute', top: 6, right: 6, width: 8, height: 8, borderRadius: '50%', background: '#ff6b6b', border: '2px solid #f5f5f7' }} />
+          </div>
+        </div>
+
+        {/* Top bar (Desktop) */}
+        <div className="top-bar" style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
           <div style={{
             flex: 1, display: 'flex', alignItems: 'center', gap: 10,
             background: 'rgba(255,255,255,0.80)', borderRadius: 12,
@@ -1258,17 +1356,28 @@ export default function DashboardPage() {
       </aside>
 
       <style>{`
-        @media (max-width: 1200px) { .right-panel { display: none; } }
-        @media (max-width: 860px)  { aside:first-child { width: 64px; } aside:first-child span { display: none; } aside:first-child a span { display: none; } }
-        @media (max-width: 640px)  { main { padding: 16px; } }
-        .course-row { grid-template-columns: repeat(3,1fr); }
-        .charts-row { grid-template-columns: 1.4fr 1fr; }
-        .upcoming-row { grid-template-columns: 1fr 1fr; }
-        @media (max-width: 900px) { 
-          .course-row { grid-template-columns: 1fr 1fr !important; } 
+        @media (max-width: 1200px) { .right-panel { display: none !important; } }
+        @media (max-width: 860px)  { .desk-sidebar { width: 64px; } .desk-sidebar span { display: none; } .desk-sidebar a span { display: none; } }
+        @media (max-width: 640px)  { 
+          .desk-sidebar { display: none !important; }
+          .mob-nav { display: flex !important; }
+          .mob-menu-overlay { display: flex !important; }
+          main { padding: 16px 16px 90px 16px !important; }
+          .welcome-banner { flex-direction: column !important; align-items: stretch !important; gap: 16px !important; }
+          .welcome-banner > div:first-child { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+          .welcome-banner h1 { font-size: 22px !important; }
+          .course-row { flex-wrap: nowrap; overflow-x: auto; scroll-snap-type: x mandatory; }
           .charts-row { grid-template-columns: 1fr !important; }
           .upcoming-row { grid-template-columns: 1fr !important; }
+          .stats-grid { grid-template-columns: 1fr !important; }
+          .top-bar { display: none !important; } /* Hide generic top bar on mobile */
         }
+        @media (min-width: 641px) {
+          .mob-nav { display: none !important; }
+          .mob-top-bar { display: none !important; }
+          .mob-menu-overlay { display: none !important; }
+        }
+        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>

@@ -109,10 +109,10 @@ export default function NotebookPage() {
   const filteredSources = sources.filter(s => s.name.toLowerCase().includes(sourceSearch.toLowerCase()))
 
   return (
-    <div style={{ display: 'flex', gap: 14, height: 'calc(100vh - 80px)', margin: '-28px -24px', padding: '20px', fontFamily: "'Anek Bangla', sans-serif" }}>
+    <div className="notebook-container" style={{ display: 'flex', gap: 14, height: 'calc(100vh - 80px)', margin: '-28px -24px', padding: '20px', fontFamily: "'Anek Bangla', sans-serif" }}>
 
       {/* ═══ LEFT: Sources ═══ */}
-      <div style={{ ...glassPanel, width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: 0 }}>
+      <div className="nb-sources" style={{ ...glassPanel, width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: 0 }}>
         <div style={{ padding: '18px 18px 14px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
             <span style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', display: 'flex', alignItems: 'center', gap: 6 }}><Folder size={18} color="#3a7bd5" /> সোর্স</span>
@@ -175,7 +175,7 @@ export default function NotebookPage() {
       </div>
 
       {/* ═══ CENTER: Chat ═══ */}
-      <div style={{ ...glassPanel, flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, padding: 0, overflow: 'hidden' }}>
+      <div className="nb-chat" style={{ ...glassPanel, flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, padding: 0, overflow: 'hidden' }}>
         {/* Header */}
         <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 36, height: 36, borderRadius: 12, background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', flexShrink: 0 }}><MessageSquare size={18} /></div>
@@ -241,7 +241,7 @@ export default function NotebookPage() {
       </div>
 
       {/* ═══ RIGHT: Studio ═══ */}
-      <div style={{ ...glassPanel, width: 256, flexShrink: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: 0 }}>
+      <div className="nb-studio" style={{ ...glassPanel, width: 256, flexShrink: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: 0 }}>
         <div style={{ padding: '18px 18px 14px', borderBottom: '1px solid rgba(0,0,0,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', display: 'flex', alignItems: 'center', gap: 6 }}><Sparkles size={18} color="#e07050" /> স্টুডিও</span>
         </div>
@@ -410,6 +410,13 @@ export default function NotebookPage() {
         @keyframes nb-dot {
           0%, 60%, 100% { transform: translateY(0); }
           30% { transform: translateY(-4px); }
+        }
+        @media (max-width: 900px) {
+          .notebook-container { flex-direction: column !important; height: auto !important; margin: 0 !important; padding: 0 !important; gap: 16px !important; }
+          .nb-sources, .nb-studio, .nb-chat { width: 100% !important; flex: none !important; }
+          .nb-chat { height: 60vh !important; min-height: 400px; }
+          .nb-sources { height: 400px !important; }
+          .nb-studio { height: auto !important; max-height: 400px; }
         }
       `}</style>
     </div>
