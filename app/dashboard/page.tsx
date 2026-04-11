@@ -174,6 +174,7 @@ const getCurvePath = (data: number[], maxH: number, width: number, height: numbe
    Subject Line Chart (This Week)
  ───────────────────────────────────────────── */
 function SubjectLineChart() {
+  const [hoverIdx, setHoverIdx] = useState<number | null>(null)
   const subjects = ['পদার্থ', 'রসায়ন', 'গণিত', 'জীব', 'বাংলা']
   const hours = [12, 18, 15, 22, 14]
   const maxH = 25
@@ -183,42 +184,54 @@ function SubjectLineChart() {
   const curve = getCurvePath(hours, maxH, width, height)
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', position: 'relative' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-        <div style={{ fontWeight: 700, fontSize: 16, color: '#1d1d1f' }}>বিষয়ভিত্তিক অধ্যয়নের প্রগতি</div>
-        <div style={{
-          fontSize: 12, color: '#8e8e93', border: '1px solid #e5e5ea',
-          padding: '4px 10px', borderRadius: 20, display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer'
+        <div style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f' }}>বিষয়ভিত্তিক অধ্যয়নের প্রগতি</div>
+        <div className="hover-lift-sm" style={{
+          fontSize: 11, color: '#1d1d1f', border: '1px solid rgba(255,255,255,0.7)', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+          padding: '6px 14px', borderRadius: '999px', display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontWeight: 700, boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
         }}>
-          এ সপ্তাহ <span style={{ fontSize: 10 }}>▼</span>
+          এ সপ্তাহ <span style={{ fontSize: 9 }}>▼</span>
         </div>
       </div>
-      <div style={{ position: 'relative', height: 120, marginTop: 20 }}>
-        {/* Grid lines */}
+      <div style={{ position: 'relative', height: 120, marginTop: 24 }}>
         {[0, 1, 2].map(i => (
-          <div key={i} style={{ position: 'absolute', top: `${i * 50}%`, left: 0, right: 0, borderTop: '1px solid #f2f2f7', zIndex: 0 }} />
+          <div key={i} style={{ position: 'absolute', top: `${i * 50}%`, left: 0, right: 0, borderTop: '1px dashed rgba(0,0,0,0.05)', zIndex: 0 }} />
         ))}
-        {/* Line */}
         <svg width="100%" height="100%" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, zIndex: 1, overflow: 'visible' }}>
           <defs>
             <linearGradient id="subjGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#3a7bd5" stopOpacity="0.25" />
-              <stop offset="100%" stopColor="#3a7bd5" stopOpacity="0" />
+              <stop offset="0%" stopColor="#8ca8f9" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#8ca8f9" stopOpacity="0" />
             </linearGradient>
           </defs>
-          {/* Fill */}
           <path d={`${curve} L ${width} ${height} L 0 ${height} Z`} fill="url(#subjGrad)" />
-          {/* Stroke */}
-          <path d={curve} fill="none" stroke="#3a7bd5" strokeWidth="2.5" strokeLinecap="round" />
-          {/* Markers */}
-          {hours.map((h, i) => (
-            <circle key={i} cx={(i / (subjects.length - 1)) * width} cy={height - (h / maxH) * height} r="4.5" fill="white" stroke="#3a7bd5" strokeWidth="2" />
-          ))}
+          <path d={curve} fill="none" stroke="#688eff" strokeWidth="3.5" strokeLinecap="round" style={{ filter: 'drop-shadow(0 6px 8px rgba(104,142,255,0.3))' }} />
+          {hours.map((h, i) => {
+            const x = (i / (subjects.length - 1)) * width
+            const y = height - (h / maxH) * height
+            return (
+              <g key={i} onMouseEnter={() => setHoverIdx(i)} onMouseLeave={() => setHoverIdx(null)}>
+                <circle cx={x} cy={y} r="18" fill="transparent" style={{ cursor: 'pointer' }} />
+                <circle cx={x} cy={y} r={hoverIdx === i ? 6 : 4} fill="white" stroke="#688eff" strokeWidth={hoverIdx === i ? 3 : 2} style={{ transition: 'all 200ms ease', cursor: 'pointer', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))' }} />
+              </g>
+            )
+          })}
         </svg>
+        {hoverIdx !== null && (
+          <div style={{
+            position: 'absolute', left: `${(hoverIdx / (subjects.length - 1)) * 100}%`, top: `calc(${100 - (hours[hoverIdx] / maxH) * 100}% - 34px)`,
+            transform: 'translateX(-50%)', background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(16px)',
+            border: '1px solid rgba(255,255,255,1)', padding: '6px 12px', borderRadius: '14px',
+            fontSize: 12, fontWeight: 800, color: '#1d1d1f', boxShadow: '0 8px 16px rgba(0,0,0,0.12)', zIndex: 10, pointerEvents: 'none'
+          }}>
+            {hours[hoverIdx]} ঘণ্টা
+          </div>
+        )}
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
         {subjects.map(s => (
-          <div key={s} style={{ fontSize: 11, color: '#aeaeb2', fontWeight: 600, width: 35, textAlign: 'center' }}>{s}</div>
+          <div key={s} style={{ fontSize: 11, color: '#8e8e93', fontWeight: 600, width: 35, textAlign: 'center' }}>{s}</div>
         ))}
       </div>
     </div>
@@ -229,6 +242,7 @@ function SubjectLineChart() {
    Weekly Overview Line Chart (Overlapping)
  ───────────────────────────────────────────── */
 function WeeklyLineChart() {
+  const [hoverIdx, setHoverIdx] = useState<number | null>(null)
   const days = ['শনি', 'রবি', 'সোম', 'মঙ্গল', 'বুধ', 'বৃহ', 'শুক্র']
   const thisWeek = [10, 24, 15, 20, 18, 32, 25]
   const lastWeek = [15, 10, 22, 18, 12, 15, 10]
@@ -243,80 +257,77 @@ function WeeklyLineChart() {
   const curve3 = getCurvePath(avgWeek, maxH, width, height)
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', position: 'relative' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-        <div style={{ fontWeight: 700, fontSize: 16, color: '#1d1d1f' }}>সাপ্তাহিক অধ্যয়নের তুলনা</div>
-        <div style={{
-          fontSize: 12, color: '#8e8e93', border: '1px solid #e5e5ea',
-          padding: '4px 10px', borderRadius: 20, display: 'flex', alignItems: 'center', gap: 4, cursor: 'pointer'
+        <div style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f' }}>সাপ্তাহিক অধ্যয়নের তুলনা</div>
+        <div className="hover-lift-sm" style={{
+          fontSize: 11, color: '#1d1d1f', border: '1px solid rgba(255,255,255,0.7)', background: 'rgba(255,255,255,0.45)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+          padding: '6px 14px', borderRadius: '999px', display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', fontWeight: 700, boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
         }}>
-          সব সময় <span style={{ fontSize: 10 }}>▼</span>
+          সব সময় <span style={{ fontSize: 9 }}>▼</span>
         </div>
       </div>
 
-      <div style={{ position: 'relative', height: 120, marginTop: 20 }}>
-        {/* Grid lines */}
+      <div style={{ position: 'relative', height: 120, marginTop: 24 }}>
         {[0, 1, 2].map(i => (
-          <div key={i} style={{ position: 'absolute', top: `${i * 50}%`, left: 0, right: 0, borderTop: '1px solid #f2f2f7', zIndex: 0 }} />
+          <div key={i} style={{ position: 'absolute', top: `${i * 50}%`, left: 0, right: 0, borderTop: '1px dashed rgba(0,0,0,0.05)', zIndex: 0 }} />
         ))}
-        {/* Lines */}
         <svg width="100%" height="100%" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, zIndex: 1, overflow: 'visible' }}>
           <defs>
             <linearGradient id="grad1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#3a7bd5" stopOpacity="0.15" />
-              <stop offset="100%" stopColor="#3a7bd5" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="grad2" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#ff7b54" stopOpacity="0.1" />
-              <stop offset="100%" stopColor="#ff7b54" stopOpacity="0" />
-            </linearGradient>
-            <linearGradient id="grad3" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#5ab87a" stopOpacity="0.1" />
-              <stop offset="100%" stopColor="#5ab87a" stopOpacity="0" />
+              <stop offset="0%" stopColor="#77a2f5" stopOpacity="0.25" />
+              <stop offset="100%" stopColor="#77a2f5" stopOpacity="0" />
             </linearGradient>
           </defs>
           
-          {/* Fills */}
           <path d={`${curve1} L ${width} ${height} L 0 ${height} Z`} fill="url(#grad1)" />
-          <path d={`${curve2} L ${width} ${height} L 0 ${height} Z`} fill="url(#grad2)" />
-          <path d={`${curve3} L ${width} ${height} L 0 ${height} Z`} fill="url(#grad3)" />
           
-          {/* Strokes */}
-          <path d={curve3} fill="none" stroke="#5ab87a" strokeWidth="2" strokeLinecap="round" strokeDasharray="5 3" />
-          <path d={curve2} fill="none" stroke="#ff7b54" strokeWidth="2" strokeLinecap="round" />
-          <path d={curve1} fill="none" stroke="#3a7bd5" strokeWidth="2" strokeLinecap="round" />
+          <path d={curve3} fill="none" stroke="#7de2d1" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="6 4" />
+          <path d={curve2} fill="none" stroke="#ffb4a2" strokeWidth="2.5" strokeLinecap="round" />
+          <path d={curve1} fill="none" stroke="#77a2f5" strokeWidth="3" strokeLinecap="round" style={{ filter: 'drop-shadow(0 4px 6px rgba(119,162,245,0.3))' }} />
 
-          {/* All Markers */}
-          {thisWeek.map((h, i) => (
-            <circle key={`tw-${i}`} cx={(i / (days.length - 1)) * width} cy={height - (h / maxH) * height} r="3.5" fill="white" stroke="#3a7bd5" strokeWidth="2" />
-          ))}
-          {lastWeek.map((h, i) => (
-            <circle key={`lw-${i}`} cx={(i / (days.length - 1)) * width} cy={height - (h / maxH) * height} r="3.5" fill="white" stroke="#ff7b54" strokeWidth="2" />
-          ))}
-          {avgWeek.map((h, i) => (
-            <circle key={`aw-${i}`} cx={(i / (days.length - 1)) * width} cy={height - (h / maxH) * height} r="2.5" fill="white" stroke="#5ab87a" strokeWidth="1.5" />
-          ))}
+          {thisWeek.map((h, i) => {
+            const x = (i / (days.length - 1)) * width
+            const y = height - (h / maxH) * height
+            return (
+              <g key={`tw-${i}`} onMouseEnter={() => setHoverIdx(i)} onMouseLeave={() => setHoverIdx(null)}>
+                <circle cx={x} cy={y} r="18" fill="transparent" style={{ cursor: 'pointer' }} />
+                <circle cx={x} cy={y} r={hoverIdx === i ? 5.5 : 4} fill="white" stroke="#77a2f5" strokeWidth={hoverIdx === i ? 3 : 2} style={{ transition: 'all 200ms ease', cursor: 'pointer', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))' }} />
+              </g>
+            )
+          })}
         </svg>
+        {hoverIdx !== null && (
+          <div style={{
+            position: 'absolute', left: `${(hoverIdx / (days.length - 1)) * 100}%`, top: `calc(${100 - (thisWeek[hoverIdx] / maxH) * 100}% - 34px)`,
+            transform: 'translateX(-50%)', background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(16px)',
+            border: '1px solid rgba(255,255,255,1)', padding: '6px 12px', borderRadius: '14px',
+            fontSize: 12, fontWeight: 800, color: '#1d1d1f', boxShadow: '0 8px 16px rgba(0,0,0,0.12)', zIndex: 10, pointerEvents: 'none',
+            whiteSpace: 'nowrap'
+          }}>
+            <span style={{ color: '#77a2f5' }}>{thisWeek[hoverIdx]} ঘ.</span> / <span style={{ color: '#ffb4a2' }}>{lastWeek[hoverIdx]} ঘ.</span>
+          </div>
+        )}
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12 }}>
         {days.map(d => (
-          <div key={d} style={{ fontSize: 11, color: '#aeaeb2', fontWeight: 600, width: 35, textAlign: 'center' }}>{d}</div>
+          <div key={d} style={{ fontSize: 11, color: '#8e8e93', fontWeight: 600, width: 35, textAlign: 'center' }}>{d}</div>
         ))}
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 15, marginTop: 12 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#3a7bd5' }} />
-          <span style={{ fontSize: 10, color: '#8e8e93', fontWeight: 600 }}>এ সপ্তাহ</span>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 18, marginTop: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#77a2f5', display: 'inline-block' }} />
+          <span style={{ fontSize: 11, color: '#6e6e73', fontWeight: 600 }}>এ সপ্তাহ</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ff7b54' }} />
-          <span style={{ fontSize: 10, color: '#8e8e93', fontWeight: 600 }}>গত সপ্তাহ</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#ffb4a2', display: 'inline-block' }} />
+          <span style={{ fontSize: 11, color: '#6e6e73', fontWeight: 600 }}>গত সপ্তাহ</span>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <div style={{ width: 8, height: 2, background: '#5ab87a' }} />
-          <span style={{ fontSize: 10, color: '#8e8e93', fontWeight: 600 }}>গড়</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          <div style={{ width: 10, height: 3, borderRadius: '2px', background: '#7de2d1', display: 'inline-block' }} />
+          <span style={{ fontSize: 11, color: '#6e6e73', fontWeight: 600 }}>গড়</span>
         </div>
       </div>
     </div>
@@ -324,9 +335,11 @@ function WeeklyLineChart() {
 }
 
 const navBtn: React.CSSProperties = {
-  width: 26, height: 26, borderRadius: '50%', border: 'none', background: 'rgba(255,255,255,0.8)',
-  boxShadow: '0 1px 4px rgba(0,0,0,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center',
-  cursor: 'pointer', color: '#1d1d1f', fontWeight: 800, fontSize: 12, transition: 'all 200ms'
+  width: 34, height: 34, borderRadius: '50%', border: '1px solid rgba(255,255,255,0.7)',
+  background: 'rgba(255,255,255,0.4)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+  boxShadow: '0 4px 12px rgba(0,0,0,0.06), inset 0 1px 1px rgba(255,255,255,0.9)', 
+  display: 'flex', alignItems: 'center', justifyContent: 'center',
+  cursor: 'pointer', color: '#1d1d1f', fontWeight: 800, fontSize: 14, transition: 'all 300ms cubic-bezier(0.34, 1.56, 0.64, 1)'
 }
 /* ─────────────────────────────────────────────
    Page content renderers
@@ -356,17 +369,19 @@ function OverviewPage({ displayName }: { displayName: string }) {
           <h1 style={{ fontSize: 26, fontWeight: 800, color: '#1d1d1f', letterSpacing: '-0.02em' }}>
             স্বাগতম, {displayName}! 👋
           </h1>
-          <button 
+          <button className="hover-lift-sm"
             style={{
-              padding: '8px 20px', borderRadius: 10, border: 'none',
-              background: '#3a7bd5', color: 'white', fontWeight: 700, fontSize: 13,
-              cursor: 'pointer', boxShadow: '0 4px 12px rgba(58,123,213,0.2)',
-              transition: 'transform 200ms ease',
+              padding: '12px 28px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.5)',
+              background: 'linear-gradient(135deg, rgba(58,123,213,0.9), rgba(90,108,248,0.9))', 
+              backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
+              color: 'white', fontWeight: 700, fontSize: 14,
+              cursor: 'pointer', boxShadow: '0 8px 24px rgba(58,123,213,0.3), inset 0 2px 3px rgba(255,255,255,0.3)',
+              transition: 'all 300ms cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}
             onClick={() => {
               window.location.href = user?.enrolledCourses?.[0] ? `/course/${user.enrolledCourses[0]}` : '/course/physics-12'
             }}
-            onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px)')}
+            onMouseEnter={e => (e.currentTarget.style.transform = 'translateY(-2px) scale(1.02)')}
             onMouseLeave={e => (e.currentTarget.style.transform = 'none')}
           >
             শিখতে শুরু করুন →
@@ -939,9 +954,11 @@ const inp: React.CSSProperties = {
   outline: 'none', transition: 'border-color 300ms',
 }
 const chatToolBtn: React.CSSProperties = {
-  width: 32, height: 32, borderRadius: '50%', border: 'none', background: 'none',
+  width: 38, height: 38, borderRadius: '50%', border: '1px solid rgba(0,0,0,0.06)', 
+  background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
   cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-  transition: 'background 150ms', flexShrink: 0,
+  transition: 'all 300ms cubic-bezier(0.34, 1.56, 0.64, 1)', flexShrink: 0,
+  boxShadow: '0 4px 12px rgba(0,0,0,0.03), inset 0 2px 4px rgba(255,255,255,0.9)'
 }
 
 /* ─────────────────────────────────────────────
