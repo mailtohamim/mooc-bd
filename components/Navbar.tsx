@@ -46,7 +46,7 @@ export default function Navbar() {
             <path d="M9 22h16" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" strokeLinecap="round" />
             <defs>
               <linearGradient id="nlg" x1="0" y1="0" x2="34" y2="34">
-                <stop stopColor="#3a7bd5" /><stop offset="1" stopColor="#5a6cf8" />
+                <stop stopColor="#800000" /><stop offset="1" stopColor="#b30000" />
               </linearGradient>
             </defs>
           </svg>
@@ -62,7 +62,7 @@ export default function Navbar() {
               fontFamily: "'Anek Bangla', sans-serif", fontSize: 15, fontWeight: 500,
               color: '#3c3c43', textDecoration: 'none', transition: 'color 300ms',
             }}
-              onMouseEnter={e => (e.currentTarget.style.color = '#3a7bd5')}
+              onMouseEnter={e => (e.currentTarget.style.color = '#800000')}
               onMouseLeave={e => (e.currentTarget.style.color = '#3c3c43')}
             >{label}</a>
           ))}
@@ -76,19 +76,19 @@ export default function Navbar() {
             className="desk-nav"
             style={{
               display: 'flex', alignItems: 'center', gap: 6,
-              background: 'rgba(58,123,213,0.07)',
-              border: '1.5px solid rgba(58,123,213,0.18)',
+              background: 'rgba(128,0,0,0.07)',
+              border: '1.5px solid rgba(128,0,0,0.18)',
               borderRadius: 10, padding: '7px 14px',
               textDecoration: 'none',
-              color: '#3a7bd5', fontSize: 13, fontWeight: 600,
+              color: '#800000', fontSize: 13, fontWeight: 600,
               fontFamily: "'Anek Bangla', sans-serif",
               transition: 'all 300ms ease',
             }}
-            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(58,123,213,0.14)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(58,123,213,0.07)'; e.currentTarget.style.transform = 'none' }}
+            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(128,0,0,0.14)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(128,0,0,0.07)'; e.currentTarget.style.transform = 'none' }}
           >
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M7 1v8M4 7l3 3 3-3M1.5 11.5h11" stroke="#3a7bd5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M7 1v8M4 7l3 3 3-3M1.5 11.5h11" stroke="#800000" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             অ্যাপ ডাউনলোড
           </a>
@@ -99,17 +99,17 @@ export default function Navbar() {
                 onClick={() => setOpen(v => !v)}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 9,
-                  background: 'rgba(58,123,213,0.08)',
-                  border: '1.5px solid rgba(58,123,213,0.20)',
+                  background: 'rgba(128,0,0,0.08)',
+                  border: '1.5px solid rgba(128,0,0,0.20)',
                   borderRadius: 40, padding: '7px 14px 7px 8px',
                   cursor: 'pointer', transition: 'all 300ms ease',
                 }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(58,123,213,0.14)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(58,123,213,0.08)')}
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(128,0,0,0.14)')}
+                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(128,0,0,0.08)')}
               >
                 <div style={{
                   width: 28, height: 28, borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)',
+                  background: 'linear-gradient(135deg, #800000, #b30000)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   color: 'white', fontSize: 11, fontWeight: 700,
                 }}>

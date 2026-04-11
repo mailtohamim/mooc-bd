@@ -9,7 +9,7 @@ const events = [
     date: "১৫ মার্চ ২০২৫",
     venue: "ঢাকা বিশ্ববিদ্যালয়",
     desc: "সারাদেশের শিক্ষার্থীদের জন্য উন্মুক্ত বিজ্ঞান প্রতিযোগিতা। অংশগ্রহণ সম্পূর্ণ বিনামূল্যে।",
-    color: "#3a7bd5",
+    color: "#800000",
     img: EVENT_IMAGES.event1,
     icon: (
       <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
@@ -345,7 +345,7 @@ export default function UpcomingEvents() {
                 const accent =
                   item.eventIdx !== null
                     ? events[item.eventIdx].color
-                    : "#3a7bd5";
+                    : "#800000";
                 return (
                   <div
                     key={i}

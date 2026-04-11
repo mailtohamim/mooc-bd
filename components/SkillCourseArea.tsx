@@ -32,7 +32,7 @@ const courses = [
   {
     title: "IELTS কোর্স",
     teacher: "প্রফেসর আহমেদ হোসেন",
-    color: "#3a7bd5",
+    color: "#800000",
     img: SKILL_COURSE_IMAGES.ielts,
   },
   {
@@ -105,7 +105,7 @@ export default function SkillCourseArea() {
                   width: 18,
                   height: 18,
                   borderRadius: "50%",
-                  background: "#3a7bd5",
+                  background: "#800000",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -153,12 +153,12 @@ export default function SkillCourseArea() {
                 flexShrink: 0,
                 padding: "9px 18px",
                 borderRadius: 999,
-                background: i === activeCat ? "rgba(58,123,213,0.10)" : "white",
+                background: i === activeCat ? "rgba(128,0,0,0.10)" : "white",
                 border:
                   i === activeCat
-                    ? "1.5px solid #3a7bd5"
+                    ? "1.5px solid #800000"
                     : "1.5px solid rgba(0,0,0,0.10)",
-                color: i === activeCat ? "#3a7bd5" : "#6e6e73",
+                color: i === activeCat ? "#800000" : "#6e6e73",
                 fontFamily: "'Anek Bangla', sans-serif",
                 fontSize: 14,
                 fontWeight: i === activeCat ? 700 : 400,
@@ -201,7 +201,7 @@ export default function SkillCourseArea() {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = "#f0f4ff";
-                e.currentTarget.style.borderColor = "#3a7bd5";
+                e.currentTarget.style.borderColor = "#800000";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = "white";
@@ -212,7 +212,7 @@ export default function SkillCourseArea() {
                 {dir === "prev" ? (
                   <path
                     d="M9 3L5 7l4 4"
-                    stroke="#3a7bd5"
+                    stroke="#800000"
                     strokeWidth="1.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -220,7 +220,7 @@ export default function SkillCourseArea() {
                 ) : (
                   <path
                     d="M5 3l4 4-4 4"
-                    stroke="#3a7bd5"
+                    stroke="#800000"
                     strokeWidth="1.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -336,7 +336,7 @@ export default function SkillCourseArea() {
               padding: "10px 28px",
               fontSize: 14,
               fontWeight: 600,
-              color: "#3a7bd5",
+              color: "#800000",
               fontFamily: "'Anek Bangla', sans-serif",
               cursor: "pointer",
               transition: "all 300ms ease",
@@ -346,7 +346,7 @@ export default function SkillCourseArea() {
               gap: 7,
             }}
             onMouseEnter={(e) =>
-              (e.currentTarget.style.borderColor = "#3a7bd5")
+              (e.currentTarget.style.borderColor = "#800000")
             }
             onMouseLeave={(e) =>
               (e.currentTarget.style.borderColor = "rgba(0,0,0,0.10)")
@@ -365,7 +365,7 @@ export default function SkillCourseArea() {
             >
               <path
                 d="M2 5l4.5 4L11 5"
-                stroke="#3a7bd5"
+                stroke="#800000"
                 strokeWidth="1.6"
                 strokeLinecap="round"
                 strokeLinejoin="round"

@@ -70,13 +70,13 @@ export default function AIChatBot() {
       <button onClick={() => { setOpen(!open); setTimeout(() => inputRef.current?.focus(), 100) }} style={{
         position: 'fixed', bottom: 24, right: 24, zIndex: 9999,
         width: 56, height: 56, borderRadius: '50%', border: 'none', cursor: 'pointer',
-        background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)',
-        boxShadow: '0 4px 20px rgba(58,123,213,0.4)',
+        background: 'linear-gradient(135deg, #800000, #b30000)',
+        boxShadow: '0 4px 20px rgba(128,0,0,0.4)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         transition: 'transform 200ms, box-shadow 200ms',
       }}
-        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(58,123,213,0.5)' }}
-        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(58,123,213,0.4)' }}
+        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(128,0,0,0.5)' }}
+        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(128,0,0,0.4)' }}
       >
         {open ? (
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -95,7 +95,7 @@ export default function AIChatBot() {
         <div style={{
           position: 'fixed', bottom: 24, right: 24, zIndex: 9998,
           width: 56, height: 56, borderRadius: '50%',
-          border: '2px solid rgba(58,123,213,0.4)',
+          border: '2px solid rgba(128,0,0,0.4)',
           animation: 'chatbot-pulse 2s infinite',
           pointerEvents: 'none',
         }} />
@@ -111,7 +111,7 @@ export default function AIChatBot() {
         }}>
           {/* Header */}
           <div style={{
-            background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', padding: '14px 16px',
+            background: 'linear-gradient(135deg, #800000, #b30000)', padding: '14px 16px',
             display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0,
           }}>
             <div style={{
@@ -135,13 +135,13 @@ export default function AIChatBot() {
             {msgs.map(m => (
               <div key={m.id} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', marginBottom: 8 }}>
                 {m.role === 'bot' && (
-                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 6, flexShrink: 0, marginTop: 'auto' }}>
+                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 6, flexShrink: 0, marginTop: 'auto' }}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><circle cx="9" cy="9" r="1.5"/><circle cx="15" cy="9" r="1.5"/><path d="M9 13c0 1.5 1.5 2.5 3 2.5s3-1 3-2.5" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round"/></svg>
                   </div>
                 )}
                 <div style={{
                   maxWidth: '80%', padding: '10px 14px', borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-                  background: m.role === 'user' ? '#3a7bd5' : '#ffffff',
+                  background: m.role === 'user' ? '#800000' : '#ffffff',
                   color: m.role === 'user' ? 'white' : '#050505',
                   fontSize: 13, lineHeight: 1.5, whiteSpace: 'pre-wrap', wordBreak: 'break-word',
                   boxShadow: m.role === 'bot' ? '0 1px 2px rgba(0,0,0,0.08)' : 'none',
@@ -152,7 +152,7 @@ export default function AIChatBot() {
             ))}
             {typing && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
-                <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <div style={{ width: 28, height: 28, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><circle cx="9" cy="9" r="1.5"/><circle cx="15" cy="9" r="1.5"/></svg>
                 </div>
                 <div style={{ background: '#ffffff', borderRadius: 18, padding: '10px 16px', display: 'flex', gap: 4, boxShadow: '0 1px 2px rgba(0,0,0,0.08)' }}>
@@ -168,8 +168,8 @@ export default function AIChatBot() {
           <div style={{ padding: '6px 12px', display: 'flex', gap: 6, overflowX: 'auto', flexShrink: 0, background: '#f0f2f5', borderTop: '1px solid #e4e6eb' }} className="scroll-x">
             {['কোর্স দেখুন', 'পরীক্ষার সময়', 'টিপস দিন', 'সাহায্য'].map(q => (
               <button key={q} onClick={() => { setInput(q); setTimeout(() => { setInput(q); send() }, 50) }} style={{
-                padding: '5px 12px', borderRadius: 16, border: '1px solid #3a7bd5', background: 'white',
-                fontSize: 12, fontWeight: 600, color: '#3a7bd5', cursor: 'pointer', whiteSpace: 'nowrap',
+                padding: '5px 12px', borderRadius: 16, border: '1px solid #800000', background: 'white',
+                fontSize: 12, fontWeight: 600, color: '#800000', cursor: 'pointer', whiteSpace: 'nowrap',
                 fontFamily: "'Anek Bangla', sans-serif",
               }}>{q}</button>
             ))}
@@ -184,7 +184,7 @@ export default function AIChatBot() {
             />
             <button onClick={send} style={{
               width: 36, height: 36, borderRadius: '50%', border: 'none', cursor: 'pointer',
-              background: input.trim() ? '#3a7bd5' : '#e4e6eb',
+              background: input.trim() ? '#800000' : '#e4e6eb',
               display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 200ms', flexShrink: 0,
             }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill={input.trim() ? 'white' : '#bec3c9'}><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>

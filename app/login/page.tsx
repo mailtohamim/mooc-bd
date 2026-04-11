@@ -65,7 +65,7 @@ export default function LoginPage() {
               <path d="M30 10h-9a4 4 0 0 0-4 4v14h13V10z" fill="rgba(255,255,255,0.40)" />
               <defs>
                 <linearGradient id="llg" x1="0" y1="0" x2="40" y2="40">
-                  <stop stopColor="#3a7bd5" /><stop offset="1" stopColor="#5a6cf8" />
+                  <stop stopColor="#800000" /><stop offset="1" stopColor="#b30000" />
                 </linearGradient>
               </defs>
             </svg>
@@ -117,7 +117,7 @@ export default function LoginPage() {
                   onChange={e => setDisplayName(e.target.value)}
                   placeholder="পূর্ণ নাম লিখুন"
                   style={inputStyle}
-                  onFocus={e => (e.target.style.borderColor = '#3a7bd5')}
+                  onFocus={e => (e.target.style.borderColor = '#800000')}
                   onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.10)')}
                 />
               </div>
@@ -131,7 +131,7 @@ export default function LoginPage() {
                 onChange={e => setUsername(e.target.value)}
                 placeholder="username"
                 style={{ ...inputStyle, letterSpacing: 0 }}
-                onFocus={e => (e.target.style.borderColor = '#3a7bd5')}
+                onFocus={e => (e.target.style.borderColor = '#800000')}
                 onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.10)')}
               />
             </div>
@@ -144,7 +144,7 @@ export default function LoginPage() {
                 onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••"
                 style={inputStyle}
-                onFocus={e => (e.target.style.borderColor = '#3a7bd5')}
+                onFocus={e => (e.target.style.borderColor = '#800000')}
                 onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.10)')}
               />
             </div>

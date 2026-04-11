@@ -87,7 +87,7 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
         {/* Course Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 24 }}>
           <div>
-            <div style={{ color: '#3a7bd5', fontWeight: 700, fontSize: 14, marginBottom: 4 }}>{course.class}</div>
+            <div style={{ color: '#800000', fontWeight: 700, fontSize: 14, marginBottom: 4 }}>{course.class}</div>
             <h1 style={{ fontSize: 32, fontWeight: 800, color: '#1d1d1f' }}>{course.title}</h1>
           </div>
           {!isEnrolled ? (
@@ -144,8 +144,8 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
                 এই পাঠে আমরা {activeTopic.title} সম্পর্কে বিস্তারিত আলোচনা করব। নিচের পিডিএফ লিঙ্ক থেকে আপনি আজকের ক্লাসের নোট ডাউনলোড করতে পারেন।
               </p>
               <button style={{
-                marginTop: 16, padding: '10px 20px', borderRadius: 12, border: '1px solid #3a7bd5',
-                color: '#3a7bd5', background: 'transparent', fontWeight: 600, fontSize: 14, cursor: 'pointer'
+                marginTop: 16, padding: '10px 20px', borderRadius: 12, border: '1px solid #800000',
+                color: '#800000', background: 'transparent', fontWeight: 600, fontSize: 14, cursor: 'pointer'
               }}>
                 পিডিএফ ডাউনলোড করুন (২.৪ এমবি)
               </button>
@@ -172,7 +172,7 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
                       <div key={topic.id} style={{
                         display: 'flex', alignItems: 'center', gap: 10,
                         padding: '10px 12px', borderRadius: 12,
-                        background: isActive ? 'rgba(58,123,213,0.06)' : 'transparent',
+                        background: isActive ? 'rgba(128,0,0,0.06)' : 'transparent',
                         cursor: 'pointer', transition: 'all 200ms'
                       }}
                       onClick={() => isEnrolled && setActiveTopic(topic)}
@@ -198,7 +198,7 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
                         </div>
                         <div style={{ 
                           fontSize: 14, fontWeight: isActive ? 600 : 400,
-                          color: isActive ? '#3a7bd5' : '#3c3c43',
+                          color: isActive ? '#800000' : '#3c3c43',
                           flex: 1
                         }}>
                           {topic.title}

@@ -101,7 +101,7 @@ function DateRangePicker({
               style={{
                 height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center',
                 borderRadius: edge ? '50%' : middle ? 0 : 4,
-                background: edge ? '#3a7bd5' : middle ? 'rgba(58,123,213,0.12)' : 'transparent',
+                background: edge ? '#800000' : middle ? 'rgba(128,0,0,0.12)' : 'transparent',
                 color: edge ? 'white' : '#1d1d1f',
                 fontSize: 13, fontWeight: edge ? 700 : 400,
                 cursor: 'pointer',
@@ -143,7 +143,7 @@ const navBtn: React.CSSProperties = {
 /* ── Icons ── */
 const DownloadIcon = () => (
   <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-    <path d="M7.5 2v8M4 8l3.5 3.5L11 8M2.5 13h10" stroke="#3a7bd5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M7.5 2v8M4 8l3.5 3.5L11 8M2.5 13h10" stroke="#800000" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 const DocIcon = () => (
@@ -223,7 +223,7 @@ export default function GovtNotices() {
               {/* Category select */}
               <div style={{ position: 'relative' }}>
                 <select value={category} onChange={e => setCategory(e.target.value)} style={selectStyle}
-                  onFocus={e => (e.target.style.borderColor = '#3a7bd5')}
+                  onFocus={e => (e.target.style.borderColor = '#800000')}
                   onBlur={e  => (e.target.style.borderColor  = 'rgba(0,0,0,0.10)')}>
                   {categories.map(c => <option key={c}>{c}</option>)}
                 </select>
@@ -236,11 +236,11 @@ export default function GovtNotices() {
                   onClick={() => setCalOpen(v => !v)}
                   style={{
                     display: 'flex', alignItems: 'center', gap: 7,
-                    background: hasDateFilter ? 'rgba(58,123,213,0.10)' : 'rgba(255,255,255,0.90)',
-                    border: `1.5px solid ${hasDateFilter ? 'rgba(58,123,213,0.35)' : 'rgba(0,0,0,0.10)'}`,
+                    background: hasDateFilter ? 'rgba(128,0,0,0.10)' : 'rgba(255,255,255,0.90)',
+                    border: `1.5px solid ${hasDateFilter ? 'rgba(128,0,0,0.35)' : 'rgba(0,0,0,0.10)'}`,
                     borderRadius: 10, padding: '8px 12px',
                     fontSize: 13, fontFamily: "'Anek Bangla', sans-serif",
-                    color: hasDateFilter ? '#3a7bd5' : '#1d1d1f', fontWeight: hasDateFilter ? 600 : 500,
+                    color: hasDateFilter ? '#800000' : '#1d1d1f', fontWeight: hasDateFilter ? 600 : 500,
                     cursor: 'pointer', outline: 'none',
                     transition: 'all 300ms ease',
                     boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
@@ -297,15 +297,15 @@ export default function GovtNotices() {
                 </div>
               </div>
               <button style={{
-                background: 'rgba(58,123,213,0.08)', border: '1px solid rgba(58,123,213,0.18)',
+                background: 'rgba(128,0,0,0.08)', border: '1px solid rgba(128,0,0,0.18)',
                 borderRadius: 10, padding: '7px 14px',
-                cursor: 'pointer', color: '#3a7bd5',
+                cursor: 'pointer', color: '#800000',
                 fontSize: 13, fontWeight: 600,
                 display: 'flex', alignItems: 'center', gap: 5,
                 transition: 'all 300ms ease', fontFamily: "'Anek Bangla', sans-serif", whiteSpace: 'nowrap',
               }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(58,123,213,0.15)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(58,123,213,0.08)')}
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(128,0,0,0.15)')}
+                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(128,0,0,0.08)')}
               >
                 <DownloadIcon />ডাউনলোড
               </button>
@@ -317,13 +317,13 @@ export default function GovtNotices() {
             <div style={{ textAlign: 'center', marginTop: 16 }}>
               <button onClick={() => setShowAll(v => !v)} style={{
                 background: 'none', border: 'none', cursor: 'pointer',
-                color: '#3a7bd5', fontSize: 13, fontWeight: 600,
+                color: '#800000', fontSize: 13, fontWeight: 600,
                 fontFamily: "'Anek Bangla', sans-serif",
                 display: 'inline-flex', alignItems: 'center', gap: 5,
               }}>
                 {showAll ? 'কম দেখুন' : `আরও দেখুন (${filtered.length - 3})`}
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ transform: showAll ? 'rotate(180deg)' : 'none', transition: 'transform 300ms' }}>
-                  <path d="M2 4l4 4 4-4" stroke="#3a7bd5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M2 4l4 4 4-4" stroke="#800000" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
             </div>

@@ -16,7 +16,7 @@ import { FileText, File, Clipboard, Globe, Image as ImageIcon, Music, Mic, Prese
 const STORAGE_KEY = 'sb_notebook_data'
 const uid = () => Math.random().toString(36).slice(2, 10)
 const srcIcon: Record<string, { icon: React.FC<any>; color: string }> = {
-  pdf: { icon: FileText, color: '#d25a3c' }, doc: { icon: File, color: '#3a7bd5' },
+  pdf: { icon: FileText, color: '#d25a3c' }, doc: { icon: File, color: '#800000' },
   text: { icon: Clipboard, color: '#5ab87a' }, youtube: { icon: MonitorPlay, color: '#ff0000' },
   website: { icon: Globe, color: '#8250d2' }, image: { icon: ImageIcon, color: '#ff9500' },
   audio: { icon: Music, color: '#e07050' },
@@ -115,19 +115,19 @@ export default function NotebookPage() {
       <div className="nb-sources" style={{ ...glassPanel, width: 280, flexShrink: 0, display: 'flex', flexDirection: 'column', overflow: 'hidden', padding: 0 }}>
         <div style={{ padding: '18px 18px 14px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
-            <span style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', display: 'flex', alignItems: 'center', gap: 6 }}><Folder size={18} color="#3a7bd5" /> সোর্স</span>
-            <span style={{ fontSize: 11, color: 'white', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', borderRadius: 8, padding: '2px 10px', fontWeight: 700 }}>{sources.length}</span>
+            <span style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', display: 'flex', alignItems: 'center', gap: 6 }}><Folder size={18} color="#800000" /> সোর্স</span>
+            <span style={{ fontSize: 11, color: 'white', background: 'linear-gradient(135deg, #800000, #b30000)', borderRadius: 8, padding: '2px 10px', fontWeight: 700 }}>{sources.length}</span>
           </div>
           <button onClick={() => setShowAddSource(true)} style={{
-            width: '100%', padding: '11px', borderRadius: 14, border: '1.5px dashed rgba(58,123,213,0.35)',
-            background: 'rgba(58,123,213,0.04)', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#3a7bd5',
+            width: '100%', padding: '11px', borderRadius: 14, border: '1.5px dashed rgba(128,0,0,0.35)',
+            background: 'rgba(128,0,0,0.04)', cursor: 'pointer', fontSize: 13, fontWeight: 700, color: '#800000',
             fontFamily: "'Anek Bangla', sans-serif", display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
             transition: 'all 250ms',
           }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = '#3a7bd5'; e.currentTarget.style.background = 'rgba(58,123,213,0.08)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(58,123,213,0.35)'; e.currentTarget.style.background = 'rgba(58,123,213,0.04)'; e.currentTarget.style.transform = 'none' }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = '#800000'; e.currentTarget.style.background = 'rgba(128,0,0,0.08)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(128,0,0,0.35)'; e.currentTarget.style.background = 'rgba(128,0,0,0.04)'; e.currentTarget.style.transform = 'none' }}
           >
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#3a7bd5" strokeWidth="2" strokeLinecap="round"/></svg>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#800000" strokeWidth="2" strokeLinecap="round"/></svg>
             সোর্স যোগ করুন
           </button>
         </div>
@@ -156,7 +156,7 @@ export default function NotebookPage() {
                 marginBottom: 6, cursor: 'pointer', transition: 'all 250ms',
                 background: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.55)',
               }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(58,123,213,0.06)'; e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.06)' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(128,0,0,0.06)'; e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.06)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.7)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 24, height: 24 }}>
@@ -178,12 +178,12 @@ export default function NotebookPage() {
       <div className="nb-chat" style={{ ...glassPanel, flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, padding: 0, overflow: 'hidden' }}>
         {/* Header */}
         <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 36, height: 36, borderRadius: 12, background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', flexShrink: 0 }}><MessageSquare size={18} /></div>
+          <div style={{ width: 36, height: 36, borderRadius: 12, background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', flexShrink: 0 }}><MessageSquare size={18} /></div>
           <div style={{ flex: 1 }}>
             {editingTitle ? (
               <input autoFocus value={notebookTitle} onChange={e => { setNotebookTitle(e.target.value); saveAll(undefined,undefined,e.target.value) }}
                 onBlur={() => setEditingTitle(false)} onKeyDown={e => e.key === 'Enter' && setEditingTitle(false)}
-                style={{ fontSize: 16, fontWeight: 800, border: 'none', borderBottom: '2px solid #3a7bd5', outline: 'none', fontFamily: "'Anek Bangla', sans-serif", color: '#1d1d1f', background: 'none', padding: '2px 4px', width: '100%' }}
+                style={{ fontSize: 16, fontWeight: 800, border: 'none', borderBottom: '2px solid #800000', outline: 'none', fontFamily: "'Anek Bangla', sans-serif", color: '#1d1d1f', background: 'none', padding: '2px 4px', width: '100%' }}
               />
             ) : (
               <div onClick={() => setEditingTitle(true)} style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', cursor: 'pointer' }} title="ক্লিক করে নাম পরিবর্তন করুন">{notebookTitle}</div>
@@ -196,12 +196,12 @@ export default function NotebookPage() {
           {chatMsgs.map(m => (
             <div key={m.id} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start', marginBottom: 12 }}>
               {m.role === 'ai' && (
-                <div style={{ width: 30, height: 30, borderRadius: 10, background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8, flexShrink: 0, alignSelf: 'flex-end', fontSize: 13, color: 'white', fontWeight: 800 }}>AI</div>
+                <div style={{ width: 30, height: 30, borderRadius: 10, background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginRight: 8, flexShrink: 0, alignSelf: 'flex-end', fontSize: 13, color: 'white', fontWeight: 800 }}>AI</div>
               )}
               <div style={{
                 maxWidth: '78%', padding: '12px 16px',
                 borderRadius: m.role === 'user' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-                background: m.role === 'user' ? 'linear-gradient(135deg, #3a7bd5, #5a6cf8)' : 'rgba(255,255,255,0.90)',
+                background: m.role === 'user' ? 'linear-gradient(135deg, #800000, #b30000)' : 'rgba(255,255,255,0.90)',
                 color: m.role === 'user' ? 'white' : '#1d1d1f',
                 fontSize: 13, lineHeight: 1.6, whiteSpace: 'pre-wrap', wordBreak: 'break-word',
                 boxShadow: m.role === 'ai' ? '0 1px 6px rgba(0,0,0,0.05)' : 'none',
@@ -211,7 +211,7 @@ export default function NotebookPage() {
           ))}
           {typing && (
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-              <div style={{ width: 30, height: 30, borderRadius: 10, background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, color: 'white', fontWeight: 800, flexShrink: 0 }}>AI</div>
+              <div style={{ width: 30, height: 30, borderRadius: 10, background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, color: 'white', fontWeight: 800, flexShrink: 0 }}>AI</div>
               <div style={{ background: 'rgba(255,255,255,0.9)', borderRadius: 18, padding: '10px 16px', display: 'flex', gap: 4, boxShadow: '0 1px 6px rgba(0,0,0,0.05)', border: '1px solid rgba(255,255,255,0.55)' }}>
                 <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#8e8e93', animation: 'nb-dot 1.2s infinite 0s' }} />
                 <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#8e8e93', animation: 'nb-dot 1.2s infinite 0.2s' }} />
@@ -231,9 +231,9 @@ export default function NotebookPage() {
           </div>
           <button onClick={sendChat} style={{
             width: 40, height: 40, borderRadius: 14, border: 'none', cursor: 'pointer', flexShrink: 0,
-            background: chatInput.trim() ? 'linear-gradient(135deg, #3a7bd5, #5a6cf8)' : 'rgba(0,0,0,0.06)',
+            background: chatInput.trim() ? 'linear-gradient(135deg, #800000, #b30000)' : 'rgba(0,0,0,0.06)',
             display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 250ms',
-            boxShadow: chatInput.trim() ? '0 4px 14px rgba(58,123,213,0.25)' : 'none',
+            boxShadow: chatInput.trim() ? '0 4px 14px rgba(128,0,0,0.25)' : 'none',
           }}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill={chatInput.trim() ? 'white' : '#aeaeb2'}><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
           </button>
@@ -262,10 +262,10 @@ export default function NotebookPage() {
                   cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5,
                   transition: 'all 250ms', fontFamily: "'Anek Bangla', sans-serif", textAlign: 'left',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(58,123,213,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.06)'; e.currentTarget.style.borderColor = 'rgba(58,123,213,0.25)' }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(128,0,0,0.06)'; e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 4px 14px rgba(0,0,0,0.06)'; e.currentTarget.style.borderColor = 'rgba(128,0,0,0.25)' }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.70)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.55)' }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 24, height: 24, marginBottom: 4 }}><tool.icon size={20} color="#3a7bd5" /></div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 24, height: 24, marginBottom: 4 }}><tool.icon size={20} color="#800000" /></div>
                 <span style={{ fontSize: 11, fontWeight: 700, color: '#1d1d1f', lineHeight: 1.2 }}>{tool.label}</span>
               </button>
             ))}
@@ -280,10 +280,10 @@ export default function NotebookPage() {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10, padding: '0 4px' }}>
               <span style={{ fontWeight: 700, fontSize: 13, color: '#1d1d1f' }}>নোটস</span>
               <button onClick={() => setShowAddNote(true)} style={{
-                background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', color: 'white', border: 'none',
+                background: 'linear-gradient(135deg, #800000, #b30000)', color: 'white', border: 'none',
                 borderRadius: 10, padding: '6px 14px', fontSize: 11, fontWeight: 700, cursor: 'pointer',
                 fontFamily: "'Anek Bangla', sans-serif", display: 'flex', alignItems: 'center', gap: 4,
-                boxShadow: '0 2px 8px rgba(58,123,213,0.25)', transition: 'all 200ms',
+                boxShadow: '0 2px 8px rgba(128,0,0,0.25)', transition: 'all 200ms',
               }}
                 onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
                 onMouseLeave={e => e.currentTarget.style.transform = 'none'}
@@ -311,7 +311,7 @@ export default function NotebookPage() {
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)', backdropFilter: 'blur(6px)' }} />
           <div style={{ ...glassPanel, width: '100%', maxWidth: 540, overflow: 'hidden', position: 'relative', zIndex: 1, boxShadow: '0 24px 64px rgba(0,0,0,0.18)', padding: 0 }} onClick={e => e.stopPropagation()}>
             <div style={{ padding: '20px 24px', borderBottom: '1px solid rgba(0,0,0,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h3 style={{ fontWeight: 800, fontSize: 18, color: '#1d1d1f', display: 'flex', alignItems: 'center', gap: 6 }}><FilePlus size={20} color="#3a7bd5" /> সোর্স যোগ করুন</h3>
+              <h3 style={{ fontWeight: 800, fontSize: 18, color: '#1d1d1f', display: 'flex', alignItems: 'center', gap: 6 }}><FilePlus size={20} color="#800000" /> সোর্স যোগ করুন</h3>
               <button onClick={() => setShowAddSource(false)} style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(0,0,0,0.04)', border: 'none', cursor: 'pointer', fontSize: 16, color: '#8e8e93', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>✕</button>
             </div>
             <div style={{ padding: 24 }}>
@@ -320,9 +320,9 @@ export default function NotebookPage() {
                   <button key={mode} onClick={() => setAddMode(mode)} style={{
                     padding: '8px 14px', borderRadius: 12, border: 'none', fontSize: 12, fontWeight: 700,
                     cursor: 'pointer', fontFamily: "'Anek Bangla', sans-serif", transition: 'all 200ms',
-                    background: addMode === mode ? 'linear-gradient(135deg, #3a7bd5, #5a6cf8)' : 'rgba(0,0,0,0.04)',
+                    background: addMode === mode ? 'linear-gradient(135deg, #800000, #b30000)' : 'rgba(0,0,0,0.04)',
                     color: addMode === mode ? 'white' : '#6e6e73',
-                    boxShadow: addMode === mode ? '0 2px 8px rgba(58,123,213,0.25)' : 'none',
+                    boxShadow: addMode === mode ? '0 2px 8px rgba(128,0,0,0.25)' : 'none',
                     display: 'flex', alignItems: 'center', gap: 4
                   }}>
                     {mode === 'file' && <UploadCloud size={14} />}
@@ -335,13 +335,13 @@ export default function NotebookPage() {
               </div>
               {addMode === 'file' && (
                 <div onClick={() => fileRef.current?.click()} style={{
-                  border: '2px dashed rgba(58,123,213,0.3)', borderRadius: 18, padding: '44px 20px', textAlign: 'center',
-                  cursor: 'pointer', transition: 'all 250ms', background: 'rgba(58,123,213,0.02)',
+                  border: '2px dashed rgba(128,0,0,0.3)', borderRadius: 18, padding: '44px 20px', textAlign: 'center',
+                  cursor: 'pointer', transition: 'all 250ms', background: 'rgba(128,0,0,0.02)',
                 }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#3a7bd5'; e.currentTarget.style.background = 'rgba(58,123,213,0.06)' }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(58,123,213,0.3)'; e.currentTarget.style.background = 'rgba(58,123,213,0.02)' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = '#800000'; e.currentTarget.style.background = 'rgba(128,0,0,0.06)' }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(128,0,0,0.3)'; e.currentTarget.style.background = 'rgba(128,0,0,0.02)' }}
                 >
-                  <div style={{ marginBottom: 10, display: 'flex', justifyContent: 'center' }}><Folder size={40} color="#3a7bd5" /></div>
+                  <div style={{ marginBottom: 10, display: 'flex', justifyContent: 'center' }}><Folder size={40} color="#800000" /></div>
                   <div style={{ fontWeight: 700, fontSize: 14, color: '#1d1d1f', marginBottom: 4 }}>ফাইল আপলোড করুন</div>
                   <div style={{ fontSize: 12, color: '#8e8e93' }}>PDF, ইমেজ, ডক, অডিও ও আরও অনেক</div>
                 </div>
@@ -357,10 +357,10 @@ export default function NotebookPage() {
                   />
                   <button onClick={handleAddUrl} style={{
                     padding: '8px 16px', borderRadius: 10, border: 'none', fontWeight: 700, fontSize: 13,
-                    background: urlInput.trim() ? 'linear-gradient(135deg, #3a7bd5, #5a6cf8)' : 'rgba(0,0,0,0.04)',
+                    background: urlInput.trim() ? 'linear-gradient(135deg, #800000, #b30000)' : 'rgba(0,0,0,0.04)',
                     color: urlInput.trim() ? 'white' : '#aeaeb2', cursor: urlInput.trim() ? 'pointer' : 'default',
                     fontFamily: "'Anek Bangla', sans-serif", transition: 'all 200ms',
-                    boxShadow: urlInput.trim() ? '0 2px 8px rgba(58,123,213,0.20)' : 'none',
+                    boxShadow: urlInput.trim() ? '0 2px 8px rgba(128,0,0,0.20)' : 'none',
                   }}>যোগ করুন</button>
                 </div>
               )}
@@ -374,9 +374,9 @@ export default function NotebookPage() {
                   />
                   <button onClick={handleAddText} disabled={!textInput.trim()} style={{
                     marginTop: 10, padding: '10px 20px', borderRadius: 12, border: 'none', fontSize: 14, fontWeight: 700,
-                    background: textInput.trim() ? 'linear-gradient(135deg, #3a7bd5, #5a6cf8)' : 'rgba(0,0,0,0.04)',
+                    background: textInput.trim() ? 'linear-gradient(135deg, #800000, #b30000)' : 'rgba(0,0,0,0.04)',
                     color: textInput.trim() ? 'white' : '#aeaeb2', cursor: textInput.trim() ? 'pointer' : 'default',
-                    fontFamily: "'Anek Bangla', sans-serif", boxShadow: textInput.trim() ? '0 2px 10px rgba(58,123,213,0.25)' : 'none',
+                    fontFamily: "'Anek Bangla', sans-serif", boxShadow: textInput.trim() ? '0 2px 10px rgba(128,0,0,0.25)' : 'none',
                   }}>সোর্স যোগ করুন</button>
                 </div>
               )}
@@ -391,7 +391,7 @@ export default function NotebookPage() {
         <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setShowAddNote(false)}>
           <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.35)', backdropFilter: 'blur(6px)' }} />
           <div style={{ ...glassPanel, width: '100%', maxWidth: 480, position: 'relative', zIndex: 1, padding: 24, boxShadow: '0 24px 64px rgba(0,0,0,0.18)' }} onClick={e => e.stopPropagation()}>
-            <h3 style={{ fontWeight: 800, fontSize: 18, color: '#1d1d1f', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 6 }}><Edit2 size={20} color="#3a7bd5" /> নতুন নোট</h3>
+            <h3 style={{ fontWeight: 800, fontSize: 18, color: '#1d1d1f', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 6 }}><Edit2 size={20} color="#800000" /> নতুন নোট</h3>
             <input value={noteTitle} onChange={e => setNoteTitle(e.target.value)} placeholder="নোটের শিরোনাম"
               style={{ width: '100%', padding: '10px 14px', borderRadius: 12, border: '1.5px solid rgba(0,0,0,0.08)', fontSize: 14, fontWeight: 700, fontFamily: "'Anek Bangla', sans-serif", outline: 'none', marginBottom: 10, color: '#1d1d1f', background: 'rgba(255,255,255,0.80)' }}
             />
@@ -400,7 +400,7 @@ export default function NotebookPage() {
             />
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 12 }}>
               <button onClick={() => setShowAddNote(false)} style={{ padding: '8px 16px', borderRadius: 12, border: '1px solid rgba(0,0,0,0.08)', background: 'rgba(255,255,255,0.80)', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: "'Anek Bangla', sans-serif", color: '#6e6e73' }}>বাতিল</button>
-              <button onClick={addNote} style={{ padding: '8px 20px', borderRadius: 12, border: 'none', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', color: 'white', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: "'Anek Bangla', sans-serif", boxShadow: '0 2px 10px rgba(58,123,213,0.25)' }}>সংরক্ষণ</button>
+              <button onClick={addNote} style={{ padding: '8px 20px', borderRadius: 12, border: 'none', background: 'linear-gradient(135deg, #800000, #b30000)', color: 'white', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: "'Anek Bangla', sans-serif", boxShadow: '0 2px 10px rgba(128,0,0,0.25)' }}>সংরক্ষণ</button>
             </div>
           </div>
         </div>

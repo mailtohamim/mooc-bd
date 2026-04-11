@@ -126,7 +126,7 @@ function MiniCalendar() {
                 position: 'relative',
                 fontSize: 11, textAlign: 'center', padding: '4px 0', borderRadius: 8,
                 fontWeight: 600, color: isToday ? 'white' : '#1d1d1f',
-                background: isToday ? '#3a7bd5' : hoverDay === day ? 'rgba(0,0,0,0.05)' : 'transparent',
+                background: isToday ? '#800000' : hoverDay === day ? 'rgba(0,0,0,0.05)' : 'transparent',
                 cursor: evt ? 'pointer' : 'default', transition: 'background 200ms'
               }}>
               {day}
@@ -201,19 +201,19 @@ function SubjectLineChart() {
         <svg width="100%" height="100%" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" style={{ position: 'absolute', inset: 0, zIndex: 1, overflow: 'visible' }}>
           <defs>
             <linearGradient id="subjGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#8ca8f9" stopOpacity="0.4" />
-              <stop offset="100%" stopColor="#8ca8f9" stopOpacity="0" />
+              <stop offset="0%" stopColor="#cd5c5c" stopOpacity="0.4" />
+              <stop offset="100%" stopColor="#cd5c5c" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path d={`${curve} L ${width} ${height} L 0 ${height} Z`} fill="url(#subjGrad)" />
-          <path d={curve} fill="none" stroke="#688eff" strokeWidth="3.5" strokeLinecap="round" style={{ filter: 'drop-shadow(0 6px 8px rgba(104,142,255,0.3))' }} />
+          <path d={curve} fill="none" stroke="#a52a2a" strokeWidth="3.5" strokeLinecap="round" style={{ filter: 'drop-shadow(0 6px 8px rgba(165,42,42,0.3))' }} />
           {hours.map((h, i) => {
             const x = (i / (subjects.length - 1)) * width
             const y = height - (h / maxH) * height
             return (
               <g key={i} onMouseEnter={() => setHoverIdx(i)} onMouseLeave={() => setHoverIdx(null)}>
                 <circle cx={x} cy={y} r="18" fill="transparent" style={{ cursor: 'pointer' }} />
-                <circle cx={x} cy={y} r={hoverIdx === i ? 6 : 4} fill="white" stroke="#688eff" strokeWidth={hoverIdx === i ? 3 : 2} style={{ transition: 'all 200ms ease', cursor: 'pointer', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))' }} />
+                <circle cx={x} cy={y} r={hoverIdx === i ? 6 : 4} fill="white" stroke="#a52a2a" strokeWidth={hoverIdx === i ? 3 : 2} style={{ transition: 'all 200ms ease', cursor: 'pointer', filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.15))' }} />
               </g>
             )
           })}
@@ -372,10 +372,10 @@ function OverviewPage({ displayName }: { displayName: string }) {
           <button className="hover-lift-sm"
             style={{
               padding: '12px 28px', borderRadius: '999px', border: '1px solid rgba(255,255,255,0.5)',
-              background: 'linear-gradient(135deg, rgba(58,123,213,0.9), rgba(90,108,248,0.9))', 
+              background: 'linear-gradient(135deg, rgba(128,0,0,0.9), rgba(179,0,0,0.9))', 
               backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)',
               color: 'white', fontWeight: 700, fontSize: 14,
-              cursor: 'pointer', boxShadow: '0 8px 24px rgba(58,123,213,0.3), inset 0 2px 3px rgba(255,255,255,0.3)',
+              cursor: 'pointer', boxShadow: '0 8px 24px rgba(128,0,0,0.3), inset 0 2px 3px rgba(255,255,255,0.3)',
               transition: 'all 300ms cubic-bezier(0.34, 1.56, 0.64, 1)',
             }}
             onClick={() => {
@@ -393,7 +393,7 @@ function OverviewPage({ displayName }: { displayName: string }) {
           <div style={{ position: 'relative', width: 44, height: 44 }}>
             <svg width="44" height="44" viewBox="0 0 44 44">
               <circle cx="22" cy="22" r="19" fill="none" stroke="#e5e5ea" strokeWidth="4" />
-              <circle cx="22" cy="22" r="19" fill="none" stroke="#3a7bd5" strokeWidth="4" 
+              <circle cx="22" cy="22" r="19" fill="none" stroke="#800000" strokeWidth="4" 
                 strokeDasharray={`${2 * Math.PI * 19}`} 
                 strokeDashoffset={`${2 * Math.PI * 19 * (1 - progressPercent / 100)}`}
                 strokeLinecap="round" transform="rotate(-90 22 22)" style={{ transition: 'stroke-dashoffset 800ms ease-out' }}
@@ -544,7 +544,7 @@ function OverviewPage({ displayName }: { displayName: string }) {
                 জমা দিন
               </div>
               <button style={{
-                 border: 'none', background: 'none', color: '#3a7bd5', fontSize: 12, fontWeight: 600, cursor: 'pointer', padding: 0
+                 border: 'none', background: 'none', color: '#800000', fontSize: 12, fontWeight: 600, cursor: 'pointer', padding: 0
               }} onClick={() => window.location.href = '/dashboard?page=assignment'}>এখনই জমা দিন →</button>
             </div>
           </div>
@@ -563,11 +563,11 @@ function AssignmentPage() {
         {assignments.map((a, i) => (
           <div key={i} style={{
             ...card, display: 'flex', alignItems: 'center', gap: 14, padding: '16px 20px',
-            borderLeft: `4px solid ${done[i] ? '#5ab87a' : '#3a7bd5'}`,
+            borderLeft: `4px solid ${done[i] ? '#5ab87a' : '#800000'}`,
             opacity: done[i] ? 0.65 : 1, transition: 'all 300ms ease',
           }}>
             <input type="checkbox" checked={done[i]} onChange={() => setDone(d => d.map((v, j) => j === i ? !v : v))}
-              style={{ width: 16, height: 16, accentColor: '#3a7bd5', cursor: 'pointer', flexShrink: 0 }} />
+              style={{ width: 16, height: 16, accentColor: '#800000', cursor: 'pointer', flexShrink: 0 }} />
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontWeight: 600, fontSize: 14, color: '#1d1d1f', textDecoration: done[i] ? 'line-through' : 'none' }}>{a.title}</div>
               <div style={{ fontSize: 12, color: '#8e8e93', marginTop: 2 }}>{a.subject}</div>
@@ -592,7 +592,7 @@ function ReportsPage() {
       <h2 style={pageTitle}>রিপোর্ট</h2>
       <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14, marginBottom: 24 }}>
         {[
-          { label: 'মোট অধ্যয়ন পাঠ', value: `${completedCount}টি`, color: '#3a7bd5' },
+          { label: 'মোট অধ্যয়ন পাঠ', value: `${completedCount}টি`, color: '#800000' },
           { label: 'এনরোল করা কোর্স',  value: `${enrolledCount}টি`,       color: '#5ab87a' },
           { label: 'সফলতা সূচক', value: `${Math.min(completedCount * 120, 8966 + completedCount * 100)}`,   color: '#8250d2' },
         ].map(s => (
@@ -615,7 +615,7 @@ function ReportsPage() {
 }
 
 function FilesPage() {
-  const typeColor: Record<string, string> = { pdf: '#d25a3c', doc: '#3a7bd5', ppt: '#e07050' }
+  const typeColor: Record<string, string> = { pdf: '#d25a3c', doc: '#800000', ppt: '#e07050' }
   return (
     <div>
       <h2 style={pageTitle}>ফাইল স্টোরেজ</h2>
@@ -644,7 +644,7 @@ function FilesPage() {
             }}>{f.type}</span>
             <button style={{
               background: '#f5f5f7', border: 'none', borderRadius: 10, padding: '8px 14px',
-              fontSize: 13, color: '#3a7bd5', fontWeight: 600, cursor: 'pointer', fontFamily: "'Anek Bangla', sans-serif",
+              fontSize: 13, color: '#800000', fontWeight: 600, cursor: 'pointer', fontFamily: "'Anek Bangla', sans-serif",
               transition: 'background 300ms',
             }}
               onMouseEnter={e => (e.currentTarget.style.background = '#e8f0fb')}
@@ -749,7 +749,7 @@ function InboxPage() {
           {contacts.filter(c => c.status === 'online').map(c => (
             <div key={c.name} onClick={() => openChat(c.name)} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, cursor: 'pointer', minWidth: 56 }}>
               <div style={{ position: 'relative' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 16 }}>{initials(c.name)}</div>
+                <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 16 }}>{initials(c.name)}</div>
                 <div style={{ position: 'absolute', bottom: 1, right: 1, width: 12, height: 12, borderRadius: '50%', background: '#5ab87a', border: '2px solid white' }} />
               </div>
               <span style={{ fontSize: 11, color: '#050505', fontWeight: 600, textAlign: 'center', lineHeight: 1.2, maxWidth: 64, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.name.split(' ')[0]}</span>
@@ -764,13 +764,13 @@ function InboxPage() {
           <div key={c.name} onClick={() => openChat(c.name)} style={{
             display: 'flex', alignItems: 'center', gap: 12, padding: '10px 12px', borderRadius: 10,
             cursor: 'pointer', transition: 'background 150ms',
-            background: selectedContact === c.name ? 'rgba(58,123,213,0.08)' : 'transparent',
+            background: selectedContact === c.name ? 'rgba(128,0,0,0.08)' : 'transparent',
           }}
             onMouseEnter={e => { if (selectedContact !== c.name) e.currentTarget.style.background = '#f2f2f5' }}
             onMouseLeave={e => { if (selectedContact !== c.name) e.currentTarget.style.background = 'transparent' }}
           >
             <div style={{ position: 'relative', flexShrink: 0 }}>
-              <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 16 }}>{initials(c.name)}</div>
+              <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 16 }}>{initials(c.name)}</div>
               <div style={{ position: 'absolute', bottom: 1, right: 1, width: 12, height: 12, borderRadius: '50%', background: statusColor(c.status), border: '2px solid white' }} />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -778,7 +778,7 @@ function InboxPage() {
               <div style={{ fontSize: 12, color: c.unread ? '#050505' : '#65676b', fontWeight: c.unread ? 600 : 400, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.lastMsg} · {c.time}</div>
             </div>
             {c.unread > 0 && (
-              <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#3a7bd5', color: 'white', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.unread}</div>
+              <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#800000', color: 'white', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{c.unread}</div>
             )}
           </div>
         ))}
@@ -799,7 +799,7 @@ function InboxPage() {
               {/* Chat header */}
               <div style={{ padding: '8px 10px', display: 'flex', alignItems: 'center', gap: 8, borderBottom: '1px solid #e4e6eb', background: '#ffffff', flexShrink: 0 }}>
                 <div style={{ position: 'relative' }}>
-                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 12 }}>{initials(name)}</div>
+                  <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 12 }}>{initials(name)}</div>
                   <div style={{ position: 'absolute', bottom: 0, right: 0, width: 8, height: 8, borderRadius: '50%', background: statusColor(contact?.status || 'offline'), border: '1.5px solid white' }} />
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
@@ -814,11 +814,11 @@ function InboxPage() {
               <div style={{ flex: 1, overflowY: 'auto', padding: '8px 10px', display: 'flex', flexDirection: 'column', gap: 4 }} ref={el => { if (el) el.scrollTop = el.scrollHeight }}>
                 {msgs.map((m, i) => (
                   <div key={i} style={{ display: 'flex', justifyContent: m.from === 'me' ? 'flex-end' : 'flex-start' }}>
-                    {m.from === 'them' && <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 9, marginRight: 4, flexShrink: 0, alignSelf: 'flex-end' }}>{initials(name)}</div>}
+                    {m.from === 'them' && <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 9, marginRight: 4, flexShrink: 0, alignSelf: 'flex-end' }}>{initials(name)}</div>}
                     <div style={{
                       maxWidth: '75%', padding: m.text.length <= 3 || m.text.startsWith('[STICKER:') ? '4px 8px' : '8px 12px',
                       borderRadius: m.from === 'me' ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
-                      background: m.from === 'me' ? '#3a7bd5' : '#e4e6eb',
+                      background: m.from === 'me' ? '#800000' : '#e4e6eb',
                       color: m.from === 'me' ? 'white' : '#050505',
                       fontSize: m.text.length <= 3 ? 28 : 13, lineHeight: m.text.length <= 3 || m.text.startsWith('[STICKER:') ? 1.2 : 1.5, wordBreak: 'break-word',
                     }}>
@@ -848,14 +848,14 @@ function InboxPage() {
               <div style={{ padding: '6px 8px', display: 'flex', alignItems: 'center', gap: 4, borderTop: '1px solid #e4e6eb', flexShrink: 0, background: '#ffffff' }}>
                 {/* Attachment */}
                 <button style={{ ...chatToolBtn }} title="ফাইল সংযুক্ত করুন">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#800000" strokeWidth="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
                 </button>
                 {/* Photo */}
                 <button style={{ ...chatToolBtn }} title="ছবি পাঠান">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5ab87a" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
                 </button>
                 {/* Sticker */}
-                <button onClick={() => setShowStickers(showStickers === name ? null : name)} style={{ ...chatToolBtn, color: showStickers === name ? '#3a7bd5' : '#ff9500' }} title="স্টিকার">
+                <button onClick={() => setShowStickers(showStickers === name ? null : name)} style={{ ...chatToolBtn, color: showStickers === name ? '#800000' : '#ff9500' }} title="স্টিকার">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
                 </button>
                 {/* Text input */}
@@ -867,11 +867,11 @@ function InboxPage() {
                 {/* Send / Like */}
                 {inp.trim() ? (
                   <button onClick={() => sendMsg(name)} style={{ ...chatToolBtn }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#3a7bd5"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#800000"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                   </button>
                 ) : (
                   <button onClick={() => sendSticker(name, '[STICKER:thumbsup]')} style={{ ...chatToolBtn }}>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3a7bd5" strokeWidth="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#800000" strokeWidth="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
                   </button>
                 )}
               </div>
@@ -903,7 +903,7 @@ function SettingsPage({ user }: { user: { username: string; displayName: string 
             <label style={lbl}>আপনার নাম</label>
             <input value={name} onChange={e => { setName(e.target.value); setSaved(false) }}
               style={inp}
-              onFocus={e => (e.target.style.borderColor = '#3a7bd5')}
+              onFocus={e => (e.target.style.borderColor = '#800000')}
               onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.10)')} />
           </div>
           <div>
@@ -913,7 +913,7 @@ function SettingsPage({ user }: { user: { username: string; displayName: string 
           <div>
             <label style={lbl}>ইমেইল (ঐচ্ছিক)</label>
             <input type="email" placeholder="example@email.com" style={inp}
-              onFocus={e => (e.target.style.borderColor = '#3a7bd5')}
+              onFocus={e => (e.target.style.borderColor = '#800000')}
               onBlur={e => (e.target.style.borderColor = 'rgba(0,0,0,0.10)')} />
           </div>
           <button onClick={() => setSaved(true)} className="btn-primary" style={{ padding: '12px 24px', fontSize: 14, alignSelf: 'flex-start' }}>
@@ -926,7 +926,7 @@ function SettingsPage({ user }: { user: { username: string; displayName: string 
         {['নতুন কোর্স আপডেট', 'অ্যাসাইনমেন্ট রিমাইন্ডার', 'কমিউনিটি উত্তর', 'ইমেইল নিউজলেটার'].map(item => (
           <div key={item} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 0', borderBottom: '1px solid #f2f2f5' }}>
             <span style={{ fontSize: 14, color: '#3c3c43', fontFamily: "'Anek Bangla', sans-serif" }}>{item}</span>
-            <input type="checkbox" defaultChecked style={{ width: 16, height: 16, accentColor: '#3a7bd5', cursor: 'pointer' }} />
+            <input type="checkbox" defaultChecked style={{ width: 16, height: 16, accentColor: '#800000', cursor: 'pointer' }} />
           </div>
         ))}
       </div>
@@ -1049,7 +1049,7 @@ export default function DashboardPage() {
                   {item.label}
                   {item.badge && (
                     <span style={{
-                      background: active ? 'rgba(255,255,255,0.20)' : '#3a7bd5',
+                      background: active ? 'rgba(255,255,255,0.20)' : '#800000',
                       color: 'white', fontSize: 11, fontWeight: 700,
                       borderRadius: 999, padding: '2px 8px', marginLeft: 'auto'
                     }}>{item.badge}</span>
@@ -1096,7 +1096,7 @@ export default function DashboardPage() {
               color: active ? '#1d1d1f' : '#8e8e93',
               transition: 'color 300ms', cursor: 'pointer', flex: 1,
             }}>
-              <div style={{ color: active ? '#3a7bd5' : '#8e8e93', transform: active ? 'scale(1.15)' : 'scale(1)', transition: 'all 300ms' }}>
+              <div style={{ color: active ? '#800000' : '#8e8e93', transform: active ? 'scale(1.15)' : 'scale(1)', transition: 'all 300ms' }}>
                 {item.icon}
               </div>
               <span style={{ fontSize: 10, fontWeight: active ? 700 : 500, fontFamily: "'Anek Bangla', sans-serif" }}>{item.label}</span>
@@ -1122,7 +1122,7 @@ export default function DashboardPage() {
             <rect width="32" height="32" rx="9" fill="url(#sblg)" />
             <path d="M8 8h7a3 3 0 0 1 3 3v10H8V8z" fill="rgba(255,255,255,0.92)" />
             <path d="M24 8h-7a3 3 0 0 0-3 3v10h10V8z" fill="rgba(255,255,255,0.38)" />
-            <defs><linearGradient id="sblg" x1="0" y1="0" x2="32" y2="32"><stop stopColor="#3a7bd5"/><stop offset="1" stopColor="#5a6cf8"/></linearGradient></defs>
+            <defs><linearGradient id="sblg" x1="0" y1="0" x2="32" y2="32"><stop stopColor="#800000"/><stop offset="1" stopColor="#b30000"/></linearGradient></defs>
           </svg>
           <span style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', lineHeight: 1.2 }}>শিখবেই<br />বাংলাদেশ</span>
         </a>
@@ -1151,7 +1151,7 @@ export default function DashboardPage() {
                 <span style={{ flex: 1 }}>{item.label}</span>
                 {item.badge && (
                   <span style={{
-                    background: active ? 'rgba(255,255,255,0.20)' : '#3a7bd5',
+                    background: active ? 'rgba(255,255,255,0.20)' : '#800000',
                     color: 'white', fontSize: 10, fontWeight: 700,
                     borderRadius: 999, padding: '1px 6px', minWidth: 18, textAlign: 'center',
                   }}>{item.badge}</span>
@@ -1185,7 +1185,7 @@ export default function DashboardPage() {
         {/* Mobile Top Bar */}
         <div className="mob-top-bar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 14 }}>
+            <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 14 }}>
                {initials}
             </div>
             <div style={{ fontWeight: 800, fontSize: 17, color: '#1d1d1f' }}>শিখবেই বাংলাদেশ</div>
@@ -1251,10 +1251,10 @@ export default function DashboardPage() {
           </div>
           <div style={{
             width: 60, height: 60, borderRadius: '50%',
-            background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)',
+            background: 'linear-gradient(135deg, #800000, #b30000)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             color: 'white', fontWeight: 800, fontSize: 20, margin: '0 auto 10px',
-            boxShadow: '0 0 0 4px rgba(58,123,213,0.20)',
+            boxShadow: '0 0 0 4px rgba(128,0,0,0.20)',
             overflow: 'hidden'
           }}>
             {(user as any).profilePic ? <img src={(user as any).profilePic} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /> : initials}

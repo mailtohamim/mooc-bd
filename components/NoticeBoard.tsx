@@ -33,7 +33,7 @@ const govNotices = [
 
 const DownloadIcon = () => (
   <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-    <path d="M7.5 2v8M4 8l3.5 3.5L11 8M2.5 13h10" stroke="#3a7bd5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M7.5 2v8M4 8l3.5 3.5L11 8M2.5 13h10" stroke="#800000" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 
@@ -119,7 +119,7 @@ export default function NoticeBoard() {
                 >
                   <div style={{
                     minWidth: 100, fontSize: 13, fontWeight: 600,
-                    color: '#3a7bd5',
+                    color: '#800000',
                     fontFamily: "'Anek Bangla', sans-serif",
                     paddingTop: 2,
                   }}>
@@ -152,7 +152,7 @@ export default function NoticeBoard() {
                 }}>
                   <div style={{
                     width: 7, height: 7, marginTop: 5,
-                    background: '#3a7bd5', borderRadius: '50%', flexShrink: 0,
+                    background: '#800000', borderRadius: '50%', flexShrink: 0,
                   }} />
                   <span className="body-sm" style={{ color: '#3c3c43', fontFamily: "'Anek Bangla', sans-serif" }}>
                     {ann}
@@ -199,18 +199,18 @@ export default function NoticeBoard() {
                 </div>
               </div>
               <button style={{
-                background: 'rgba(58,123,213,0.08)',
-                border: '1px solid rgba(58,123,213,0.18)',
+                background: 'rgba(128,0,0,0.08)',
+                border: '1px solid rgba(128,0,0,0.18)',
                 borderRadius: 10, padding: '7px 12px',
                 cursor: 'pointer',
-                color: '#3a7bd5',
+                color: '#800000',
                 fontSize: 13, fontWeight: 600,
                 display: 'flex', alignItems: 'center', gap: 5,
                 transition: 'all 300ms ease',
                 fontFamily: "'Anek Bangla', sans-serif",
               }}
-                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(58,123,213,0.15)')}
-                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(58,123,213,0.08)')}
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(128,0,0,0.15)')}
+                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(128,0,0,0.08)')}
               >
                 <DownloadIcon />
                 ডাউনলোড

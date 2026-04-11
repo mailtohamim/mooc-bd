@@ -116,7 +116,7 @@ export default function ClassCategories() {
                 style={{
                   background: 'none', border: 'none', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', gap: 5,
-                  color: '#3a7bd5', fontWeight: 600, fontSize: 14,
+                  color: '#800000', fontWeight: 600, fontSize: 14,
                   fontFamily: "'Anek Bangla', sans-serif", padding: 0,
                   transition: 'gap 300ms ease',
                 }}
@@ -125,7 +125,7 @@ export default function ClassCategories() {
               >
                 বিস্তারিত দেখুন
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M2 7h10M8 3l4 4-4 4" stroke="#3a7bd5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M2 7h10M8 3l4 4-4 4" stroke="#800000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
             </div>

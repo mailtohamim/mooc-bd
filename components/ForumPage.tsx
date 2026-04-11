@@ -253,7 +253,7 @@ export default function ForumPage() {
     return (
       <div style={{
         width: size, height: size, borderRadius: '50%', flexShrink: 0,
-        background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)',
+        background: 'linear-gradient(135deg, #800000, #b30000)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: 'white', fontWeight: 800, fontSize: size * 0.35,
         overflow: 'hidden'
@@ -282,10 +282,10 @@ export default function ForumPage() {
       <div style={{ display: 'flex', gap: 24, maxWidth: 1000, margin: '0 auto' }}>
         <div style={{ flex: 1, maxWidth: 680, minWidth: 0 }}>
         <button onClick={() => setActivePost(null)} style={{
-          background: 'none', border: 'none', cursor: 'pointer', color: '#3a7bd5', fontSize: 14,
+          background: 'none', border: 'none', cursor: 'pointer', color: '#800000', fontSize: 14,
           fontWeight: 600, fontFamily: "'Anek Bangla', sans-serif", marginBottom: 16, display: 'flex', alignItems: 'center', gap: 6,
         }}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#3a7bd5" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="#800000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           ফোরামে ফিরে যান
         </button>
 
@@ -334,7 +334,7 @@ export default function ForumPage() {
                   onKeyDown={e => e.key === 'Enter' && handleAddComment(activePost.id)}
                   style={{ flex: 1, padding: '10px 14px', border: 'none', background: 'none', fontSize: 13, fontFamily: "'Anek Bangla', sans-serif", outline: 'none', color: '#050505' }}
                 />
-                <button onClick={() => handleAddComment(activePost.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 14px', color: commentText.trim() ? '#3a7bd5' : '#bec3c9', fontWeight: 800, fontSize: 14 }}>➤</button>
+                <button onClick={() => handleAddComment(activePost.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 14px', color: commentText.trim() ? '#800000' : '#bec3c9', fontWeight: 800, fontSize: 14 }}>➤</button>
               </div>
             </div>
             {/* Comments list */}
@@ -348,7 +348,7 @@ export default function ForumPage() {
                   </div>
                   <div style={{ display: 'flex', gap: 16, paddingLeft: 14, marginTop: 4, fontSize: 12, fontWeight: 700, color: '#65676b' }}>
                     <span style={{ fontSize: 11, color: '#65676b' }}>{timeAgo(c.createdAt)}</span>
-                    <button onClick={() => handleLikeComment(activePost.id, c.id)} style={{ ...tinyBtn, color: c.likedBy.includes(username) ? '#3a7bd5' : '#65676b' }}>লাইক{c.likes > 0 ? ` (${c.likes})` : ''}</button>
+                    <button onClick={() => handleLikeComment(activePost.id, c.id)} style={{ ...tinyBtn, color: c.likedBy.includes(username) ? '#800000' : '#65676b' }}>লাইক{c.likes > 0 ? ` (${c.likes})` : ''}</button>
                     <button onClick={() => { setReplyTo(replyTo === c.id ? null : c.id); setReplyText('') }} style={{ ...tinyBtn, color: '#65676b' }}>উত্তর দিন</button>
                   </div>
                   {/* Reply input */}
@@ -360,7 +360,7 @@ export default function ForumPage() {
                           onKeyDown={e => e.key === 'Enter' && handleReply(activePost.id, c.id)}
                           style={{ flex: 1, padding: '8px 12px', border: 'none', background: 'none', fontSize: 12, fontFamily: "'Anek Bangla', sans-serif", outline: 'none' }}
                         />
-                        <button onClick={() => handleReply(activePost.id, c.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 10px', color: replyText.trim() ? '#3a7bd5' : '#bec3c9', fontWeight: 800, fontSize: 13 }}>➤</button>
+                        <button onClick={() => handleReply(activePost.id, c.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '0 10px', color: replyText.trim() ? '#800000' : '#bec3c9', fontWeight: 800, fontSize: 13 }}>➤</button>
                       </div>
                     </div>
                   )}
@@ -408,13 +408,13 @@ export default function ForumPage() {
         </div>
 
         <button onClick={() => setShowCreate(true)} style={{
-          background: 'linear-gradient(135deg, #3a7bd5, #5a6cf8)', color: 'white', border: 'none',
+          background: 'linear-gradient(135deg, #800000, #b30000)', color: 'white', border: 'none',
           borderRadius: 10, padding: '9px 18px', fontSize: 14, fontWeight: 700, cursor: 'pointer',
-          fontFamily: "'Anek Bangla', sans-serif", boxShadow: '0 2px 10px rgba(58,123,213,0.25)',
+          fontFamily: "'Anek Bangla', sans-serif", boxShadow: '0 2px 10px rgba(128,0,0,0.25)',
           transition: 'all 200ms', display: 'flex', alignItems: 'center', gap: 6,
         }}
-          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(58,123,213,0.3)' }}
-          onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(58,123,213,0.25)' }}
+          onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 20px rgba(128,0,0,0.3)' }}
+          onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = '0 2px 10px rgba(128,0,0,0.25)' }}
         >
           <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="white" strokeWidth="2.5" strokeLinecap="round"/></svg>
           নতুন পোস্ট
@@ -440,7 +440,7 @@ export default function ForumPage() {
             <button key={key} onClick={() => setSortBy(key as 'hot' | 'new' | 'top')} style={{
               padding: '8px 12px', borderRadius: 8, border: 'none', fontSize: 12, fontWeight: 600,
               cursor: 'pointer', fontFamily: "'Anek Bangla', sans-serif", transition: 'all 200ms',
-              background: sortBy === key ? '#3a7bd5' : '#e4e6eb', color: sortBy === key ? 'white' : '#65676b',
+              background: sortBy === key ? '#800000' : '#e4e6eb', color: sortBy === key ? 'white' : '#65676b',
             }}>{label}</button>
           ))}
         </div>
@@ -589,7 +589,7 @@ export default function ForumPage() {
               <button onClick={handleCreate} disabled={!newTitle.trim()} style={{
                 width: '100%', padding: '10px', borderRadius: 8, border: 'none', fontSize: 15, fontWeight: 700,
                 cursor: newTitle.trim() ? 'pointer' : 'default', fontFamily: "'Anek Bangla', sans-serif",
-                background: newTitle.trim() ? '#3a7bd5' : '#e4e6eb', color: newTitle.trim() ? 'white' : '#bec3c9',
+                background: newTitle.trim() ? '#800000' : '#e4e6eb', color: newTitle.trim() ? 'white' : '#bec3c9',
                 transition: 'all 200ms',
               }}>পোস্ট করুন</button>
             </div>

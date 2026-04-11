@@ -41,8 +41,8 @@ export default function Footer() {
                 <path d="M12 27h16" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" strokeLinecap="round" />
                 <defs>
                   <linearGradient id="fl" x1="0" y1="0" x2="40" y2="40">
-                    <stop stopColor="#3a7bd5" />
-                    <stop offset="1" stopColor="#5a6cf8" />
+                    <stop stopColor="#800000" />
+                    <stop offset="1" stopColor="#b30000" />
                   </linearGradient>
                 </defs>
               </svg>
@@ -136,7 +136,7 @@ export default function Footer() {
                       fontFamily: "'Anek Bangla', sans-serif",
                       transition: 'color 300ms ease',
                     }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#3a7bd5')}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#800000')}
                     onMouseLeave={e => (e.currentTarget.style.color = '#6e6e73')}
                   >
                     {link}
