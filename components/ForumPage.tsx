@@ -268,7 +268,7 @@ export default function ForumPage() {
     <button onClick={onClick} style={{
       flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
       padding: '10px 0', border: 'none', background: 'none', cursor: 'pointer',
-      fontSize: 13, fontWeight: 600, color: active ? '#3a7bd5' : '#65676b',
+      fontSize: 13, fontWeight: 600, color: active ? '#ff2d55' : '#65676b',
       fontFamily: "'Anek Bangla', sans-serif", borderRadius: 6, transition: 'background 150ms',
     }}
       onMouseEnter={e => e.currentTarget.style.background = '#f2f3f5'}
@@ -315,12 +315,12 @@ export default function ForumPage() {
           )}
           {/* Counts bar */}
           <div style={{ padding: '8px 16px', display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#65676b' }}>
-            <span>{activePost.votes > 0 ? `👍 ${activePost.votes}` : ''}</span>
+            <span>{activePost.votes > 0 ? `❤️ ${activePost.votes}` : ''}</span>
             <span>{activePost.comments.length > 0 ? `${activePost.comments.length}টি মন্তব্য` : ''}</span>
           </div>
           {/* Action bar */}
           <div style={{ borderTop: '1px solid #e4e6eb', borderBottom: '1px solid #e4e6eb', margin: '0 16px', display: 'flex' }}>
-            <FbActionBtn icon={<svg width="18" height="18" viewBox="0 0 24 24" fill={activePost.upvoters.includes(username) ? '#3a7bd5' : 'none'} stroke={activePost.upvoters.includes(username) ? '#3a7bd5' : '#65676b'} strokeWidth="2"><path d="M14 9V5a3 3 0 00-6 0v4H5a2 2 0 00-2 2v.5a8.5 8.5 0 005 7.7V22h6v-2.8a8.5 8.5 0 005-7.7V11a2 2 0 00-2-2h-3z"/></svg>} label="লাইক" active={activePost.upvoters.includes(username)} onClick={() => handleLike(activePost.id)} />
+            <FbActionBtn icon={<svg width="18" height="18" viewBox="0 0 24 24" fill={activePost.upvoters.includes(username) ? '#ff2d55' : 'none'} stroke={activePost.upvoters.includes(username) ? '#ff2d55' : '#65676b'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>} label="লাইক" active={activePost.upvoters.includes(username)} onClick={() => handleLike(activePost.id)} />
             <FbActionBtn icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#65676b" strokeWidth="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>} label="মন্তব্য" onClick={() => document.getElementById('comment-input')?.focus()} />
             <FbActionBtn icon={<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#65676b" strokeWidth="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>} label="শেয়ার" onClick={() => handleShare(activePost)} />
           </div>
@@ -500,7 +500,7 @@ export default function ForumPage() {
 
             {/* Counts bar */}
             <div style={{ padding: '6px 16px', display: 'flex', justifyContent: 'space-between', fontSize: 13, color: '#65676b' }}>
-              <span>{post.votes > 0 ? `👍 ${post.votes}` : ''}</span>
+              <span>{post.votes > 0 ? `❤️ ${post.votes}` : ''}</span>
               <div style={{ display: 'flex', gap: 12 }}>
                 {post.comments.length > 0 && <span>{post.comments.length}টি মন্তব্য</span>}
               </div>
@@ -509,7 +509,7 @@ export default function ForumPage() {
             {/* Facebook action bar */}
             <div style={{ borderTop: '1px solid #e4e6eb', margin: '0 16px', display: 'flex', padding: '2px 0' }} onClick={e => e.stopPropagation()}>
               <FbActionBtn
-                icon={<svg width="18" height="18" viewBox="0 0 24 24" fill={post.upvoters.includes(username) ? '#3a7bd5' : 'none'} stroke={post.upvoters.includes(username) ? '#3a7bd5' : '#65676b'} strokeWidth="2"><path d="M14 9V5a3 3 0 00-6 0v4H5a2 2 0 00-2 2v.5a8.5 8.5 0 005 7.7V22h6v-2.8a8.5 8.5 0 005-7.7V11a2 2 0 00-2-2h-3z"/></svg>}
+                icon={<svg width="18" height="18" viewBox="0 0 24 24" fill={post.upvoters.includes(username) ? '#ff2d55' : 'none'} stroke={post.upvoters.includes(username) ? '#ff2d55' : '#65676b'} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>}
                 label="লাইক" active={post.upvoters.includes(username)} onClick={() => handleLike(post.id)}
               />
               <FbActionBtn
