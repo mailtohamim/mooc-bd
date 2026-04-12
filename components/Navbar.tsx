@@ -28,9 +28,9 @@ export default function Navbar() {
 
   return (
     <>
-      <nav style={{
+      <nav className="main-nav" style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-        padding: '0 32px', height: 64,
+        height: 64,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         background: scrolled ? 'rgba(255,255,255,0.82)' : 'rgba(255,255,255,0.55)',
         backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
@@ -38,7 +38,7 @@ export default function Navbar() {
         transition: 'all 300ms ease',
       }}>
         {/* Logo */}
-        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
           <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
             <rect width="34" height="34" rx="10" fill="url(#nlg)" />
             <path d="M9 9h7a3 3 0 0 1 3 3v11H9V9z" fill="rgba(255,255,255,0.9)" />
@@ -50,7 +50,7 @@ export default function Navbar() {
               </linearGradient>
             </defs>
           </svg>
-          <span style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif", letterSpacing: '-0.01em', whiteSpace: 'nowrap' }}>
+          <span style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif", letterSpacing: '-0.01em', whiteSpace: 'nowrap' }}>
             শিখবেই বাংলাদেশ
           </span>
         </a>
@@ -59,8 +59,8 @@ export default function Navbar() {
         <div style={{ display: 'flex', gap: 32, alignItems: 'center' }} className="desk-nav">
           {navLinks.map(({ href, label }) => (
             <a key={label} href={href} style={{
-              fontFamily: "'Anek Bangla', sans-serif", fontSize: 15, fontWeight: 500,
-              color: '#3c3c43', textDecoration: 'none', transition: 'color 300ms',
+              fontFamily: "'Anek Bangla', sans-serif", fontSize: 14, fontWeight: 600,
+              color: '#3c3c43', textDecoration: 'none', transition: 'color 300ms', whiteSpace: 'nowrap',
             }}
               onMouseEnter={e => (e.currentTarget.style.color = '#800000')}
               onMouseLeave={e => (e.currentTarget.style.color = '#3c3c43')}
@@ -81,8 +81,7 @@ export default function Navbar() {
               borderRadius: 10, padding: '7px 14px',
               textDecoration: 'none',
               color: '#800000', fontSize: 13, fontWeight: 600,
-              fontFamily: "'Anek Bangla', sans-serif",
-              transition: 'all 300ms ease',
+              fontFamily: "'Anek Bangla', sans-serif", transition: 'all 300ms ease', whiteSpace: 'nowrap',
             }}
             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(128,0,0,0.14)'; e.currentTarget.style.transform = 'translateY(-1px)' }}
             onMouseLeave={e => { e.currentTarget.style.background = 'rgba(128,0,0,0.07)'; e.currentTarget.style.transform = 'none' }}
@@ -115,7 +114,7 @@ export default function Navbar() {
                 }}>
                   {initials}
                 </div>
-                <span style={{ fontSize: 14, fontWeight: 600, color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif" }}>
+                <span style={{ fontSize: 14, fontWeight: 600, color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif", whiteSpace: 'nowrap' }}>
                   {user.displayName}
                 </span>
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -172,9 +171,11 @@ export default function Navbar() {
       </nav>
 
       <style>{`
+        .main-nav { padding: 0 32px; }
         @media (max-width: 768px) {
           .desk-nav { display: none !important; }
           .ham-btn  { display: block !important; }
+          .main-nav { padding: 0 16px !important; }
         }
       `}</style>
     </>

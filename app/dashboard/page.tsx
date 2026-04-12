@@ -1188,7 +1188,7 @@ export default function DashboardPage() {
             <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 14 }}>
                {initials}
             </div>
-            <div style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', whiteSpace: 'nowrap' }}>শিখবেই বাংলাদেশ</div>
+            <div style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', whiteSpace: 'nowrap' }}>শিখবেই বাংলাদেশ</div>
           </div>
           <div style={{ position: 'relative', cursor: 'pointer', background: 'rgba(255,255,255,0.80)', border: '1px solid rgba(0,0,0,0.07)', width: 36, height: 36, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3c3c43' }}>
              {Icon.bell}
