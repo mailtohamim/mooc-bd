@@ -1124,7 +1124,7 @@ export default function DashboardPage() {
             <path d="M24 8h-7a3 3 0 0 0-3 3v10h10V8z" fill="rgba(255,255,255,0.38)" />
             <defs><linearGradient id="sblg" x1="0" y1="0" x2="32" y2="32"><stop stopColor="#800000"/><stop offset="1" stopColor="#b30000"/></linearGradient></defs>
           </svg>
-          <span style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', lineHeight: 1.2 }}>শিখবেই<br />বাংলাদেশ</span>
+          <span style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', lineHeight: 1.2, whiteSpace: 'nowrap' }}>শিখবেই বাংলাদেশ</span>
         </a>
 
         {/* Nav */}
@@ -1188,7 +1188,7 @@ export default function DashboardPage() {
             <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 14 }}>
                {initials}
             </div>
-            <div style={{ fontWeight: 800, fontSize: 17, color: '#1d1d1f' }}>শিখবেই বাংলাদেশ</div>
+            <div style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', whiteSpace: 'nowrap' }}>শিখবেই বাংলাদেশ</div>
           </div>
           <div style={{ position: 'relative', cursor: 'pointer', background: 'rgba(255,255,255,0.80)', border: '1px solid rgba(0,0,0,0.07)', width: 36, height: 36, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3c3c43' }}>
              {Icon.bell}

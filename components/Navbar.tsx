@@ -50,7 +50,7 @@ export default function Navbar() {
               </linearGradient>
             </defs>
           </svg>
-          <span style={{ fontWeight: 800, fontSize: 17, color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif", letterSpacing: '-0.01em' }}>
+          <span style={{ fontWeight: 800, fontSize: 16, color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif", letterSpacing: '-0.01em', whiteSpace: 'nowrap' }}>
             শিখবেই বাংলাদেশ
           </span>
         </a>
