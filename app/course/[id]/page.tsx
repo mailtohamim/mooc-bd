@@ -83,9 +83,9 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
     <div style={{ minHeight: '100vh', background: '#f5f5f7', fontFamily: "'Anek Bangla', sans-serif" }}>
       <Navbar />
       
-      <div style={{ paddingTop: 84, paddingBottom: 40 }} className="container">
+      <div className="container course-container" style={{ paddingTop: 84, paddingBottom: 40 }}>
         {/* Course Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 24 }}>
+        <div className="course-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 24 }}>
           <div>
             <div style={{ color: '#800000', fontWeight: 700, fontSize: 14, marginBottom: 4 }}>{course.class}</div>
             <h1 style={{ fontSize: 32, fontWeight: 800, color: '#1d1d1f' }}>{course.title}</h1>
@@ -102,10 +102,10 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
           )}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 24 }} className="course-grid">
+        <div className="course-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 340px', gap: 24 }}>
           {/* Main Content (Video) */}
-          <div>
-            <div style={{
+          <div className="video-col">
+            <div className="video-wrapper" style={{
               width: '100%', aspectRatio: '16/9',
               background: '#000', borderRadius: 20, overflow: 'hidden',
               position: 'relative', boxShadow: '0 12px 40px rgba(0,0,0,0.15)'
@@ -138,7 +138,7 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
               </div>
             </div>
 
-            <div style={{ marginTop: 24, padding: 24, background: 'white', borderRadius: 20, border: '1px solid rgba(0,0,0,0.05)' }}>
+            <div className="info-wrapper" style={{ marginTop: 24, padding: 24, background: 'white', borderRadius: 20, border: '1px solid rgba(0,0,0,0.05)' }}>
               <h2 style={{ fontSize: 22, fontWeight: 700, marginBottom: 12 }}>ক্লাস নোটস ও রিসোর্স</h2>
               <p style={{ color: '#6e6e73', lineHeight: 1.6 }}>
                 এই পাঠে আমরা {activeTopic.title} সম্পর্কে বিস্তারিত আলোচনা করব। নিচের পিডিএফ লিঙ্ক থেকে আপনি আজকের ক্লাসের নোট ডাউনলোড করতে পারেন।
@@ -153,7 +153,7 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
           </div>
 
           {/* Curriculum Sidebar */}
-          <div style={{ 
+          <div className="curriculum-sidebar" style={{ 
             background: 'white', borderRadius: 20, padding: 20, 
             border: '1px solid rgba(0,0,0,0.05)', maxHeight: 'calc(100vh - 120px)', 
             overflowY: 'auto', position: 'sticky', top: 84
@@ -212,6 +212,20 @@ function CourseContent({ params }: { params: Promise<{ id: string }> }) {
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .course-grid { grid-template-columns: 1fr !important; }
+          .curriculum-sidebar { position: static !important; max-height: none !important; margin-top: 16px; }
+        }
+        @media (max-width: 640px) {
+          .course-container { padding-top: 60px !important; padding-left: 0 !important; padding-right: 0 !important; }
+          .course-header { padding: 0 16px; flex-direction: column; align-items: flex-start !important; gap: 12px; }
+          .video-wrapper { border-radius: 0 !important; box-shadow: none !important; }
+          .info-wrapper { border-radius: 0 !important; border-left: none !important; border-right: none !important; padding: 16px !important; margin-top: 0 !important; }
+          .curriculum-sidebar { border-radius: 0 !important; border-left: none !important; border-right: none !important; padding: 16px !important; margin-top: 8px !important; }
+        }
+      `}</style>
     </div>
   )
 }
