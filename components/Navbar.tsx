@@ -97,29 +97,23 @@ export default function Navbar() {
               <button
                 onClick={() => setOpen(v => !v)}
                 style={{
-                  display: 'flex', alignItems: 'center', gap: 9,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
                   background: 'rgba(128,0,0,0.08)',
                   border: '1.5px solid rgba(128,0,0,0.20)',
-                  borderRadius: 40, padding: '7px 14px 7px 8px',
+                  borderRadius: '50%', padding: '4px',
                   cursor: 'pointer', transition: 'all 300ms ease',
                 }}
                 onMouseEnter={e => (e.currentTarget.style.background = 'rgba(128,0,0,0.14)')}
                 onMouseLeave={e => (e.currentTarget.style.background = 'rgba(128,0,0,0.08)')}
               >
                 <div style={{
-                  width: 28, height: 28, borderRadius: '50%',
+                  width: 32, height: 32, borderRadius: '50%',
                   background: 'linear-gradient(135deg, #800000, #b30000)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: 'white', fontSize: 11, fontWeight: 700,
+                  color: 'white', fontSize: 13, fontWeight: 700,
                 }}>
                   {initials}
                 </div>
-                <span style={{ fontSize: 14, fontWeight: 600, color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif", whiteSpace: 'nowrap' }}>
-                  {user.displayName}
-                </span>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 4l4 4 4-4" stroke="#3c3c43" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
               </button>
 
               {open && (
