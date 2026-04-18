@@ -209,12 +209,12 @@ export default function GovtNotices() {
   const hasDateFilter = !!dateFrom
 
   return (
-    <section style={{ background: '#f5f5f7', padding: '0 0 64px' }}>
+    <section style={{ background: '#f5f5f7', padding: '32px 0 88px' }}>
       <div className="container">
-        <div className="glass" style={{ padding: '24px 28px' }}>
+        <div className="glass" style={{ padding: '32px 36px', minHeight: 420 }}>
 
           {/* Header */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, flexWrap: 'wrap', gap: 12 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 28, flexWrap: 'wrap', gap: 12 }}>
             <h2 className="h3" style={{ color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif", margin: 0 }}>
               শিক্ষা মন্ত্রণালয়ের সাধারণ বিজ্ঞপ্তি
             </h2>
@@ -281,7 +281,7 @@ export default function GovtNotices() {
           ) : displayed.map((notice, i) => (
             <div key={i} style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-              padding: '13px 0',
+              padding: '16px 0',
               borderBottom: i < filtered.length - 1 ? '1px solid rgba(0,0,0,0.06)' : 'none',
               gap: 16,
             }}>
@@ -314,7 +314,7 @@ export default function GovtNotices() {
 
           {/* Show more */}
           {filtered.length > 3 && (
-            <div style={{ textAlign: 'center', marginTop: 16 }}>
+            <div style={{ textAlign: 'center', marginTop: 24 }}>
               <button onClick={() => setShowAll(v => !v)} style={{
                 background: 'none', border: 'none', cursor: 'pointer',
                 color: '#800000', fontSize: 13, fontWeight: 600,

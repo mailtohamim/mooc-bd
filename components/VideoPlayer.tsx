@@ -186,7 +186,7 @@ export default function VideoPlayer() {
 
   return (
     <section className="section" style={{ background: "#f8f8fa" }}>
-      <div className="container" style={{ maxWidth: "1400px" }}>
+      <div className="container" style={{ padding: "0 60px" }}>
         {/* Class selector */}
         <div
           style={{
@@ -226,7 +226,7 @@ export default function VideoPlayer() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "220px 1fr",
+              gridTemplateColumns: "28% 1fr",
             }}
             className="video-grid"
           >
