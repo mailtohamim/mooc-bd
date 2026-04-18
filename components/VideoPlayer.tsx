@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { VIDEO_PLAYER_IMAGES } from "@/constants/images";
+import { videoUrls } from "@/constants/videos";
 
 const classData: Record<string, string[]> = {
   "শ্রেণি ১২": ["পদার্থবিজ্ঞান", "রসায়নবিজ্ঞান", "গণিত", "জীববিজ্ঞান"],
@@ -11,39 +12,15 @@ const classData: Record<string, string[]> = {
     "ইংরেজি",
   ],
   "শ্রেণি ১০": ["বাংলা ১ম পত্র", "গণিত", "সাধারণ বিজ্ঞান", "ইতিহাস"],
-};
-
-const chapterData: Record<string, { title: string; topics: string[] }[]> = {
-  পদার্থবিজ্ঞান: [
-    {
-      title: "অধ্যায় ১: ভৌত জগৎ ও পরিমাপ",
-      topics: ["ভৌত জগৎ", "পরিমাপের একক", "ত্রুটি ও পরিমাপ"],
-    },
-    {
-      title: "অধ্যায় ২: ভেক্টর",
-      topics: ["ভেক্টর রাশি", "ভেক্টর সংযোগ", "ভেক্টর গুণন"],
-    },
-  ],
-  রসায়নবিজ্ঞান: [
-    {
-      title: "অধ্যায় ১: ল্যাবরেটরির নিরাপদ ব্যবহার",
-      topics: [
-        "পোশাক ও নিরাপত্তা",
-        "রাসায়নিক দ্রব্য সংরক্ষণ",
-        "গ্লাস সামগ্রী পরিষ্কার",
-      ],
-    },
-  ],
-  গণিত: [
-    {
-      title: "অধ্যায় ১: মেট্রিক্স ও নির্ণায়ক",
-      topics: [
-        "মেট্রিক্সের প্রকারভেদ",
-        "নির্ণায়কের ধর্মাবলি",
-        "ক্রেমারের নিয়ম",
-      ],
-    },
-  ],
+  "শ্রেণি ৯": ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান"],
+  "শ্রেণি ৮": ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান"],
+  "শ্রেণি ৭": ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান"],
+  "শ্রেণি ৬": ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান"],
+  "শ্রেণি ৫": ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান"],
+  "শ্রেণি ৪": ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান"],
+  "শ্রেণি ৩": ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান"],
+  "শ্রেণি ২": ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান"],
+  "শ্রেণি ১": ["বাংলা", "ইংরেজি", "গণিত", "বিজ্ঞান"],
 };
 
 const classKeys = Object.keys(classData);
@@ -57,207 +34,154 @@ const accentColors = [
   "#3abf9a",
 ];
 
-const VideoThumbnail = ({
+/**
+ * Renders a YouTube iframe embed or a placeholder when no video URL is available.
+ */
+const VideoEmbed = ({
+  videoId,
   subject,
   color,
   imgSrc,
 }: {
+  videoId: string | undefined;
   subject: string;
   color: string;
   imgSrc: string;
-}) => (
-  <div
-    style={{
-      width: "100%",
-      aspectRatio: "16/9",
-      borderRadius: 16,
-      position: "relative",
-      overflow: "hidden",
-    }}
-  >
-    {/* Background image */}
-    <img
-      src={imgSrc}
-      alt={subject}
-      style={{
-        position: "absolute",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        objectFit: "cover",
-        zIndex: 0,
-      }}
-    />
-    {/* Dark overlay for readability */}
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        zIndex: 1,
-        background:
-          "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.1) 100%)",
-      }}
-    />
-
-    {/* Subject label */}
-    <div
-      style={{
-        position: "absolute",
-        top: 14,
-        left: 14,
-        zIndex: 2,
-        background: "rgba(0,0,0,0.45)",
-        border: "1px solid rgba(255,255,255,0.18)",
-        borderRadius: 8,
-        padding: "4px 12px",
-        fontSize: 12,
-        color: "rgba(255,255,255,0.90)",
-        fontFamily: "'Anek Bangla', sans-serif",
-        fontWeight: 600,
-      }}
-    >
-      {subject}
-    </div>
-
-    {/* Info button */}
-    <div
-      style={{
-        position: "absolute",
-        top: 12,
-        right: 12,
-        width: 26,
-        height: 26,
-        borderRadius: "50%",
-        background: "rgba(255,255,255,0.15)",
-        border: "1px solid rgba(255,255,255,0.25)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        color: "white",
-        fontSize: 12,
-        fontWeight: 700,
-        cursor: "pointer",
-        zIndex: 2,
-      }}
-    >
-      i
-    </div>
-
-    {/* Controls bar */}
-    <div
-      style={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        padding: "28px 14px 10px",
-        background: "linear-gradient(to top, rgba(0,0,0,0.65), transparent)",
-        display: "flex",
-        alignItems: "center",
-        gap: 10,
-        zIndex: 2,
-      }}
-    >
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 18 18"
-        fill="none"
-        style={{ cursor: "pointer" }}
-      >
-        <path d="M5 4l10 5-10 5V4z" fill="white" />
-      </svg>
+}) => {
+  if (videoId) {
+    return (
       <div
         style={{
-          flex: 1,
-          height: 3,
-          background: "rgba(255,255,255,0.25)",
-          borderRadius: 2,
-          position: "relative",
+          width: "100%",
+          aspectRatio: "16/9",
+          borderRadius: 16,
+          overflow: "hidden",
+          background: "#000",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
         }}
       >
-        <div
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
+          title={subject}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
           style={{
-            width: "32%",
+            width: "100%",
             height: "100%",
-            background: color,
-            borderRadius: 2,
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: "32%",
-            top: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 9,
-            height: 9,
-            background: "white",
-            borderRadius: "50%",
+            border: "none",
           }}
         />
       </div>
-      <svg
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        fill="none"
-        style={{ cursor: "pointer" }}
+    );
+  }
+
+  // Fallback placeholder when no video URL is configured
+  return (
+    <div
+      style={{
+        width: "100%",
+        aspectRatio: "16/9",
+        borderRadius: 16,
+        position: "relative",
+        overflow: "hidden",
+        background: "#1a1a2e",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
+      }}
+    >
+      {/* Background image */}
+      <img
+        src={imgSrc}
+        alt={subject}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          zIndex: 0,
+          opacity: 0.4,
+          filter: "blur(2px)",
+        }}
+      />
+      {/* Gradient overlay */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 1,
+          background:
+            "linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%)",
+        }}
+      />
+
+      {/* "No video" message */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 16,
+        }}
       >
-        <path
-          d="M2 8c0-2.2 1.8-4 4-4V2L9 5 6 8V6C4.3 6 3 7.3 3 9s1.3 3 3 3h1v1.5H6c-2.2 0-4-1.8-4-4zM9 4.5V6c1.7 0 3 1.3 3 3s-1.3 3-3 3h-1V13.5h1c2.2 0 4-1.8 4-4s-1.8-4-4-4z"
-          fill="white"
-          opacity="0.75"
-        />
-      </svg>
-      <svg
-        width="14"
-        height="14"
-        viewBox="0 0 14 14"
-        fill="none"
-        style={{ cursor: "pointer" }}
-      >
-        <path
-          d="M1 1h4M1 1v4M13 1h-4M13 1v4M1 13h4M1 13v-4M13 13h-4M13 13v-4"
-          stroke="white"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          opacity="0.75"
-        />
-      </svg>
+        {/* Play icon circle */}
+        <div
+          style={{
+            width: 72,
+            height: 72,
+            borderRadius: "50%",
+            background: `linear-gradient(135deg, ${color}, ${color}99)`,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: `0 4px 24px ${color}44`,
+          }}
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M8 5v14l11-7L8 5z" fill="white" />
+          </svg>
+        </div>
+        <p
+          style={{
+            color: "rgba(255,255,255,0.7)",
+            fontSize: 15,
+            fontFamily: "'Anek Bangla', sans-serif",
+            fontWeight: 500,
+            margin: 0,
+            textAlign: "center",
+            padding: "0 24px",
+          }}
+        >
+          ভিডিও শীঘ্রই আসছে
+        </p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default function VideoPlayer() {
   const [activeClassIdx, setActiveClassIdx] = useState(0);
   const [activeSubIdx, setActiveSubIdx] = useState(0);
-  const [activeChapterIdx, setActiveChapterIdx] = useState(0);
-  const [activeTopicIdx, setActiveTopicIdx] = useState(0);
 
   const activeClass = classKeys[activeClassIdx];
   const subjects = classData[activeClass];
   const subject = subjects[activeSubIdx];
-  const chapters = chapterData[subject] || [
-    { title: "অধ্যায় ১: সাধারণ আলোচনা", topics: ["টপিক ১", "টপিক ২"] },
-  ];
-  const activeChapter = chapters[activeChapterIdx] || chapters[0];
-  const activeTopic =
-    activeChapter.topics[activeTopicIdx] || activeChapter.topics[0];
 
   const color = accentColors[activeClassIdx % accentColors.length];
+
+  // Look up the YouTube video ID for the current subject
+  const videoId = videoUrls[subject] || "";
 
   const handleClassChange = (idx: number) => {
     setActiveClassIdx(idx);
     setActiveSubIdx(0);
-    setActiveChapterIdx(0);
-    setActiveTopicIdx(0);
   };
 
   const handleSubjectChange = (idx: number) => {
     setActiveSubIdx(idx);
-    setActiveChapterIdx(0);
-    setActiveTopicIdx(0);
   };
 
   return (
@@ -367,8 +291,9 @@ export default function VideoPlayer() {
             {/* Right – video content area */}
             <div style={{ padding: "32px 40px" }}>
               <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-                <VideoThumbnail
-                  subject={activeTopic}
+                <VideoEmbed
+                  videoId={videoId}
+                  subject={subject}
                   color={color}
                   imgSrc={
                     VIDEO_PLAYER_IMAGES[subject] || VIDEO_PLAYER_IMAGES._default
@@ -384,18 +309,8 @@ export default function VideoPlayer() {
                     fontSize: 26,
                   }}
                 >
-                  {subject} · {activeTopic}
+                  {subject}
                 </h2>
-                <p
-                  className="body-sm"
-                  style={{
-                    color: "#8e8e93",
-                    fontFamily: "'Anek Bangla', sans-serif",
-                    fontSize: 16,
-                  }}
-                >
-                  {activeChapter.title} · পার্ট {activeTopicIdx + 1}
-                </p>
               </div>
             </div>
           </div>
