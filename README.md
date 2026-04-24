@@ -10,12 +10,15 @@ This is a premium, interactive online education platform for Bangladesh students
 - **Dynamic Progression**: A compact welcome banner with real-time progress indicators linked to course completion.
 - **Upcoming Items**: Sections for upcoming exams and pending assignments, automatically highlighting the most urgent tasks.
 
-### 2. Personalized Learning System
-- **Profile-Centric View**: Each user gets a customized landing with their enrolled courses and progress stats.
-- **Compact & Space-Efficient**: Optimized UI/UX that saves vertical space while keeping all critical tools within reach.
+### 3. Integrated Learning Experience
+- **Interactive Video Player**: Fully functional `/video` page with curated YouTube educational content for all subjects.
+- **Home Video Modal**: Clicking marquee video cards opens a premium YouTube Lightbox player inline.
+- **Intermediate Course Pages**: Structured navigation from Class/Skill categories to specific course selections before entering the player.
+- **Comprehensive Quiz System**: Subject-specific quizzes with immediate feedback and performance explanations.
+- **Exam Leaderboard**: A polished ranking system with medals (🥇, 🥈, 🥉), row highlighting, and real-time score tracking.
 
-### 3. Build & Stability
-- Built on **Next.js 15.5** with **React 19**.
+## 🛠️ Build & Stability
+- Built on **Next.js 15** with **React 19**.
 - Full support for static generation and server-side logic.
 - Responsive design tailored for students on various devices.
 

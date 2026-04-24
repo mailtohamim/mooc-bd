@@ -1,37 +1,90 @@
 /**
  * Centralized YouTube video ID mapping for the Video Player section.
  *
- * Structure:  videoUrls[subjectName] = "YOUTUBE_VIDEO_ID"
- *
- * To add/change a video:
- *   1. Find the subject name from the classData in VideoPlayer.tsx
- *   2. Set the value to the YouTube video ID (the part after "v=" in a YouTube URL)
- *      e.g. for https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  "dQw4w9WgXcQ"
- *
- * If a video ID is empty or missing, a placeholder will be shown.
+ * ─── HOW TO CHANGE A VIDEO ───────────────────────────────────────────────────
+ *  1. Find the YouTube video URL, e.g.:
+ *       https://www.youtube.com/watch?v=dQw4w9WgXcQ
+ *                                         ↑ this part is the "video ID"
+ *  2. For Course Subjects: Find the key in `videoUrls` (e.g., "পদার্থবিজ্ঞান")
+ *     and replace the value with the new ID.
+ *  3. For Class-Specific Overrides: Use "ClassName_SubjectName"
+ *     (e.g., "শ্রেণি ১০_পদার্থবিজ্ঞান") to have a different video for that class.
+ *  4. For Portrait Videos (Marquee): Find the key in `portraitVideoUrls`
+ *     matching the video title and replace the ID.
+ *  5. Save the file — changes are reflected immediately.
+ * ─────────────────────────────────────────────────────────────────────────────
  */
 
 export const videoUrls: Record<string, string> = {
-  // ─── শ্রেণি ১২ ─────────────────────────────────────────────────
-  পদার্থবিজ্ঞান: "",
-  রসায়নবিজ্ঞান: "",
-  গণিত: "",
-  জীববিজ্ঞান: "",
+  // ─── শ্রেণিভিত্তিক ভিডিও (Class Specific Overrides) ──────────
+  // If you want a specific video for a specific class, use: "ClassName_SubjectName"
+  "শ্রেণি ১০_পদার্থবিজ্ঞান": "QdsV9yvVkzc", // User provided Class 10 Physics link
 
-  // ─── শ্রেণি ১১ ─────────────────────────────────────────────────
-  // পদার্থবিজ্ঞান & রসায়নবিজ্ঞান already listed above (shared key)
-  "বেসিক পাইথন প্রোগ্রামিং": "",
-  ইংরেজি: "",
+  // ─── সাধারণ বিষয় (General Subjects) ──────────────────────────
+  // User provided Physics link: https://www.youtube.com/watch?v=oIDdYhnPL50
+  পদার্থবিজ্ঞান: "oIDdYhnPL50",
 
-  // ─── শ্রেণি ১০ ─────────────────────────────────────────────────
-  // গণিত already listed above (shared key)
-  "বাংলা ১ম পত্র": "",
-  "সাধারণ বিজ্ঞান": "",
-  ইতিহাস: "",
+  // 10 Minute School — HSC Chemistry (Periodic Table)
+  রসায়নবিজ্ঞান: "7ZtqomeVFMs",
 
-  // ─── শ্রেণি ১-৯ (Generic Subjects) ──────────────────────────
-  বাংলা: "",
-  ইংরেজি: "",
-  গণিত: "",
-  বিজ্ঞান: "",
+  // 10 Minute School — HSC / SSC Math full lecture
+  গণিত: "Ku75garRVaI",
+
+  // 10 Minute School — HSC Biology (Cell Division)
+  জীববিজ্ঞান: "pYBHkrCMUxY",
+
+  // 10 Minute School — General Science (Class 6-9)
+  বিজ্ঞান: "v3E5GrFJuBc",
+
+  // Shikho — SSC General Science
+  "সাধারণ বিজ্ঞান": "k5s8IyUnTpA",
+
+  // ─── ভাষা ও সাহিত্য ────────────────────────────────────────────
+  // 10 Minute School — Bangla (SSC)
+  বাংলা: "q0DBeJOOb8c",
+
+  // 10 Minute School — Bangla 1st Paper (SSC)
+  "বাংলা ১ম পত্র": "6nHi1oMv2HY",
+
+  // 10 Minute School — English for SSC (Grammar & Writing)
+  ইংরেজি: "HAOqFdBNSH8",
+
+  // ─── অন্যান্য বিষয় ────────────────────────────────────────────
+  // 10 Minute School — History (Bangladesh Liberation War)
+  ইতিহাস: "wV7vxn5eqSc",
+
+  // Bohubrihi — Python Programming Basics (Bangla)
+  "বেসিক পাইথন প্রোগ্রামিং": "Z1Yd7upnF3c",
+
+  // ─── স্কিলস কোর্স ──────────────────────────────────────────────
+  // 10 Minute School — IELTS Full Course (Reading)
+  "IELTS কোর্স": "6vS6XnKGQfA",
+
+  // 10 Minute School — Spoken English (Home-based)
+  "ঘরে বসে Spoken English": "OOWV5_JRSJc",
+
+  // 10 Minute School — IELTS Live Batch Intro
+  "IELTS LIVE ব্যাচ": "f1V2i5Kg1JA",
+
+  // 10 Minute School — Junior Spoken English for kids
+  "জুনিয়র Spoken English": "0XyaHK0CROU",
+};
+
+/**
+ * YouTube video IDs for the Portrait Videos marquee carousel.
+ *
+ * HOW TO CHANGE: Replace the string value with the YouTube video ID.
+ * The key name matches the video title (used as a reference only).
+ */
+export const portraitVideoUrls: Record<string, string> = {
+  "৫টি স্টাডি হ্যাকস যা সবার জানা উচিত": "p60rN9JEapg",
+  "পরীক্ষার আগের রাতের প্রস্তুতি": "mNjXEybIzdA",
+  "পড়া মনে রাখার সহজ ৩টি টেকনিক": "eVajQPuZjD8",
+  "গণিতের ভয় দূর করার উপায়": "Ku75garRVaI",
+  "সময় ব্যবস্থাপনার ৫টি নিয়ম": "iDbdXTMnOmE",
+  "পরীক্ষায় করণীয় ও বর্জনীয় (Do's & Don'ts)": "6nHi1oMv2HY",
+  "দীর্ঘক্ষণ মনোযোগ ধরে রাখার সাইন্টিফিক পদ্ধতি": "p60rN9JEapg",
+  "MCQ তে ভালো করার গোপন কৌশল": "HAOqFdBNSH8",
+  "সৃজনশীল প্রশ্নের উত্তর লেখার সঠিক নিয়ম": "q0DBeJOOb8c",
+  "ইংরেজি ভোকাবুলারি মনে রাখার সেরা উপায়": "OOWV5_JRSJc",
 };
