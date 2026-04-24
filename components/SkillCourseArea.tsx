@@ -1,6 +1,8 @@
 "use client";
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { SKILL_COURSE_IMAGES } from "@/constants/images";
+import { skillRouteFromTitle } from "@/constants/learning";
 
 const categories = [
   "ভাষা শিক্ষা",
@@ -56,10 +58,16 @@ const courses = [
 ];
 
 export default function SkillCourseArea() {
+  const router = useRouter();
   const [activeCat, setActiveCat] = useState(0);
   const [showAll, setShowAll] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const CARD_W = 280;
+
+  const goToSkillTrack = (title: string) => {
+    router.push(`/learning/skill/${skillRouteFromTitle(title)}`);
+  };
+
   const scroll = (dir: "prev" | "next") => {
     if (scrollRef.current)
       scrollRef.current.scrollBy({
@@ -257,6 +265,7 @@ export default function SkillCourseArea() {
                 scrollSnapAlign: "start",
                 minWidth: CARD_W,
               }}
+              onClick={() => goToSkillTrack(title)}
             >
               <CourseImage src={img} alt={title} />
               <div
@@ -292,6 +301,7 @@ export default function SkillCourseArea() {
                   {title}
                 </h3>
                 <button
+                  type="button"
                   style={{
                     background: "none",
                     border: "none",
@@ -305,6 +315,10 @@ export default function SkillCourseArea() {
                     gap: 4,
                     padding: 0,
                     transition: "gap 300ms ease",
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goToSkillTrack(title);
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.gap = "8px")}
                   onMouseLeave={(e) => (e.currentTarget.style.gap = "4px")}
