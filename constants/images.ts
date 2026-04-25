@@ -1,15 +1,14 @@
 /**
  * Centralized image URL constants for all sections.
- * Uses static.photos education images.
  * Change URLs here to update images across the entire site.
  */
 
 const BASE_URL = "https://static.photos/education/1200x630";
 // ─── Hero Section (Slider) ───────────────────────────────────────
 export const HERO_IMAGES = {
-  slide1: `${BASE_URL}/10`,
-  slide2: `${BASE_URL}/22`,
-  slide3: `${BASE_URL}/35`,
+  slide1: "/images/b-study.jpg",
+  slide2: "/images/b-study-2.jpg",
+  slide3: "/images/b-study-3.jpg",
 };
 
 // ─── Skill / Course Area ─────────────────────────────────────────

@@ -8,6 +8,12 @@ import { CLASS_VIDEO_SUBJECTS } from "@/constants/learning";
 
 const accentColors = ["#4a90d9", "#5ab87a", "#d25a3c", "#8250d2", "#e07050", "#3abf9a"];
 
+const getBadgeColor = (badge: string) => {
+  if (badge === "Gold") return "#d4a017";
+  if (badge === "Silver") return "#7f8c8d";
+  return "#a05a2c";
+};
+
 const VideoEmbed = ({
   videoId,
   subject,
@@ -147,7 +153,8 @@ export default function VideoPlayer() {
       classIndex = 0;
     }
 
-    const possibleSubjects = CLASS_VIDEO_SUBJECTS[classKeys[classIndex]] || [];
+    const selectedClass = classKeys[classIndex] ?? classKeys[0];
+    const possibleSubjects = selectedClass ? CLASS_VIDEO_SUBJECTS[selectedClass] || [] : [];
     let subjectIndex = subjectFromQuery ? possibleSubjects.indexOf(subjectFromQuery) : 0;
 
     if (subjectIndex < 0) {
@@ -158,8 +165,8 @@ export default function VideoPlayer() {
     setActiveSubIdx(subjectIndex);
   }, [searchParams, classKeys]);
 
-  const activeClass = classKeys[activeClassIdx] || classKeys[0];
-  const subjects = CLASS_VIDEO_SUBJECTS[activeClass] || [];
+  const activeClass = classKeys[activeClassIdx] ?? classKeys[0];
+  const subjects = activeClass ? CLASS_VIDEO_SUBJECTS[activeClass] || [] : [];
   const subject = subjects[activeSubIdx] || subjects[0] || "";
   const moduleFromQuery = searchParams.get("module") || "";
 
