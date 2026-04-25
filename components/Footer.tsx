@@ -34,18 +34,7 @@ export default function Footer() {
           <div>
             {/* Logo */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                <rect width="40" height="40" rx="11" fill="url(#fl)" />
-                <path d="M12 12h7a3 3 0 0 1 3 3v13H12V12z" fill="rgba(255,255,255,0.9)" />
-                <path d="M28 12h-7a3 3 0 0 0-3 3v13h10V12z" fill="rgba(255,255,255,0.45)" />
-                <path d="M12 27h16" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" strokeLinecap="round" />
-                <defs>
-                  <linearGradient id="fl" x1="0" y1="0" x2="40" y2="40">
-                    <stop stopColor="#800000" />
-                    <stop offset="1" stopColor="#b30000" />
-                  </linearGradient>
-                </defs>
-              </svg>
+              <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 40, height: 40, objectFit: 'contain' }} />
               <div>
                 <div style={{
                   fontWeight: 800, fontSize: 16,
