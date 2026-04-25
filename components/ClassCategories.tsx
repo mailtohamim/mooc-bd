@@ -1,4 +1,6 @@
 'use client'
+import { useRouter } from 'next/navigation'
+import { classRouteFromLabel } from '@/constants/learning'
 
 /* SVG icons */
 const BagIcon = () => (
@@ -49,6 +51,12 @@ const cards = [
 ]
 
 export default function ClassCategories() {
+  const router = useRouter()
+
+  const goToClassCourses = (classLabel: string) => {
+    router.push(`/learning/class/${classRouteFromLabel(classLabel)}`)
+  }
+
   return (
     <section className="section" style={{ background: '#f2f2f5' }}>
       <div className="container">
@@ -80,6 +88,7 @@ export default function ClassCategories() {
                 justifyContent: 'space-between',
                 minHeight: 240,
               }}
+              onClick={() => goToClassCourses(classes[0])}
             >
               {/* blob */}
               <div style={{
@@ -106,19 +115,34 @@ export default function ClassCategories() {
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginBottom: 24 }}>
                   {classes.map(cls => (
-                    <span key={cls} className="pill-tag">{cls}</span>
+                    <button
+                      key={cls}
+                      type="button"
+                      className="pill-tag"
+                      onClick={e => {
+                        e.stopPropagation()
+                        goToClassCourses(cls)
+                      }}
+                    >
+                      {cls}
+                    </button>
                   ))}
                 </div>
               </div>
 
               {/* Explore link */}
               <button
+                type="button"
                 style={{
                   background: 'none', border: 'none', cursor: 'pointer',
                   display: 'flex', alignItems: 'center', gap: 5,
                   color: '#800000', fontWeight: 600, fontSize: 14,
                   fontFamily: "'Anek Bangla', sans-serif", padding: 0,
                   transition: 'gap 300ms ease',
+                }}
+                onClick={e => {
+                  e.stopPropagation()
+                  goToClassCourses(classes[0])
                 }}
                 onMouseEnter={e => (e.currentTarget.style.gap = '10px')}
                 onMouseLeave={e => (e.currentTarget.style.gap = '5px')}
