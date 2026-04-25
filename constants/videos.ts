@@ -18,17 +18,17 @@
 export const videoUrls: Record<string, string> = {
   // ─── শ্রেণিভিত্তিক ভিডিও (Class Specific Overrides) ──────────
   // If you want a specific video for a specific class, use: "ClassName_SubjectName"
-  "শ্রেণি ১০_পদার্থবিজ্ঞান": "QdsV9yvVkzc", // User provided Class 10 Physics link
+  "শ্রেণি ১০_পদার্থবিজ্ঞান": "b1t41Q3xRM8", // Updated by user
 
   // ─── সাধারণ বিষয় (General Subjects) ──────────────────────────
-  // User provided Physics link: https://www.youtube.com/watch?v=oIDdYhnPL50
-  পদার্থবিজ্ঞান: "oIDdYhnPL50",
+  // User provided Physics link
+  পদার্থবিজ্ঞান: "b1t41Q3xRM8",
 
-  // 10 Minute School — SSC Chemistry
-  রসায়নবিজ্ঞান: "V4Qztw-_BT8",
+  // User provided Chemistry link
+  রসায়নবিজ্ঞান: "5iTOphGnCtg",
 
-  // 10 Minute School — SSC General Math Chapter 1
-  গণিত: "-pX4DhyYdgU",
+  // User provided Mathematics link
+  গণিত: "1srQ7Mq_ToI",
 
   // 10 Minute School — HSC Biology orientation class
   জীববিজ্ঞান: "Q7X3GHf7q-M",

@@ -39,17 +39,7 @@ export default function Navbar() {
       }}>
         {/* Logo */}
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-            <rect width="34" height="34" rx="10" fill="url(#nlg)" />
-            <path d="M9 9h7a3 3 0 0 1 3 3v11H9V9z" fill="rgba(255,255,255,0.9)" />
-            <path d="M25 9h-7a3 3 0 0 0-3 3v11h10V9z" fill="rgba(255,255,255,0.45)" />
-            <path d="M9 22h16" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" strokeLinecap="round" />
-            <defs>
-              <linearGradient id="nlg" x1="0" y1="0" x2="34" y2="34">
-                <stop stopColor="#800000" /><stop offset="1" stopColor="#b30000" />
-              </linearGradient>
-            </defs>
-          </svg>
+          <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 34, height: 34, objectFit: 'contain' }} />
           <span style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif", letterSpacing: '-0.01em', whiteSpace: 'nowrap' }}>
             শিখবেই বাংলাদেশ
           </span>

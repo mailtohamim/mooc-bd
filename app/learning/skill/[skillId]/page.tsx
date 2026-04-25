@@ -61,7 +61,7 @@ export default async function SkillLearningPage({ params }: SkillPageProps) {
               {track.title}
             </h1>
             <p className="body-sm" style={{ color: "#6e6e73", fontFamily: "'Anek Bangla', sans-serif", margin: 0 }}>
-              শিক্ষক: <strong style={{ color: "#3c3c43" }}>{track.teacher}</strong> — মডিউল বেছে নিন এবং ভিডিও, কুইজ ও লিডারবোর্ডে অংশ নিন।
+              শিক্ষক: <strong style={{ color: "#3c3c43" }}>{track.teacher}</strong> — মডিউল বেছে নিয়ে ভিডিও দেখুন।
             </p>
           </div>
 
@@ -111,7 +111,7 @@ export default async function SkillLearningPage({ params }: SkillPageProps) {
                   onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
                   onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                 >
-                  ভিডিও + কুইজ শুরু করুন
+                  ভিডিও শুরু করুন
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>

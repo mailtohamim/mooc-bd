@@ -59,16 +59,7 @@ export default function LoginPage() {
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 8,
           }}>
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <rect width="40" height="40" rx="12" fill="url(#llg)" />
-              <path d="M10 10h9a4 4 0 0 1 4 4v14H10V10z" fill="rgba(255,255,255,0.92)" />
-              <path d="M30 10h-9a4 4 0 0 0-4 4v14h13V10z" fill="rgba(255,255,255,0.40)" />
-              <defs>
-                <linearGradient id="llg" x1="0" y1="0" x2="40" y2="40">
-                  <stop stopColor="#800000" /><stop offset="1" stopColor="#b30000" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 40, height: 40, objectFit: 'contain' }} />
             <span style={{ fontWeight: 800, fontSize: 20, color: '#1d1d1f' }}>শিখবেই বাংলাদেশ</span>
           </div>
           <p style={{ fontSize: 15, color: '#6e6e73', marginTop: 4 }}>জ্ঞানের পথে আপনাকে স্বাগতম</p>

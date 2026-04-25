@@ -73,7 +73,7 @@ export default async function ClassLearningPage({ params }: ClassPageProps) {
               {classLabel} — কোর্সসমূহ
             </h1>
             <p className="body-sm" style={{ color: "#6e6e73", fontFamily: "'Anek Bangla', sans-serif", margin: 0 }}>
-              পছন্দের কোর্স বেছে নিন। প্রতিটি কোর্সে ভিডিও লেসন, কুইজ এবং এক্সাম লিডারবোর্ড রয়েছে।
+              পছন্দের কোর্স বেছে নিন। প্রতিটি কোর্সে ভিডিও লেসন রয়েছে।
             </p>
           </div>
 
@@ -134,7 +134,7 @@ export default async function ClassLearningPage({ params }: ClassPageProps) {
                     onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
                     onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                   >
-                    ভিডিও + কুইজ শুরু করুন
+                    ভিডিও শুরু করুন
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                       <path d="M2 7h10M8 3l4 4-4 4" stroke="white" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>

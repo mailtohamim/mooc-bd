@@ -1118,12 +1118,7 @@ export default function DashboardPage() {
       }}>
         {/* Logo */}
         <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', marginBottom: 28 }}>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <rect width="32" height="32" rx="9" fill="url(#sblg)" />
-            <path d="M8 8h7a3 3 0 0 1 3 3v10H8V8z" fill="rgba(255,255,255,0.92)" />
-            <path d="M24 8h-7a3 3 0 0 0-3 3v10h10V8z" fill="rgba(255,255,255,0.38)" />
-            <defs><linearGradient id="sblg" x1="0" y1="0" x2="32" y2="32"><stop stopColor="#800000"/><stop offset="1" stopColor="#b30000"/></linearGradient></defs>
-          </svg>
+          <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 32, height: 32, objectFit: 'contain' }} />
           <span style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', lineHeight: 1.2, whiteSpace: 'nowrap' }}>শিখবেই বাংলাদেশ</span>
         </a>
 
@@ -1185,9 +1180,7 @@ export default function DashboardPage() {
         {/* Mobile Top Bar */}
         <div className="mob-top-bar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #800000, #b30000)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 800, fontSize: 14 }}>
-               {initials}
-            </div>
+            <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 36, height: 36, objectFit: 'contain' }} />
             <div style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', whiteSpace: 'nowrap' }}>শিখবেই বাংলাদেশ</div>
           </div>
           <div style={{ position: 'relative', cursor: 'pointer', background: 'rgba(255,255,255,0.80)', border: '1px solid rgba(0,0,0,0.07)', width: 36, height: 36, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3c3c43' }}>
