@@ -7,6 +7,7 @@ import UpcomingEvents from '@/components/UpcomingEvents'
 import PortraitVideos from '@/components/PortraitVideos'
 import VideoPlayer from '@/components/VideoPlayer'
 import Footer from '@/components/Footer'
+import { Suspense } from 'react'
 
 export default function Home() {
   return (
@@ -18,7 +19,9 @@ export default function Home() {
       <GovtNotices />
       <UpcomingEvents />
       <PortraitVideos />
-      <VideoPlayer />
+      <Suspense fallback={<div style={{ minHeight: '70vh', background: '#f8f8fa' }} />}>
+        <VideoPlayer />
+      </Suspense>
       <Footer />
     </main>
   )
