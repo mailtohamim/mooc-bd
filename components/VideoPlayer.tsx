@@ -7,8 +7,10 @@ import { videoUrls } from "@/constants/videos";
 import { CLASS_VIDEO_SUBJECTS, CLASS_LEADERBOARD, SKILLS_LEADERBOARD, QUIZ_BANK } from "@/constants/learning";
 
 type ActiveTab = "video" | "quiz" | "leaderboard";
+type VideoPlayerClassKey = keyof typeof CLASS_VIDEO_SUBJECTS;
 
 const accentColors = ["#4a90d9", "#5ab87a", "#d25a3c", "#8250d2", "#e07050", "#3abf9a"];
+const VIDEO_PLAYER_CLASS_KEYS: VideoPlayerClassKey[] = ["শ্রেণি ১১", "শ্রেণি ১২", "শ্রেণি ১০", "স্কিলস"];
 
 const getBadgeColor = (badge: string) => {
   if (badge === "Gold") return "#d4a017";
@@ -132,7 +134,7 @@ const VideoEmbed = ({
 
 export default function VideoPlayer() {
   const searchParams = useSearchParams();
-  const classKeys = useMemo(() => Object.keys(CLASS_VIDEO_SUBJECTS), []);
+  const classKeys = useMemo(() => VIDEO_PLAYER_CLASS_KEYS.filter((classKey) => Boolean(CLASS_VIDEO_SUBJECTS[classKey])), []);
 
   const [activeClassIdx, setActiveClassIdx] = useState(0);
   const [activeSubIdx, setActiveSubIdx] = useState(0);
@@ -154,7 +156,8 @@ export default function VideoPlayer() {
       classIndex = 0;
     }
 
-    const possibleSubjects = CLASS_VIDEO_SUBJECTS[classKeys[classIndex]] || [];
+    const selectedClass = classKeys[classIndex] ?? classKeys[0];
+    const possibleSubjects = selectedClass ? CLASS_VIDEO_SUBJECTS[selectedClass] || [] : [];
     let subjectIndex = subjectFromQuery ? possibleSubjects.indexOf(subjectFromQuery) : 0;
 
     if (subjectIndex < 0) {
@@ -165,8 +168,8 @@ export default function VideoPlayer() {
     setActiveSubIdx(subjectIndex);
   }, [searchParams, classKeys]);
 
-  const activeClass = classKeys[activeClassIdx] || classKeys[0];
-  const subjects = CLASS_VIDEO_SUBJECTS[activeClass] || [];
+  const activeClass = classKeys[activeClassIdx] ?? classKeys[0];
+  const subjects = activeClass ? CLASS_VIDEO_SUBJECTS[activeClass] || [] : [];
   const subject = subjects[activeSubIdx] || subjects[0] || "";
   const moduleFromQuery = searchParams.get("module") || "";
 
