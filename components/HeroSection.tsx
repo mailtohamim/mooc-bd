@@ -175,8 +175,8 @@ export default function HeroSection() {
             <button
               className="btn-primary"
               style={{
-                background: `linear-gradient(135deg, ${slide.accent}, ${slide.accent}bb)`,
-                boxShadow: `0 8px 28px ${slide.accent}40`,
+                background: "linear-gradient(135deg, #800000, #b30000)",
+                boxShadow: "0 8px 28px rgba(128,0,0,0.40)",
                 fontSize: 16,
                 padding: "13px 32px",
                 transition: "all 300ms ease, box-shadow 300ms ease",
