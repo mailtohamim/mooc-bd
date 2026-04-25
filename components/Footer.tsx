@@ -33,18 +33,8 @@ export default function Footer() {
           {/* Brand */}
           <div>
             {/* Logo */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 40, height: 40, objectFit: 'contain' }} />
-              <div>
-                <div style={{
-                  fontWeight: 800, fontSize: 16,
-                  color: '#1d1d1f',
-                  fontFamily: "'Anek Bangla', sans-serif",
-                  lineHeight: 1.2,
-                }}>
-                  শিখবেই বাংলাদেশ
-                </div>
-              </div>
+            <div style={{ display: 'flex', alignItems: 'center', marginBottom: 16 }}>
+              <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: '100%', maxWidth: 240, height: 72, objectFit: 'contain' }} />
             </div>
 
             {/* App store buttons */}

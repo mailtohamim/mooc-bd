@@ -1117,9 +1117,8 @@ export default function DashboardPage() {
         overflowY: 'auto',
       }}>
         {/* Logo */}
-        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none', marginBottom: 28 }}>
-          <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 32, height: 32, objectFit: 'contain' }} />
-          <span style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', lineHeight: 1.2, whiteSpace: 'nowrap' }}>শিখবেই বাংলাদেশ</span>
+        <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', marginBottom: 28 }}>
+          <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: '100%', maxWidth: 188, height: 56, objectFit: 'contain' }} />
         </a>
 
         {/* Nav */}
@@ -1179,9 +1178,8 @@ export default function DashboardPage() {
       <main style={{ flex: 1, minWidth: 0, padding: '28px 24px', overflowY: 'auto' }}>
         {/* Mobile Top Bar */}
         <div className="mob-top-bar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 36, height: 36, objectFit: 'contain' }} />
-            <div style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', whiteSpace: 'nowrap' }}>শিখবেই বাংলাদেশ</div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 156, height: 44, objectFit: 'contain' }} />
           </div>
           <div style={{ position: 'relative', cursor: 'pointer', background: 'rgba(255,255,255,0.80)', border: '1px solid rgba(0,0,0,0.07)', width: 36, height: 36, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#3c3c43' }}>
              {Icon.bell}

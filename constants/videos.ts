@@ -19,6 +19,8 @@ export const videoUrls: Record<string, string> = {
   // ─── শ্রেণিভিত্তিক ভিডিও (Class Specific Overrides) ──────────
   // If you want a specific video for a specific class, use: "ClassName_SubjectName"
   "শ্রেণি ১০_পদার্থবিজ্ঞান": "b1t41Q3xRM8", // Updated by user
+  "শ্রেণি ৯_বাংলা ১ম পত্র": "CfEbmvLu290", // Updated by user
+  "শ্রেণি ১০_বাংলা ১ম পত্র": "CfEbmvLu290", // Updated by user
 
   // ─── সাধারণ বিষয় (General Subjects) ──────────────────────────
   // User provided Physics link
@@ -43,8 +45,8 @@ export const videoUrls: Record<string, string> = {
   // 10 Minute School — Bangla (SSC)
   বাংলা: "q0DBeJOOb8c",
 
-  // 10 Minute School — Bangla 1st Paper (SSC)
-  "বাংলা ১ম পত্র": "zl7J4v5iH9w",
+  // User provided Bangla 1st Paper link
+  "বাংলা ১ম পত্র": "CfEbmvLu290",
 
   // 10 Minute School — English for SSC (Grammar & Writing)
   ইংরেজি: "HAOqFdBNSH8",

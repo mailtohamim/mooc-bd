@@ -38,11 +38,8 @@ export default function Navbar() {
         transition: 'all 300ms ease',
       }}>
         {/* Logo */}
-        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
-          <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 34, height: 34, objectFit: 'contain' }} />
-          <span style={{ fontWeight: 800, fontSize: 15, color: '#1d1d1f', fontFamily: "'Anek Bangla', sans-serif", letterSpacing: '-0.01em', whiteSpace: 'nowrap' }}>
-            শিখবেই বাংলাদেশ
-          </span>
+        <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0 }}>
+          <img src="/images/Shikhbei Bangladesh.svg" alt="শিখবেই বাংলাদেশ" style={{ width: 176, height: 48, objectFit: 'contain' }} />
         </a>
 
         {/* Center links */}
